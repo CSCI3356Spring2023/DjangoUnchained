@@ -1,5 +1,6 @@
 Tutorial that I am currently following: 
 https://www.w3schools.com/django/django_templates.php
+https://learndjango.com/tutorials/django-login-and-logout-tutorial
 
 Please make sure to do any edits/changes on the test branch, not the main branch! (Feel free to create your own branch if needed)
 To get the test branch: https://github.com/CSCI3356Spring2023/DjangoUnchained/tree/test-branch
@@ -7,3 +8,8 @@ When done - create a pull request here https://github.com/CSCI3356Spring2023/Dja
 
 Figma html
 Some figma html code hasn't been working properly, Need to fix.
+Please add your code to DjangoUnchained -> appName -> templates!
+
+What to work on - adding all the templates
+New templates for landing page, login for students instructors and adminstrators
+add database to hold, create login page (see top for following tutorial)

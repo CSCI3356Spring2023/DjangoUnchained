@@ -1,0 +1,13 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Landing page for Django Unchained</title>
+    </head>
+    <body>
+        <a class="btn btn-primary" href="{% url 'student_login'%}">I am a student</a>
+        <a class="btn btn-primary" href="{% url 'instructor_login'%}">I am an instructor</a>
+        <a class="btn btn-primary" href="{% url 'administrator_login'%}">I am an administrator</a>
+
+        <br><a class="btn btn-primary" href="{% url 'add_course'%}">Go to Courses</a>
+    </body>
+</html>
