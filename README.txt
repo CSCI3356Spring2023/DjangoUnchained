@@ -9,3 +9,7 @@ When done - create a pull request here https://github.com/CSCI3356Spring2023/Dja
 Figma html
 Some figma html code hasn't been working properly, Need to fix.
 Please add your code to DjangoUnchained -> appName -> templates!
+
+What to work on - adding all the templates
+New templates for landing page, login for students instructors and adminstrators
+add database to hold, create login page (see top for following tutorial)
