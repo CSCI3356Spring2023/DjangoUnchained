@@ -3,6 +3,6 @@ from django.http import HttpResponse
 from django.template import loader
 # Create your views here.
 
-def hello(request):
+def add_course(request):
     template = loader.get_template('Add_course.html')
     return HttpResponse(template.render())
