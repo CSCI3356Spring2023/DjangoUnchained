@@ -13,3 +13,5 @@ Please add your code to DjangoUnchained -> appName -> templates!
 What to work on - adding all the templates
 New templates for landing page, login for students instructors and adminstrators
 add database to hold, create login page (see top for following tutorial)
+Work on understanding db integration, connecting the first login to db and work on signups
+Python saving from html fields using forms, better understanding of models and usage
