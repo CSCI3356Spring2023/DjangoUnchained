@@ -13,6 +13,6 @@ def add_course(request):
 
 # added to route admin.html in Application/templates
 def admin_page(request):
-    template = loader.get_template('admin.html')
+    template = loader.get_template('admin_page.html')
     return HttpResponse(template.render())
 
