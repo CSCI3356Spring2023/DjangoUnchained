@@ -21,3 +21,9 @@ https://docs.djangoproject.com/en/dev/topics/auth/customizing/#using-a-custom-us
 
 templates/registeration form needed to update
 https://www.w3schools.com/css/css_form.asp
+
+Look at forms.py to see how to call user information, see homepage and Application views/urls for details.
+
+For Application forms to create courses, see sign up or
+https://stackoverflow.com/questions/63377197/how-to-apply-css-on-form-in-django#:~:text=It%20can%20do%20very%20easy%20with%20Django%20Forms.,below%20some%20examples.Edit%20as%20per%20your%20Form%20requirements.
+
