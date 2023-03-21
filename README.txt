@@ -18,3 +18,6 @@ Python saving from html fields using forms, better understanding of models and u
 
 User set up
 https://docs.djangoproject.com/en/dev/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project
+
+templates/registeration form needed to update
+https://www.w3schools.com/css/css_form.asp
