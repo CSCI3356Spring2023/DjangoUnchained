@@ -16,11 +16,14 @@ def signup_page(request):
             user = form.save()
             # auto-login user
             login(request, user)
-            return redirect(settings.LOGIN_REDIRECT_URL)
+            return redirect("/")
     return render(request, 'registration/signup.html', context={'form': form})
 # Create your views here.
 
 def landing_page(request):
+    if request.user.is_authenticated:
+        current_user = request.user
+        print(request.user.get_role())
     template = loader.get_template('landingpage.html')
     return HttpResponse(template.render())
 
@@ -30,7 +33,7 @@ def student_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('/website/profile/')
+            return redirect('/')
     else:
         form = AuthenticationForm()
     return render(request, "registration/login.html", {'form': form})
@@ -41,7 +44,7 @@ def instructor_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('/website/profile/')
+            return redirect('/')
     else:
         form = AuthenticationForm()
     return render(request, "registration/login.html", {'form': form})
@@ -52,7 +55,7 @@ def administrator_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('/website/profile/')
+            return redirect('/')
     else:
         form = AuthenticationForm()
     return render(request, "registration/login.html", {'form': form})
