@@ -15,3 +15,9 @@ New templates for landing page, login for students instructors and adminstrators
 add database to hold, create login page (see top for following tutorial)
 Work on understanding db integration, connecting the first login to db and work on signups
 Python saving from html fields using forms, better understanding of models and usage
+
+User set up
+https://docs.djangoproject.com/en/dev/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project
+
+templates/registeration form needed to update
+https://www.w3schools.com/css/css_form.asp

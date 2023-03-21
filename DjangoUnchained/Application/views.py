@@ -11,3 +11,8 @@ def add_course(request):
     template = loader.get_template('Add_course.html')
     return HttpResponse(template.render())
 
+# added to route admin.html in Application/templates
+def admin_page(request):
+    template = loader.get_template('admin_page.html')
+    return HttpResponse(template.render())
+

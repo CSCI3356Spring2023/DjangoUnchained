@@ -1,13 +1,46 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
     <head>
         <title>Landing page for Django Unchained</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color:rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 40px;
+                text-align: center;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .btn {
+                display: inline-block;
+                background-color: #007bff;
+                color: #fff;
+                text-decoration: none;
+                padding: 12px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                margin: 10px;
+                transition: background-color 0.3s;
+            }
+            .btn:hover {
+                background-color: #0056b3;
+            }
+        </style>
     </head>
     <body>
-        <a class="btn btn-primary" href="{% url 'student_login'%}">I am a student</a>
-        <a class="btn btn-primary" href="{% url 'instructor_login'%}">I am an instructor</a>
-        <a class="btn btn-primary" href="{% url 'administrator_login'%}">I am an administrator</a>
-
-        <br><a class="btn btn-primary" href="{% url 'add_course'%}">Go to Courses</a>
+        <div class="container">
+            <h1>Landing page for Django Unchained</h1>
+            <a class="btn" href="{% url 'student_login'%}">I am a student</a>
+            <a class="btn" href="{% url 'instructor_login'%}">I am an instructor</a>
+            <a class="btn" href="{% url 'administrator_login'%}">I am an administrator</a>
+            <br>
+            <a class="btn" href="{% url 'add_course'%}">Go to Courses</a>
+        </div>
     </body>
 </html>

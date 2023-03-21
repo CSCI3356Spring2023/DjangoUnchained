@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+      <h2>Log In</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+      </form>
+
+    </body>
+</html>
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      background-color:rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .container {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .btn {
+      display: inline-block;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      margin: 10px;
+      transition: background-color 0.3s;
+  }
+  .btn:hover {
+      background-color: #0056b3;
+  }
+</style>
