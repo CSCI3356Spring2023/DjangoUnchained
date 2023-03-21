@@ -18,7 +18,16 @@ def admin_page(request):
 
 def homepage(request):
     if request.user.is_authenticated:
-        return render(request, "homepage.html")
+        userRole = request.user.get_role()
+        if (userRole == 'Student'):
+            return render(request, "course_stendent.html")
+        elif (userRole == 'Instructor'):
+            return render(request, "instructor_visual.html")
+        elif (userRole == 'Administrator'):
+            return render(request, "admin_page.html")
+        else:
+            return render(request, "homepage.html")
+        
     else:
         return render("landingpage.html")
 
