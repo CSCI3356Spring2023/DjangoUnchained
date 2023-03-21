@@ -16,3 +16,9 @@ def admin_page(request):
     template = loader.get_template('admin_page.html')
     return HttpResponse(template.render())
 
+def homepage(request):
+    if request.user.is_authenticated:
+        return render(request, "homepage.html")
+    else:
+        return render("landingpage.html")
+

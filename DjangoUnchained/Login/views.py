@@ -23,11 +23,11 @@ def signup_page(request):
 def landing_page(request):
     if request.user.is_authenticated:
         current_user = request.user
-        print(request.user.get_role())
+        return redirect("main/")
     template = loader.get_template('landingpage.html')
     return HttpResponse(template.render())
 
-def student_login(request):
+def bclogin(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -38,25 +38,4 @@ def student_login(request):
         form = AuthenticationForm()
     return render(request, "registration/login.html", {'form': form})
     
-def instructor_login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('/')
-    else:
-        form = AuthenticationForm()
-    return render(request, "registration/login.html", {'form': form})
-    
-def administrator_login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('/')
-    else:
-        form = AuthenticationForm()
-    return render(request, "registration/login.html", {'form': form})
     
