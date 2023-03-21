@@ -3,13 +3,30 @@
     <head>
     </head>
     <body>
-      <h2>Log In</h2>
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Log In</button>
-      </form>
+      <div class="header">
+        <span  class="e2_4">EagleTAs</span>
+        <div class="bccrest"></div>
+      </div>
+      <div class="main">
 
+        </div>
+        <div class="e2_2"></div>
+        <div class=e66_6>
+          <div class="e68_9"></div>
+          <div class="e66_5"></div><span  class="e66_2">Welcome to Boston College’s Teaching Assistant Application System</span>
+        </div>
+        <div class=e68_8>
+          <div>
+            <span  class="e3_4">Login Using BC credentials</span>
+          </div>
+          <div>
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit">Log In</button>
+            </form>
+          </div>
+        </div>
     </body>
 </html>
 <style>
@@ -20,25 +37,121 @@
       justify-content: center;
       align-items: center;
   }
-  .container {
-      background-color: #fff;
-      border-radius: 5px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  .btn {
-      display: inline-block;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 5px;
-      font-size: 16px;
-      margin: 10px;
-      transition: background-color 0.3s;
-  }
   .btn:hover {
       background-color: #0056b3;
   }
+.main { 
+	height: 90vw;
+  width: 100%;
+	background-image:url(static/bc_banner_1.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.header { 
+  position: absolute;
+  top: 0px;
+  height: 10vh;
+  width: 100vw;
+	background-color:rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
+
+}
+.e2_4 { 
+	color:rgba(255, 255, 255, 1);
+	font-family:Poppins;
+	text-align:left;
+	font-size:40px;
+	letter-spacing:0;
+}
+.bccrest{ 
+	left:10px;
+	top:10px;
+	background-image:url(static/bccrest_1.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+
+.e68_9 { 
+	background-color:rgba(0, 0, 0, 1);
+	opacity:0.800000011920929;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+}
+.e66_5 { 
+	background-color:rgba(255, 255, 255, 1);
+	opacity:0.9300000071525574;
+	left:0px;
+	top:0px;
+}
+.e66_2 { 
+	color:rgba(0, 0, 0, 1);
+	font-family:Oxygen;
+	text-align:center;
+	font-size:47px;
+	letter-spacing:0;
+}
+.e68_8 { 
+	left:463px;
+	top:519px;
+}
+.e3_10 { 
+	background-color:rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
+	left:196px;
+	top:262px;
+}
+.e3_8 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	left:18px;
+	top:181px;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+}
+.e3_9 { 
+	color:rgba(0, 0, 0, 1);
+	left:21px;
+	top:153px;
+	font-family:Roboto;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_5 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	left:18px;
+	top:84px;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+}
+.e3_7 { 
+	color:rgba(0, 0, 0, 1);
+	left:21px;
+	top:56px;
+	font-family:Roboto;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_4 { 
+	color:rgba(0, 0, 0, 1);
+	left:0px;
+	top:0px;
+	font-family:Oxygen;
+	text-align:center;
+	font-size:30px;
+	letter-spacing:0;
+}
+.e3_11 { 
+	color:rgba(255, 255, 255, 1);
+	font-family:Roboto;
+	text-align:center;
+	font-size:25px;
+	letter-spacing:0;
+}
+
+
 </style>
