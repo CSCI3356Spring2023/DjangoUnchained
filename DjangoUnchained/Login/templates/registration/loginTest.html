@@ -15,16 +15,11 @@
         <div class="middle_big_box">
         <div class="middle_small_box"></div>
           <div class="inside_mbb"></div><span  class="welcome_text">Welcome to Boston College’s Teaching Assistant Application System</span>
-        </div class = "middled">
+        </div>
         <div class="login_stuff">
           <div class="login_button"></div>
-          <div><span  class="login_text">Login Using BC credentials</span></div>
-          <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Log In</button>
-          </form>
-          <span  class="e3_11">Login</span>
+          <div class="password_box"></div><span  class="e3_9">Password</span>
+          <div class="email_box"></div><span  class="e3_7">Email</span><span  class="login_text">Login Using BC credentials</span><span  class="e3_11">Login</span>
         </div>
       </div>
     
@@ -60,7 +55,7 @@
         bottom:0px;
         right:0px;
         object-fit: cover;
-        background-image:url('../static/bc_banner_1.png');
+        background-image:url(newBCBanner.png);
         background-repeat:no-repeat;
         background-size:cover;
     }
@@ -72,9 +67,6 @@
         bottom:0px;
         right:0px;
         height:13%;
-
-    }.middled {
-      height:3%;
     }
     .e2_4 { 
         color:rgba(255, 255, 255, 1);
@@ -94,7 +86,7 @@
         position:absolute;
         left:10px;
         top:10px;
-        background-image:url("../static/bccrest_1.png");
+        background-image:url(bccrest_1.png);
         background-repeat:no-repeat;
         background-size:cover;
     }
@@ -205,10 +197,13 @@
     }
     .login_text { 
         color:rgba(0, 0, 0, 1);
-        position:fixed;
+        width:514px;
+        height:39px;
+        position:absolute;
+        left:0px;
+        top:0px;
         font-family:Oxygen;
         text-align:center;
-        display: inline-block;
         font-size:25px;
         letter-spacing:0;
     }
@@ -223,8 +218,5 @@
         text-align:center;
         font-size:25px;
         letter-spacing:0;
-    }
-    form {
-
     }
 </style>
