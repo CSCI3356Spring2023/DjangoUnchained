@@ -55,7 +55,11 @@ def student_apply(request):
     gpa = arr[3]
     longAns = arr[4]
 
-    print(name, email, gradYear, gpa, longAns)
+    print('Name: ', name)
+    print('Email: ', email)
+    print('Graduation Year', gradYear)
+    print('GPA: ', gpa)
+    print('Why do you want to TA for this class?: ', longAns)
     
 
     #print(request.body[0])
