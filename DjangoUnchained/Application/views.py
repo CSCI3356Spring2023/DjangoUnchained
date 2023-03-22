@@ -2,6 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
 
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 def student_course(request):
@@ -32,13 +35,46 @@ def homepage(request):
     else:
         return render("landingpage.html")
     
+@csrf_exempt
 def student_apply(request):
 
-    name = request.POST.get('name')
-    gradYear = request.POST.get('gradYear')
-    gpa = request.POST.get('gpa')
-    longAns = request.POST.get('longAns')
+    string1 = str(request.body)
 
-    print(name, gradYear, gpa, longAns)
-   
+    test = string1.split('&')
+
+    arr = []
+
+    for string in test:
+        arr.append(string.split('=')[1])
+
+    arr[len(arr) - 1] = arr[len(arr) - 1][:-1]
+
+    name = arr[0]
+    email = arr[1]
+    gradYear = arr[2]
+    gpa = arr[3]
+    longAns = arr[4]
+
+    print('Name: ', name)
+    print('Email: ', email)
+    print('Graduation Year', gradYear)
+    print('GPA: ', gpa)
+    print('Why do you want to TA for this class?: ', longAns)
+    
+
+    #print(request.body[0])
+
+    #if request.method == 'POST':
+        #name = request.get('name')
+        #gradYear = request.get('gradYear')
+        #gpa = request.get('gpa')
+        #longAns = request.get('longAns')
+        #print(request.GET)
+
+    
+
+
+    #print(name, gradYear, gpa, longAns)
+
     return render(request, "studentApply.html")
+
