@@ -8,31 +8,56 @@
 </head>
 <body>
     <div class="big_div">
-    <div class="top_banner"></div>
-    <span  class="eagleTA_text">EagleTAs</span>
-    <div class="e137_5"></div>
-        <span  class="top_text">Application for CSCI1101 Computer Science I</span>
-        <span  class="e137_8">Lastname, Firstname</span>
-        <span  class="e137_9">Instructor</span>
-    <div class="big_gray_box"></div>
-        <span  class="e138_74">Why do want to TA for this class?</span>
-    <div class="app_stuff"></div>
-        <span  class="e138_60">Name</span>
-        <span  class="e138_63">Graduation Year</span>
-        <span  class="e138_65">GPA</span>
-        <span  class="e138_73">Have you taken this class?</span>
-        <span  class="e138_62">BC Email</span>
+        <div class="top_banner"></div>
+        <span  class="eagleTA_text">EagleTAs</span>
+        <form method="POST" class="application">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <label for="name">Name</label><br>
+            <input type="text" id="name"><br>
     
-    <div class="e138_67"></div>
-    <div class="e138_70"></div>
-    <div class="e138_71"></div>
-    <div class="e138_72"></div>
-    <div class="e138_69"></div>
-</div>
-</body>
-</html>
-
-<style>
+            <label for="email">Email</label><br>
+            <input type="text" id="email"><br>
+    
+            <label for="gradYear">Graduation Year</label><br>
+            <input type="text" id="gradYear" size="5"><br>
+    
+            <label for="gpa">GPA</label><br>
+            <input type="text" id="gpa" size="5"><br>
+    
+            <label for="longAns">Why do want to TA for this class?</label><br>
+            <input type="text" id="longAns" size="50"><br>
+    
+            <button type="submit">submit</button>
+        </form>
+        <!--
+        <div class="e137_5"></div>
+            <span  class="top_text">Application for CSCI1101 Computer Science I</span>
+            <span  class="e137_8">Lastname, Firstname</span>
+    @@ -22,17 +44,25 @@
+            <span  class="e138_65">GPA</span>
+            <span  class="e138_73">Have you taken this class?</span>
+            <span  class="e138_62">BC Email</span>
+        
+        <div class="e138_67"></div>
+        <div class="e138_70"></div>
+        <div class="e138_71"></div>
+        <div class="e138_72"></div>
+        <div class="e138_69"></div>
+        -->
+    </div>
+    </body>
+    </html>
+    
+    <style>
+        .application {
+            position:absolute;
+            left: 5%;
+            top: 10%;
+            font-size:30px;
+        }
+    
     .big_div { 
         background-color:rgba(255, 255, 255, 1);
         width:100%;
