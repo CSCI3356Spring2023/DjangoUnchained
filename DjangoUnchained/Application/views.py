@@ -30,4 +30,14 @@ def homepage(request):
         
     else:
         return render("landingpage.html")
+    
+def student_apply(request):
 
+    name = request.POST.get('name')
+    gradYear = request.POST.get('gradYear')
+    gpa = request.POST.get('gpa')
+    longAns = request.POST.get('longAns')
+
+    print(name, gradYear, gpa, longAns)
+   
+    return render(request, "studentApply.html")
