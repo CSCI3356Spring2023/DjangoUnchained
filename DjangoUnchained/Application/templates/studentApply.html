@@ -11,23 +11,23 @@
         <div class="top_banner"></div>
         <span  class="eagleTA_text">EagleTAs</span>
         <form method="POST" class="application">
-            {% csrf_token %}
-            {{ form.as_p }}
             <br>
+
             <label for="name">Name</label><br>
-            <input type="text" id="name"><br>
+            <input id="name" type="text" name="name"><br>
+            <!--<input type="text" name="name"><br>-->
     
             <label for="email">Email</label><br>
-            <input type="text" id="email"><br>
+            <input type="text" name="email"><br>
     
             <label for="gradYear">Graduation Year</label><br>
-            <input type="text" id="gradYear" size="5"><br>
+            <input type="text" name="gradYear" size="5"><br>
     
             <label for="gpa">GPA</label><br>
-            <input type="text" id="gpa" size="5"><br>
+            <input type="text" name="gpa" size="5"><br>
     
             <label for="longAns">Why do want to TA for this class?</label><br>
-            <input type="text" id="longAns" size="50"><br>
+            <input type="text" name="longAns" size="50"><br>
     
             <button type="submit">submit</button>
         </form>
