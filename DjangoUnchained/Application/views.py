@@ -1,6 +1,7 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
+
 # Create your views here.
 
 def student_course(request):
@@ -20,7 +21,7 @@ def homepage(request):
     if request.user.is_authenticated:
         userRole = request.user.get_role()
         if (userRole == 'Student'):
-            return render(request, "course_stendent.html")
+            return render(request, "courses_student.html")
         elif (userRole == 'Instructor'):
             return render(request, "instructor_visual.html")
         elif (userRole == 'Administrator'):
