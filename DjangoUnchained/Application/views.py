@@ -38,28 +38,30 @@ def homepage(request):
 @csrf_exempt
 def student_apply(request):
 
-    string1 = str(request.body)
+    if request.method == 'POST':
 
-    test = string1.split('&')
+        string1 = str(request.body)
 
-    arr = []
+        test = string1.split('&')
 
-    for string in test:
-        arr.append(string.split('=')[1])
+        arr = []
 
-    arr[len(arr) - 1] = arr[len(arr) - 1][:-1]
+        for string in test:
+            arr.append(string.split('=')[1])
 
-    name = arr[0]
-    email = arr[1]
-    gradYear = arr[2]
-    gpa = arr[3]
-    longAns = arr[4]
+        arr[len(arr) - 1] = arr[len(arr) - 1][:-1]
 
-    print('Name: ', name)
-    print('Email: ', email)
-    print('Graduation Year', gradYear)
-    print('GPA: ', gpa)
-    print('Why do you want to TA for this class?: ', longAns)
+        name = arr[0]
+        email = arr[1]
+        gradYear = arr[2]
+        gpa = arr[3]
+        longAns = arr[4]
+
+        print('Name: ', name)
+        print('Email: ', email)
+        print('Graduation Year', gradYear)
+        print('GPA: ', gpa)
+        print('Why do you want to TA for this class?: ', longAns)
     
 
     #print(request.body[0])
