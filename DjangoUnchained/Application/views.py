@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from .forms import StudentApply
+from .forms import CourseAdd
 
 
 from django.http import HttpResponse
@@ -49,4 +50,17 @@ def student_apply(request):
         
     context['form'] = form
     return render(request, "studentApply.html", context)
+
+def temp_add_course(request):
+
+    form = CourseAdd()
+    context = {}
+
+    if request.method == 'POST':
+        form = CourseAdd(request.POST)
+        if form.is_valid():
+            form.save
+    
+    context['form'] = form
+    return render(request, "temp_add_course.html", context)
 
