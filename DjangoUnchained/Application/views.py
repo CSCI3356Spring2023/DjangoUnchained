@@ -59,8 +59,8 @@ def temp_add_course(request):
     if request.method == 'POST':
         form = CourseAdd(request.POST)
         if form.is_valid():
-            form.save
-    
+            form.save()
+    print(form)
     context['form'] = form
     return render(request, "temp_add_course.html", context)
 
