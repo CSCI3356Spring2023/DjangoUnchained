@@ -10,25 +10,10 @@
     <div class="big_div">
         <div class="top_banner"></div>
         <span  class="eagleTA_text">EagleTAs</span>
-        <form method="POST" class="application">
-            <br>
-
-            <label for="name">Name</label><br>
-            <input id="name" type="text" name="name"><br>
-            <!--<input type="text" name="name"><br>-->
-    
-            <label for="email">Email</label><br>
-            <input type="text" name="email"><br>
-    
-            <label for="gradYear">Graduation Year</label><br>
-            <input type="text" name="gradYear" size="5"><br>
-    
-            <label for="gpa">GPA</label><br>
-            <input type="text" name="gpa" size="5"><br>
-    
-            <label for="longAns">Why do you want to TA for this class?</label><br>
-            <input type="text" name="longAns" size="50"><br>
-    
+        <br><br><br><br><br><br>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
             <button type="submit">submit</button>
         </form>
         <!--
