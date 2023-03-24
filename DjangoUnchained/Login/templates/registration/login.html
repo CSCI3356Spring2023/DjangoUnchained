@@ -13,18 +13,18 @@
         <div class="top_banner"></div><span  class="e2_4">EagleTAs</span>
         <div class="e3_2"></div>
         <div class="middle_big_box">
-        <div class="middle_small_box"></div>
-          <div class="inside_mbb"></div><span  class="welcome_text">Welcome to Boston College’s Teaching Assistant Application System</span>
-        </div class = "middled">
-        <div class="login_stuff">
-          <div class="login_button"></div>
-          <div><span  class="login_text">Login Using BC credentials</span></div>
-          <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Log In</button>
-          </form>
-          <span  class="e3_11">Login</span>
+            <div class="middle_small_box">
+                <div class="login_stuff">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="login_button">Log In</button>
+                    </form>
+                </div>
+            </div>
+            <div class="inside_mbb"></div>
+            <span  class="welcome_text">Welcome to Boston College’s Teaching Assistant Application System</span>
+            <span  class="login_text">Login Using BC credentials</span>
         </div>
       </div>
     
@@ -131,29 +131,35 @@
     .welcome_text { 
         color:rgba(0, 0, 0, 1);
         width:100%;
-        height:178px;
-        position:absolute;
+        height:78px;
+        position:relative;
         left:0px;
         top:36px;
         font-family:Oxygen;
         text-align:center;
-        font-size:35px;
+        font-size:20px;
         letter-spacing:0;
+        display: table;
+        margin: 0 auto;
     }
     .login_stuff { 
-        width:100%;
+        width:90%;
         height:100%;
-        position:absolute;
-        left:33%;
-        top:42%;
+        position:relative;
+        left:0%;
+        top:0%;
+        z-index: 1;
+        margin: auto;
     }
     .login_button { 
-        background-color:rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
-        width:104px;
-        height:39px;
-        position:absolute;
-        left:196px;
-        top:262px;
+        background-color:rgba(168, 30, 30, 1);
+        width:100px;
+        height:30px;
+        color: white;
+        position:relative;
+        margin: auto;
+        display: block;
+        top: 75px;
     }
     .password_box{ 
         background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -205,11 +211,13 @@
     }
     .login_text { 
         color:rgba(0, 0, 0, 1);
-        position:fixed;
+        position:relative;
         font-family:Oxygen;
         text-align:center;
-        display: inline-block;
-        font-size:25px;
+        display: table;
+        margin: 0 auto;
+        top: 8%;
+        font-size:16px;
         letter-spacing:0;
     }
     .e3_11 { 
