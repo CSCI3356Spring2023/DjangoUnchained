@@ -10,5 +10,5 @@ class StudentApply(forms.ModelForm):
 class CourseAdd(forms.ModelForm):
     class Meta:
         model = CourseAdd
-        fields = ('courseName', 'courseCode', 'instructorName', 'courseDescription', 'building', 'discussion', 'numTAs')
+        fields = ('subject', 'courseName', 'courseCode', 'instructorName', 'courseDescription', 'building', 'discussion', 'numTAs')
     
