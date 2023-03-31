@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from .forms import StudentApply
 from .forms import CourseAdd
+from .forms import DiscussionForm
+
 
 
 from django.http import HttpResponse
@@ -63,4 +65,29 @@ def temp_add_course(request):
     print(form)
     context['form'] = form
     return render(request, "temp_add_course.html", context)
+
+def Add_course(request):
+
+    form = CourseAdd()
+    context = {}
+
+    if request.method == 'POST':
+        form = CourseAdd(request.POST)
+        if form.is_valid():
+            form.save()
+    print(form)
+    context['form'] = form
+    return render(request, "Add_course.html", context)
+
+
+def my_view(request):
+    if request.method == 'POST':
+        form = DiscussionForm(request.POST)
+        if form.is_valid():
+            # Do something with the selected discussion
+            discussion = form.cleaned_data['discussion']
+            # ...
+    else:
+        form = DiscussionForm()
+    return render(request, 'my_template.html', {'form': form})
 
