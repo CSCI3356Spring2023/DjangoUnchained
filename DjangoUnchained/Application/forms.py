@@ -12,16 +12,9 @@ class CourseAdd(forms.ModelForm):
         model = CourseAdd
         fields = ('subject', 'courseName', 'courseCode', 'instructorName', 'courseDescription', 'building', 'discussion', 'numTAs')
 
-class DiscussionForm(forms.Form):
-    YES = 'yes'
-    NO = 'no'
-    DISCUSSION_CHOICES = (
-        (YES, 'Yes'),
-        (NO, 'No'),
-    )
-    discussion = forms.ChoiceField(choices=DISCUSSION_CHOICES, widget=forms.RadioSelect)
-
 class TAForm(forms.Form):
     number_of_TAs = forms.ChoiceField(choices=[(i, i) for i in range(1, 8)])
     discussion_field = forms.ChoiceField(choices=[('Yes', 'Yes'), ('No', 'No')], widget=forms.RadioSelect)
+
+
     

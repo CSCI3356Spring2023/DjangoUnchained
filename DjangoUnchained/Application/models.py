@@ -54,6 +54,8 @@ class CourseAdd(models.Model):
     building = models.CharField(max_length=100)
     discussion = models.CharField(max_length=100)
     numTAs = models.CharField(max_length=100)
+    discussion_day = models.CharField(max_length=100)
+    discussion_time = models.CharField(max_length=100)
 
     #role = models.CharField(max_length=50, choices = ROLES, null=True)
     #USERNAME_FIELD = 'email'

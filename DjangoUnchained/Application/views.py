@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from .forms import StudentApply
 from .forms import CourseAdd
-from .forms import DiscussionForm
 
 
 
@@ -79,15 +78,19 @@ def Add_course(request):
     context['form'] = form
     return render(request, "Add_course.html", context)
 
-
-def my_view(request):
+def course_form(request):
     if request.method == 'POST':
-        form = DiscussionForm(request.POST)
-        if form.is_valid():
-            # Do something with the selected discussion
-            discussion = form.cleaned_data['discussion']
-            # ...
-    else:
-        form = DiscussionForm()
-    return render(request, 'my_template.html', {'form': form})
+        # Handle form submission
+        subject = request.POST.get('subject')
+        course_name = request.POST.get('course_name')
+        course_code = request.POST.get('course_code')
+        course_description = request.POST.get('course_description')
+        building = request.POST.get('building')
+        instructor_first_name = request.POST.get('instructor_first_name')
+        instructor_last_name = request.POST.get('instructor_last_name')
+        num_ta = request.POST.get('num_ta')
+        discussion = request.POST.get('discussion')
+        discussion_days = request.POST.get('discussio_days')
+        discussion_times = request.POST.get('discussion_times')
 
+        return render(request, 'course_form_discussion.html', {'subject': subject, 'course_name': course_name, 'course_code': course_code, 'course_description': course_description, 'building': building, 'instructor_first_name': instructor_first_name, 'instructor_last_name': instructor_last_name, 'num_ta': num_ta, 'discussion_days': discussion_days, 'discussion_times': discussion_times})
