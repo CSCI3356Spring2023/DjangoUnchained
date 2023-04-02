@@ -26,6 +26,7 @@
     {% endif %}
     <form method="post">
         {{ form.as_p }}
+        <li id="subject" class="contact">Role: {{ form.role }}</li>
         {% csrf_token %}
         <button type="submit" >Submit</button>
     </form>
