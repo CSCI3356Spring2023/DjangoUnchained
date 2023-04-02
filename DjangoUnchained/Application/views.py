@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
-from .forms import StudentApply
+from .forms import StudentApply, TAForm
 from .forms import CourseAdd
 
 
@@ -67,11 +67,11 @@ def temp_add_course(request):
 
 def Add_course(request):
 
-    form = CourseAdd()
+    form = TAForm()
     context = {}
 
     if request.method == 'POST':
-        form = CourseAdd(request.POST)
+        form = TAForm(request.POST)
         if form.is_valid():
             form.save()
     print(form)
@@ -90,7 +90,8 @@ def course_form(request):
         instructor_last_name = request.POST.get('instructor_last_name')
         num_ta = request.POST.get('num_ta')
         discussion = request.POST.get('discussion')
-        discussion_days = request.POST.get('discussio_days')
-        discussion_times = request.POST.get('discussion_times')
-
-        return render(request, 'course_form_discussion.html', {'subject': subject, 'course_name': course_name, 'course_code': course_code, 'course_description': course_description, 'building': building, 'instructor_first_name': instructor_first_name, 'instructor_last_name': instructor_last_name, 'num_ta': num_ta, 'discussion_days': discussion_days, 'discussion_times': discussion_times})
+        if(discussion == "yes"):
+            discussion_days = request.POST.get('discussio_days')
+            discussion_times = request.POST.get('discussion_times')
+            return render(request, 'course_form_discussion.html', {'subject': subject, 'course_name': course_name, 'course_code': course_code, 'course_description': course_description, 'building': building, 'instructor_first_name': instructor_first_name, 'instructor_last_name': instructor_last_name, 'num_ta': num_ta, 'discussion_days': discussion_days, 'discussion_times': discussion_times})
+        return render(request, 'course_form_discussion.html', {'subject': subject, 'course_name': course_name, 'course_code': course_code, 'course_description': course_description, 'building': building, 'instructor_first_name': instructor_first_name, 'instructor_last_name': instructor_last_name, 'num_ta': num_ta})
