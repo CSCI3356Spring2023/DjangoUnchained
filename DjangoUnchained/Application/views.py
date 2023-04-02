@@ -1,6 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader
+from .forms import StudentApply
+from .forms import CourseAdd
+
+
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -34,49 +38,59 @@ def homepage(request):
         
     else:
         return render("landingpage.html")
-    
-@csrf_exempt
+
 def student_apply(request):
 
+    form = StudentApply()
+    context = {}
+
     if request.method == 'POST':
+        form = StudentApply(request.POST)
+        if form.is_valid():
+            form.save()
+        
+    context['form'] = form
+    return render(request, "studentApply.html", context)
 
-        string1 = str(request.body)
+def temp_add_course(request):
 
-        test = string1.split('&')
+    form = CourseAdd()
+    context = {}
 
-        arr = []
+    if request.method == 'POST':
+        form = CourseAdd(request.POST)
+        if form.is_valid():
+            form.save()
+    print(form)
+    context['form'] = form
+    return render(request, "temp_add_course.html", context)
 
-        for string in test:
-            arr.append(string.split('=')[1])
+def Add_course(request):
 
-        arr[len(arr) - 1] = arr[len(arr) - 1][:-1]
+    form = CourseAdd()
+    context = {}
 
-        name = arr[0]
-        email = arr[1]
-        gradYear = arr[2]
-        gpa = arr[3]
-        longAns = arr[4]
+    if request.method == 'POST':
+        form = CourseAdd(request.POST)
+        if form.is_valid():
+            form.save()
+    print(form)
+    context['form'] = form
+    return render(request, "Add_course.html", context)
 
-        print('Name: ', name)
-        print('Email: ', email)
-        print('Graduation Year', gradYear)
-        print('GPA: ', gpa)
-        print('Why do you want to TA for this class?: ', longAns)
-    
+def course_form(request):
+    if request.method == 'POST':
+        # Handle form submission
+        subject = request.POST.get('subject')
+        course_name = request.POST.get('course_name')
+        course_code = request.POST.get('course_code')
+        course_description = request.POST.get('course_description')
+        building = request.POST.get('building')
+        instructor_first_name = request.POST.get('instructor_first_name')
+        instructor_last_name = request.POST.get('instructor_last_name')
+        num_ta = request.POST.get('num_ta')
+        discussion = request.POST.get('discussion')
+        discussion_days = request.POST.get('discussio_days')
+        discussion_times = request.POST.get('discussion_times')
 
-    #print(request.body[0])
-
-    #if request.method == 'POST':
-        #name = request.get('name')
-        #gradYear = request.get('gradYear')
-        #gpa = request.get('gpa')
-        #longAns = request.get('longAns')
-        #print(request.GET)
-
-    
-
-
-    #print(name, gradYear, gpa, longAns)
-
-    return render(request, "studentApply.html")
-
+        return render(request, 'course_form_discussion.html', {'subject': subject, 'course_name': course_name, 'course_code': course_code, 'course_description': course_description, 'building': building, 'instructor_first_name': instructor_first_name, 'instructor_last_name': instructor_last_name, 'num_ta': num_ta, 'discussion_days': discussion_days, 'discussion_times': discussion_times})

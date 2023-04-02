@@ -105,13 +105,13 @@
     <div class="list-section">
         <div class="list-container">
             <div class="list-title">Course List</div>
-			<button>Add course</button>
+			<a href="{% url 'admin:index' %}"><button>Add course</button></a>
             <input type="text" placeholder="Search for courses">
             <!-- Add course list items here -->
         </div>
         <div class="list-container">
             <div class="list-title">Applicant List</div>
-			<button>Add applicants</button>
+			<a href="{% url 'admin:index' %}"><button>Add applicant</button></a>
             <input type="text" placeholder="Search for applicants">
             <!-- Add applicant list items here -->
         </div>
