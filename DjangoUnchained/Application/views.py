@@ -1,15 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.template import loader
-
-from .forms import AddCourse
-from .forms import StudentApply
-from .forms import CourseAdd
-
-
-
-from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+
+from .forms import AddCourse, StudentApply
 
 # Create your views here.
 
@@ -54,18 +48,6 @@ def student_apply(request):
     context['form'] = form
     return render(request, "studentApply.html", context)
 
-def temp_add_course(request):
-
-    form = CourseAdd()
-    context = {}
-
-    if request.method == 'POST':
-        form = CourseAdd(request.POST)
-        if form.is_valid():
-            form.save()
-    print(form)
-    context['form'] = form
-    return render(request, "temp_add_course.html", context)
 
 def Add_course(request):
 
