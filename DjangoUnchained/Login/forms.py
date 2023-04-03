@@ -1,7 +1,10 @@
 # authentication/forms.py
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from Login.models import CustomUser
+from django import forms
+from django.forms.widgets import PasswordInput, TextInput
 
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'BC Email'}))
