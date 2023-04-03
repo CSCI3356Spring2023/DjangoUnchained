@@ -21,15 +21,19 @@
               </div>
               <div>
                 <h2>Sign Up</h2>
-    {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
-    <form method="post">
-        {{ form.as_p }}
-        <li id="subject" class="contact">Role: {{ form.role }}</li>
-        {% csrf_token %}
-        <button type="submit" >Submit</button>
-    </form>
+                {% if form.errors %}
+                    {{ form.errors }}
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{form.first_name}}
+                    {{form.last_name}}
+                    {{form.email}}
+                    {{form.password}}
+                    {{form.password2}}
+                    {{form.role}}
+                    <button type="submit" class="submit_button">Submit</button>
+                </form>
               </div>
             </div>
         </body>
