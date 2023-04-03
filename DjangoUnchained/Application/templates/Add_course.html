@@ -183,13 +183,31 @@
   <input type="radio" id="discussion_session_no" name="discussion_session" value="No" onclick="document.getElementById('discussion_day').classList.add('hidden');document.getElementById('discussion_time').classList.add('hidden');">No
   <br><br>
   <label for="discussion_day">Discussion Day:</label>
-  <input type="text" id="discussion_day" name="discussion_day" class="hidden">
-  <br><br>
-  <label for="discussion_time">Discussion Time:</label>
-  <input type="text" id="discussion_time" name="discussion_time" class="hidden">
-    <br><br>
-    <br><br>
-    <br><br>
-    <button type="submit" style="background-color: rgba(168, 30, 30, 1); color: white; font-size: 40px; position: absolute; bottom: 0%; left: 100%;">Publish</button>
+<select id="discussion_day" name="discussion_day" required>
+    <option value="">Day</option>
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+</select>
+<br><br>
+<label for="discussion_time">Discussion Time:</label>
+<select id="discussion_time" name="discussion_time" required>
+    <option value="">Time</option>
+    <option value="9:00 AM">9:00 AM</option>
+    <option value="10:00 AM">10:00 AM</option>
+    <option value="11:00 AM">11:00 AM</option>
+    <option value="12:00 PM">12:00 PM</option>
+    <option value="1:00 PM">1:00 PM</option>
+    <option value="2:00 PM">2:00 PM</option>
+    <option value="3:00 PM">3:00 PM</option>
+    <option value="4:00 PM">4:00 PM</option>
+    <option value="5:00 PM">5:00 PM</option>
+<select>
+<br><br>
+<br><br>
+<br><br>
+<button type="submit" style="background-color: rgba(168, 30, 30, 1); color: white; font-size: 40px; position: absolute; bottom: 0%; left: 100%;">Publish</button>
 </form>
 
