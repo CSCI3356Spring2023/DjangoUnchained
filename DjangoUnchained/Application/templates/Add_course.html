@@ -5,6 +5,91 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+  </head>
+  <body>
+    
+      <div class="big_div">
+          <div class="top_banner">
+              <span class="eagleTA_text">EagleTAs</span>
+              <div class="bround_image"></div>
+              <h1 class="banner_text">Adding Course</h1>
+            </div>
+          </div>
+          <form method="post">
+      {% csrf_token %}
+      <br><br>
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" name="subject" required>
+      <br><br>
+      <label for="course_name">Course Name:</label>
+      <input type="text" id="course_name" name="course_name" required>
+      <br><br>
+      <label for="course_code">Course Code:</label>
+      <input type="text" id="course_code" name="course_code" required>
+      <br><br>
+      <label for="course_description">Course Description:</label>
+      <textarea id="course_description" name="course_description" rows="4" cols="50"></textarea>
+      <br><br>
+      <label for="building">Building:</label>
+      <input type="text" id="building" name="building" required>
+      <br><br>
+      <label for="class_day">Class Day:</label>
+      <input type="text" id="subject" name="class_day" required>
+      <br><br>
+      <label for="class_time">Class Time:</label>
+      <input type="text" id="subject" name="class_time" required>
+      <br><br>
+      <label for="instructor_first_name">Instructor First Name:</label>
+      <input type="text" id="instructor_first_name" name="instructor_first_name" required>
+      <br><br>
+      <label for="instructor_last_name">Instructor Last Name:</label>
+      <input type="text" id="instructor_last_name" name="instructor_last_name" required>
+      <br><br>
+      <label for="num_ta">Number of TAs:</label>
+      <select id="num_ta" name="num_ta">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+      </select>
+      <br><br>
+      <label for="discussion_session">Discussion:</label>
+    <input type="radio" id="discussion_session_yes" name="discussion_session" value="Yes" onclick="document.getElementById('discussion_day').classList.remove('hidden');document.getElementById('discussion_time').classList.remove('hidden');">Yes
+    <input type="radio" id="discussion_session_no" name="discussion_session" value="No" onclick="document.getElementById('discussion_day').classList.add('hidden');document.getElementById('discussion_time').classList.add('hidden');">No
+    <br><br>
+    <label for="discussion_day">Discussion Day:</label>
+  <select id="discussion_day" name="discussion_day" required>
+      <option value="">Day</option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+  </select>
+  <br><br>
+  <label for="discussion_time">Discussion Time:</label>
+  <select id="discussion_time" name="discussion_time" required>
+      <option value="">Time</option>
+      <option value="9:00 AM">9:00 AM</option>
+      <option value="10:00 AM">10:00 AM</option>
+      <option value="11:00 AM">11:00 AM</option>
+      <option value="12:00 PM">12:00 PM</option>
+      <option value="1:00 PM">1:00 PM</option>
+      <option value="2:00 PM">2:00 PM</option>
+      <option value="3:00 PM">3:00 PM</option>
+      <option value="4:00 PM">4:00 PM</option>
+      <option value="5:00 PM">5:00 PM</option>
+  <select>
+  <br><br>
+  <br><br>
+  <br><br>
+  <button type="submit" style="background-color: rgba(168, 30, 30, 1); color: white; font-size: 40px; position: absolute; bottom: 0%; left: 100%;">Publish</button>
+  </form>
+  
+  
     <style>
         .big_div { 
             background-color: rgba(255, 255, 255, 1);
@@ -134,80 +219,3 @@
             display: none;
         }
     </style>
-</head>
-<body>
-  
-    <div class="big_div">
-        <div class="top_banner">
-            <span class="eagleTA_text">EagleTAs</span>
-            <div class="bround_image"></div>
-            <h1 class="banner_text">Adding Course</h1>
-          </div>
-        </div>
-        <form method="post">
-    {% csrf_token %}
-    <br><br>
-    <label for="subject">Subject:</label>
-    <input type="text" id="subject" name="subject" required>
-    <br><br>
-    <label for="course_name">Course Name:</label>
-    <input type="text" id="course_name" name="course_name" required>
-    <br><br>
-    <label for="course_code">Course Code:</label>
-    <input type="text" id="course_code" name="course_code" required>
-    <br><br>
-    <label for="course_description">Course Description:</label>
-    <textarea id="course_description" name="course_description" rows="4" cols="50"></textarea>
-    <br><br>
-    <label for="building">Building:</label>
-    <input type="text" id="building" name="building" required>
-    <br><br>
-    <label for="instructor_first_name">Instructor First Name:</label>
-    <input type="text" id="instructor_first_name" name="instructor_first_name" required>
-    <br><br>
-    <label for="instructor_last_name">Instructor Last Name:</label>
-    <input type="text" id="instructor_last_name" name="instructor_last_name" required>
-    <br><br>
-    <label for="num_ta">Number of TAs:</label>
-    <select id="num_ta" name="num_ta">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-    </select>
-    <br><br>
-  <input type="radio" id="discussion_session_yes" name="discussion_session" value="Yes" onclick="document.getElementById('discussion_day').classList.remove('hidden');document.getElementById('discussion_time').classList.remove('hidden');">Yes
-  <input type="radio" id="discussion_session_no" name="discussion_session" value="No" onclick="document.getElementById('discussion_day').classList.add('hidden');document.getElementById('discussion_time').classList.add('hidden');">No
-  <br><br>
-  <label for="discussion_day">Discussion Day:</label>
-<select id="discussion_day" name="discussion_day" required>
-    <option value="">Day</option>
-    <option value="Monday">Monday</option>
-    <option value="Tuesday">Tuesday</option>
-    <option value="Wednesday">Wednesday</option>
-    <option value="Thursday">Thursday</option>
-    <option value="Friday">Friday</option>
-</select>
-<br><br>
-<label for="discussion_time">Discussion Time:</label>
-<select id="discussion_time" name="discussion_time" required>
-    <option value="">Time</option>
-    <option value="9:00 AM">9:00 AM</option>
-    <option value="10:00 AM">10:00 AM</option>
-    <option value="11:00 AM">11:00 AM</option>
-    <option value="12:00 PM">12:00 PM</option>
-    <option value="1:00 PM">1:00 PM</option>
-    <option value="2:00 PM">2:00 PM</option>
-    <option value="3:00 PM">3:00 PM</option>
-    <option value="4:00 PM">4:00 PM</option>
-    <option value="5:00 PM">5:00 PM</option>
-<select>
-<br><br>
-<br><br>
-<br><br>
-<button type="submit" style="background-color: rgba(168, 30, 30, 1); color: white; font-size: 40px; position: absolute; bottom: 0%; left: 100%;">Publish</button>
-</form>
-
