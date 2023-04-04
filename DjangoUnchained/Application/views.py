@@ -47,8 +47,7 @@ def homepage(request):
         elif (userRole == 'Administrator'):
             return render(request, "admin_page.html")
         else:
-            return render(request, "homepage.html")
-        
+            return render("landingpage.html")
     else:
         return render("landingpage.html")
 
