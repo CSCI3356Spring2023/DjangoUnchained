@@ -46,10 +46,7 @@ def homepage(request):
             return render(request, "instructor_visual.html")
         elif (userRole == 'Administrator'):
             return render(request, "admin_page.html")
-        else:
-            return render("landingpage.html")
-    else:
-        return render("landingpage.html")
+    return render("landingpage.html")
 
 def student_apply(request):
 
