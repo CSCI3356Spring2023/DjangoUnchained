@@ -4,6 +4,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
+from django.core.mail import BadHeaderError, send_mail
+from django.core import mail
+from .models import SendEmail
 
 from . import forms
 
@@ -43,4 +46,20 @@ def bclogin(request):
         form = forms.LoginForm(request.POST)
     return render(request, "registration/login.html", {'form': form})
     
-    
+def send_email(request):
+
+    if request.method == 'POST':
+        subject = request.POST['subject']
+        body = request.POST['body']
+        from_email = request.POST['from_email']
+        to_email = request.POST['to_email']
+
+        connection = mail.get_connection()
+        connection.open()
+
+        email = mail.EmailMessage(subject, body, from_email, [to_email], connection=connection, fail_silently=False)
+        email.send()
+
+        connection.close()
+
+    return render(request, "send_email.html", {})

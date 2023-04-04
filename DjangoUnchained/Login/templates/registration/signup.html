@@ -46,6 +46,16 @@
         overflow: hidden;
     }
 
+    input[type="text"], input[type="password"], select {
+        width: 100%;
+        padding: 12px 15px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
     .big_div { 
         background-color:rgba(255, 255, 255, 1);
         position: absolute;
@@ -114,18 +124,17 @@
         top:20%;
     }
     .middle_small_box { 
-        background-color:rgba(0, 0, 0, 1);
-        width:86%;
-        height:60%;
-        position:absolute;
-        left:7%;
-        top:30%;
-        bottom:10%;
-        right:400px;
-        border-top-left-radius:10px;
-        border-top-right-radius:10px;
-        border-bottom-left-radius:10px;
-        border-bottom-right-radius:10px;
+        margin: auto;
+        background-color: rgba(0, 0, 0, 1);
+        width: 50%;
+        height: 75%;
+        position: relative;
+        top: 8%;
+        bottom: 10%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
     .inside_mbb { 
         background-color:rgba(255, 255, 255, 1);
@@ -137,18 +146,19 @@
         top:0px;
     }
     .welcome_text { 
-        color:rgba(0, 0, 0, 1);
-        width:100%;
-        height:78px;
-        position:relative;
-        left:0px;
-        top:36px;
-        font-family:Oxygen;
-        text-align:center;
-        font-size:20px;
-        letter-spacing:0;
+        color: rgba(0, 0, 0, 1);
+        width: 60%;
+        height: 20px;
+        position: relative;
+        left: 0px;
+        top: 4%;
+        font-family: Oxygen;
+        text-align: center;
+        font-size: 20px;
+        letter-spacing: 0;
         display: table;
-        margin: 0 auto;
+        margin: auto;
+        z-index: 2;
     }
     .login_stuff { 
         width:90%;
@@ -159,7 +169,7 @@
         z-index: 1;
         margin: auto;
     }
-    .login_button { 
+    .submit_button { 
         background-color:rgba(168, 30, 30, 1);
         width:100px;
         height:30px;
@@ -167,7 +177,9 @@
         position:relative;
         margin: auto;
         display: block;
-        top: 75px;
+        top: 2%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
     }
     .password_box{ 
         background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -218,15 +230,16 @@
         letter-spacing:0;
     }
     .login_text { 
-        color:rgba(0, 0, 0, 1);
-        position:relative;
-        font-family:Oxygen;
-        text-align:center;
+        color: rgba(0, 0, 0, 1);
+        position: relative;
+        font-family: Oxygen;
+        text-align: center;
         display: table;
         margin: 0 auto;
-        top: 8%;
-        font-size:16px;
-        letter-spacing:0;
+        z-index: 2;
+        top: 6%;
+        font-size: 16px;
+        letter-spacing: 0;
     }
     .e3_11 { 
         color:rgba(255, 255, 255, 1);
@@ -241,6 +254,8 @@
         letter-spacing:0;
     }
     form {
-
+        position: relative;
+        width: 100%;
+        height: 100%;
     }
 </style>
