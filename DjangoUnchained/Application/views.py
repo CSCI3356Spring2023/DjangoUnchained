@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .forms import AddCourse, StudentApply
 from .models import AddCourse, StudentApplication
+from .forms import AddCourseForm, StudentApplicationForm
+
 
 # Create your views here.
 
@@ -23,8 +25,14 @@ def delete_course(request, course_id):
 
 # views to handle adding and deleteing applicants
 def add_applicant(request):
-    # Add code to handle adding an applicant
-    pass
+    if request.method == 'POST':
+        form = StudentApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_page')
+    else:
+        form = StudentApplicationForm()
+    return render(request, 'add_applicant.html', {'form': form})
 
 def delete_applicant(request, applicant_id):
     StudentApplication.objects.get(pk=applicant_id).delete()
