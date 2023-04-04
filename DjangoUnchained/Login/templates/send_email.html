@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<h1>Send Email to User</h1>
+<form action="" method="POST"> 
+    {% csrf_token %}
+    <input type="text" class="field" placeholder="Subject:" name="subject"><br><br>
+    <textarea placeholder="Body:" class ="field" name="body"></textarea><br><br>
+    <input type="text" class="field" placeholder="From Email:" name="from_email"><br><br>
+    <input type="text" class="field" placeholder="To Email:" name="to_email"><br><br>
+    <button type="submit" class="button">Send</button>
+</form>
