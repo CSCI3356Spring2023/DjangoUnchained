@@ -1,9 +1,9 @@
-from django.shortcuts import redirect, render
-from django.http import HttpResponse
-from django.template import loader
-from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm
 from django.conf import settings
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.template import loader
 
 from . import forms
 
@@ -29,13 +29,18 @@ def landing_page(request):
 
 def bclogin(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('/')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('/')
+        else: 
+             form = forms.LoginForm(request.POST)
+             #Need to add in an error here
     else:
-        form = AuthenticationForm()
+        form = forms.LoginForm(request.POST)
     return render(request, "registration/login.html", {'form': form})
     
     

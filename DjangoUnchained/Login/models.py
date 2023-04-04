@@ -1,6 +1,8 @@
+from django import forms
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
 
 class UserManager(BaseUserManager):
         use_in_migrations = True
@@ -62,3 +64,9 @@ class CustomUser(AbstractUser):
     
     def get_role(self):
         return self.role
+        
+    def get_first_name(self):
+        return self.first_name
+    
+    def get_last_name(self):
+        return self.last_name

@@ -1,20 +1,14 @@
 from django import forms
-from .models import StudentApplication
-from .models import CourseAdd
+
+from .models import AddCourse, StudentApplication
+
 
 class StudentApply(forms.ModelForm):
     class Meta:
         model = StudentApplication
         fields = ('name', 'email', 'gpa', 'gradYear', 'longAns')
 
-class CourseAdd(forms.ModelForm):
+class AddCourse(forms.ModelForm):
     class Meta:
-        model = CourseAdd
-        fields = ('subject', 'courseName', 'courseCode', 'instructorName', 'courseDescription', 'building', 'discussion', 'numTAs')
-
-class TAForm(forms.Form):
-    number_of_TAs = forms.ChoiceField(choices=[(i, i) for i in range(1, 8)])
-    discussion_field = forms.ChoiceField(choices=[('Yes', 'Yes'), ('No', 'No')], widget=forms.RadioSelect)
-
-
-    
+        model = AddCourse
+        fields = ('subject', 'course_name', 'course_code', 'course_description', 'building', 'class_day', 'class_time','instructor_first_name','instructor_last_name','num_ta','discussion_field','discussion_day','discussion_time')

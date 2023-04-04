@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="{% static 'admin_page.css' %}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
-    <style>
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -85,47 +77,3 @@
         button:hover {
             background-color: darkred;
         }
-    </style>
-</head>
-<body>
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
-    <div class="header">
-        <div class="logo">Eagle TAs</div>
-        <div class="header-info">
-            <div>First Name, Last Name</div>
-            <div>Admin</div>
-        </div>
-    </div>
-    <div class="dashboard">
-        <div class="dashboard-item">Total Courses:</div>
-        <div class="dashboard-item">Total Applicants:</div>
-        <div class="dashboard-item">Unfulfilled Courses:</div>
-        <div class="dashboard-item">Fulfilled Courses:</div>
-        <div class="dashboard-item">TA needed:</div>
-        <div class="dashboard-item">Notifications:</div>
-    </div>
-    <div class="list-section">
-        <div class="list-container">
-            <div class="list-title">Course List</div>
-			<a href="{% url 'admin:index' %}"><button>Add course</button></a>
-            <input type="text" placeholder="Search for courses">
-            <!-- Add course list items here -->
-            {% for course in courses %}
-                <div>{{ course.course_name }}</div>
-                <a href="{% url 'delete_course' course.id %}">Delete</a>
-            {% endfor %}
-        </div>
-        <div class="list-container">
-            <div class="list-title">Applicant List</div>
-			<a href="{% url 'admin:index' %}"><button>Add applicant</button></a>
-            <input type="text" placeholder="Search for applicants">
-            <!-- Add applicant list items here -->
-            {% for applicant in applicants %}
-                <div>{{ applicant.name }}</div>
-                <a href="{% url 'delete_applicant' applicant.id %}">Delete</a>
-            {% endfor %}
-        </div>
-    </div>
-</body>
-</html>
-
