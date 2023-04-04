@@ -4,6 +4,7 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 
 from .forms import AddCourse, StudentApply
+from .models import AddCourse, StudentApplication
 
 # Create your views here.
 
@@ -15,10 +16,26 @@ def add_course(request):
     template = loader.get_template('Add_course.html')
     return HttpResponse(template.render())
 
+# views to handle delete course
+def delete_course(request, course_id):
+    AddCourse.objects.get(pk=course_id).delete()
+    return redirect('admin_page')
+
+# views to handle adding and deleteing applicants
+def add_applicant(request):
+    # Add code to handle adding an applicant
+    pass
+
+def delete_applicant(request, applicant_id):
+    StudentApplication.objects.get(pk=applicant_id).delete()
+    return redirect('admin_page')
+
+
 # added to route admin.html in Application/templates
 def admin_page(request):
-    template = loader.get_template('admin_page.html')
-    return HttpResponse(template.render())
+    courses = AddCourse.objects.all()
+    applicants = StudentApplication.objects.all()
+    return render(request, 'admin_page.html', {'courses': courses, 'applicants': applicants})
 
 def homepage(request):
     if request.user.is_authenticated:
