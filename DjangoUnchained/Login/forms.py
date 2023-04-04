@@ -22,8 +22,8 @@ class SignupForm(UserCreationForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'BC Email'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
     role = forms.CharField(widget=forms.Select(choices=role_choices))
     
     class Meta(UserCreationForm.Meta):
