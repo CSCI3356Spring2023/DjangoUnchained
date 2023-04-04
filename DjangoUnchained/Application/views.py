@@ -1,51 +1,29 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
 from django.template import loader
+from .forms import StudentApply
+from .forms import CourseAddForm
+
+from .models import CourseAdd
+
+
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-
-from .forms import AddCourse, StudentApply
-from .models import AddCourse, StudentApplication
-# from .forms import AddCourseForm, StudentApplicationForm
-
 
 # Create your views here.
 
 def student_course(request):
     if request.method == "GET":
-        return render(request, "courses_student.html")
+        return render(request, "courses_student.html") 
 
 def add_course(request):
     template = loader.get_template('Add_course.html')
     return HttpResponse(template.render())
 
-# views to handle delete course
-# def delete_course(request, course_id):
-#     AddCourse.objects.get(pk=course_id).delete()
-#     return redirect('admin_page')
-
-# # views to handle adding and deleteing applicants
-# def add_applicant(request):
-#     if request.method == 'POST':
-#         form = StudentApplicationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('admin_page')
-#     else:
-#         form = StudentApplicationForm()
-#     return render(request, 'add_applicant.html', {'form': form})
-
-# def delete_applicant(request, applicant_id):
-#     StudentApplication.objects.get(pk=applicant_id).delete()
-#     return redirect('admin_page')
-
-
 # added to route admin.html in Application/templates
 def admin_page(request):
-    # courses = AddCourse.objects.all()
-    # applicants = StudentApplication.objects.all()
-    # # return render(request, 'admin_page.html', {'courses': courses, 'applicants': applicants})
-        return render(request, 'admin_page.html')
-
+    template = loader.get_template('admin_page.html')
+    return HttpResponse(template.render())
 
 def homepage(request):
     if request.user.is_authenticated:
@@ -56,7 +34,11 @@ def homepage(request):
             return render(request, "instructor_visual.html")
         elif (userRole == 'Administrator'):
             return render(request, "admin_page.html")
-    return render("landingpage.html")
+        else:
+            return render(request, "homepage.html")
+        
+    else:
+        return render("landingpage.html")
 
 def student_apply(request):
 
@@ -71,16 +53,28 @@ def student_apply(request):
     context['form'] = form
     return render(request, "studentApply.html", context)
 
+def temp_add_course(request):
 
-def Add_course(request):
-
-    form = AddCourse()
+    form = CourseAddForm()
     context = {}
 
     if request.method == 'POST':
-        form = AddCourse(request.POST)
+        form = CourseAddForm(request.POST)
         if form.is_valid():
             form.save()
-    print(form)
+    
     context['form'] = form
-    return render(request, "Add_course.html", context)
+    return render(request, "temp_add_course.html", context)
+
+def course_list(request):
+
+    #template = loader.get_template('course_list.html')
+
+    courseInfo = CourseAdd.objects.all()
+
+    courses = {'Courses': courseInfo}
+
+    #return HttpResponse(template.render(courses, request))
+
+    return render(request, 'course_list.html', courses)
+
