@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .forms import AddCourse, StudentApply
 from .models import AddCourse, StudentApplication
-from .forms import AddCourseForm, StudentApplicationForm
+# from .forms import AddCourseForm, StudentApplicationForm
 
 
 # Create your views here.
@@ -19,31 +19,33 @@ def add_course(request):
     return HttpResponse(template.render())
 
 # views to handle delete course
-def delete_course(request, course_id):
-    AddCourse.objects.get(pk=course_id).delete()
-    return redirect('admin_page')
+# def delete_course(request, course_id):
+#     AddCourse.objects.get(pk=course_id).delete()
+#     return redirect('admin_page')
 
-# views to handle adding and deleteing applicants
-def add_applicant(request):
-    if request.method == 'POST':
-        form = StudentApplicationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('admin_page')
-    else:
-        form = StudentApplicationForm()
-    return render(request, 'add_applicant.html', {'form': form})
+# # views to handle adding and deleteing applicants
+# def add_applicant(request):
+#     if request.method == 'POST':
+#         form = StudentApplicationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('admin_page')
+#     else:
+#         form = StudentApplicationForm()
+#     return render(request, 'add_applicant.html', {'form': form})
 
-def delete_applicant(request, applicant_id):
-    StudentApplication.objects.get(pk=applicant_id).delete()
-    return redirect('admin_page')
+# def delete_applicant(request, applicant_id):
+#     StudentApplication.objects.get(pk=applicant_id).delete()
+#     return redirect('admin_page')
 
 
 # added to route admin.html in Application/templates
 def admin_page(request):
-    courses = AddCourse.objects.all()
-    applicants = StudentApplication.objects.all()
-    return render(request, 'admin_page.html', {'courses': courses, 'applicants': applicants})
+    # courses = AddCourse.objects.all()
+    # applicants = StudentApplication.objects.all()
+    # # return render(request, 'admin_page.html', {'courses': courses, 'applicants': applicants})
+        return render(request, 'admin_page.html')
+
 
 def homepage(request):
     if request.user.is_authenticated:

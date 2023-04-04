@@ -15,12 +15,12 @@ class AddCourse(forms.ModelForm):
         
         
 # added to test admin page
-class AddCourseForm(forms.ModelForm):
-    class Meta:
-        model = AddCourse
-        fields = '__all__'
+# class AddCourseForm(forms.ModelForm):
+#     class Meta:
+#         model = AddCourse
+#         # fields = '__all__'
 
-class StudentApplicationForm(forms.ModelForm):
-    class Meta:
-        model = StudentApplication
-        fields = '__all__'
+# class StudentApplicationForm(forms.ModelForm):
+#     class Meta:
+#         model = StudentApplication
+#         # fields = '__all__'
