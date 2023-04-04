@@ -80,7 +80,7 @@ class SendEmail(models.Model):
     to_email = models.CharField(max_length=200, null=False, blank=False)
     
     def get_subject(self):
-      return self.subject
+        return self.subject
     
     def get_body(self):
         return self.body
