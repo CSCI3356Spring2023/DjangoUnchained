@@ -22,8 +22,9 @@ def add_course(request):
 
 # added to route admin.html in Application/templates
 def admin_page(request):
-    template = loader.get_template('admin_page.html')
-    return HttpResponse(template.render())
+    courseInfo = CourseAdd.objects.all()
+    courses = {'Courses': courseInfo}
+    return render(request, 'admin_page.html', courses)
 
 def homepage(request):
     if request.user.is_authenticated:
