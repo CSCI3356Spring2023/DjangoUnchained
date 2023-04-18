@@ -7,8 +7,8 @@ from Login.models import CustomUser
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'BC Email'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    username = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'BC Email', 'class': 'bcemail'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'bcpassword'}))
 
 
 class SignupForm(UserCreationForm):
