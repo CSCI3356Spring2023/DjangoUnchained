@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course List</title>
+</head>
+<body style="background: brown">
+
+    <h1 class="heading">Course List</h1>
+
+    {% for course in Courses %}
+    
+        <hr>
+
+        <div class="big_div">
+            <div>Subject</div>
+            <div>{{ course.subject }}</div> <br>
+
+            <div>Course Code</div>
+            <div>{{ course.courseCode }}</div> <br>
+
+            <div>Instructor Name</div>
+            <div>{{ course.instructorName }}</div> <br>
+
+            <div>Building</div>
+            <div>{{ course.building }}</div> <br>
+
+            <div>Discussion</div>
+            <div>{{ course.discussion }}</div> <br>
+
+            <div>Number of TA's</div>
+            <div>{{ course.numTAs }}</div> <br>
+        </div>
+
+        <button type="button" class="apply_button">
+            <a href="{% url 'student_apply' %}">Apply</a>
+        </button>
+
+        <hr>
+
+    {% endfor %}
+    
+    
+</body>
+</html>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+    .heading {
+        text-align: center;
+        color: white;
+    }
+
+    .big_div {
+        width: 50%;
+        margin-left: 25%;
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 20px;
+        text-align: center;
+        background-color: white;
+    }
+
+    .line {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .apply_button {
+        margin-left: 48.3%;
+    }
+
+
+</style>
