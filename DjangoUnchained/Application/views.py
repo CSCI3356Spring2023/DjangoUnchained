@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from .forms import StudentApply
 from .forms import CourseAddForm
-
+from django.shortcuts import get_object_or_404, redirect
 from .models import CourseAdd
 
 
@@ -79,3 +79,9 @@ def course_list(request):
 
     return render(request, 'course_list.html', courses)
 
+
+
+def delete_course(request, course_id):
+    course = get_object_or_404(CourseAdd, id=course_id)
+    course.delete()
+    return redirect('admin_page')  # Redirect to the admin_page or the page where you display the list of courses
