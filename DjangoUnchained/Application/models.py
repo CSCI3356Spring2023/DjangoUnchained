@@ -58,6 +58,19 @@ class CourseAdd(models.Model):
 
     )
 
+    CLASS_DAYS = (
+
+        ('M/W/F', 'M/W/F'), 
+        ('T/Th', 'T/Th'),
+        ('M/W', 'M/W'),
+        ('M', 'M'),
+        ('T', 'T'),
+        ('W', 'W'),
+        ('Th', 'Th'),
+        ('F', 'F'),
+
+    )
+
     TIMES = (
 
         ('9:00', '9:00'),
@@ -110,6 +123,7 @@ class CourseAdd(models.Model):
 
     TIMES_NA = (
 
+        ('N/A', 'N/A'),
         ('9:00', '9:00'),
         ('9:30', '9:30'),
         ('10:00', '10:00'),
@@ -130,19 +144,18 @@ class CourseAdd(models.Model):
         ('5:30', '5:30'),
         ('6:00', '6:00'),
         ('6:30', '6:30'),
-        ('6:00', '6:00'),
-        ('N/A', 'N/A'),
+        ('7:00', '7:00'),
 
     )
 
     DAYS_NA = (
 
+        ('N/A', 'N/A'),
         ('Monday', 'Monday'),
         ('Tuesday', 'Tuesday'),
         ('Wednesday', 'Wednesday'),
         ('Thursday', 'Thursday'),
         ('Friday', 'Friday'),
-        ('N/A', 'N/A'),
 
     )
 
@@ -152,7 +165,7 @@ class CourseAdd(models.Model):
     courseCode = models.CharField(max_length=100)
     courseDescription = models.CharField(max_length=1000)
     building = models.CharField(max_length=100, choices = BUILDINGS, null=True)
-    days = models.CharField(max_length=100, choices = DAYS, null=True)
+    days = models.CharField(max_length=100, choices = CLASS_DAYS, null=True)
     time = models.CharField(max_length=100, choices = TIMES, null=True)
     duration = models.CharField(max_length=100, choices = DURATIONS, null=True)
     numTAs = models.CharField(max_length=100, choices = NUM_TAS, null=True)
