@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto&family=Poppins&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,25 +17,30 @@
         <div class="e3_2"></div>
         <div class="middle_big_box">
             <div class="middle_small_box">
+                <span  class="login_text">Signup Using BC credentials</span>
                 <div class="login_stuff">
                 {% if form.errors %}
                     {{ form.errors }}
                 {% endif %}
                 <form method="post">
                     {% csrf_token %}
-                    {{form.first_name}}
-                    {{form.last_name}}
-                    {{form.email}}
-                    {{form.password1}}
-                    {{form.password2}}
-                    {{form.role}}
+                    <li class="small">First Name</li>
+                    <div class="contact">{{form.first_name}}</div>
+                    <li class="small">Last Name</li>
+                    <div class="contact">{{form.last_name}}</div>
+                    <li class="small">Email</li>
+                    <div class="contact">{{form.email}}</div>
+                    <li class="small">Password</li>
+                    <div class="contact">{{form.password1}}</div>
+                    <li class="small">Confirm Password</li>
+                    <div class="contact">{{form.password2}}</div>
+                    <div class="contact">{{form.role}}</div>
                     <button type="submit" class="submit_button">Submit</button>
                 </form>
                 </div>
             </div>
             <div class="inside_mbb"></div>
             <span  class="welcome_text">Welcome to Boston College’s Teaching Assistant Application System</span>
-            <span  class="login_text">Signup Using BC credentials</span>
         </div>
       </div>
     
@@ -45,7 +53,28 @@
     div {
         overflow: hidden;
     }
-
+    .errorlist {
+        list-style: none;
+    }
+    #text {
+        visibility: hidden;
+    }
+    input, select {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+    li.small { 
+        list-style: none;
+        font-family: Roboto;
+        font-size:14px;
+    }
     .big_div { 
         background-color:rgba(255, 255, 255, 1);
         position: absolute;
@@ -116,17 +145,36 @@
     .middle_small_box { 
         background-color:rgba(0, 0, 0, 1);
         width:86%;
-        height:60%;
+        height:50vh;
         position:absolute;
         left:7%;
-        top:30%;
-        bottom:10%;
+        bottom:5%;
         right:400px;
         border-top-left-radius:10px;
         border-top-right-radius:10px;
         border-bottom-left-radius:10px;
         border-bottom-right-radius:10px;
+        overflow-y: scroll;
     }
+    /* width */        
+    ::-webkit-scrollbar {
+            width: 10px;
+        }
+  
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+  
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+  
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     .inside_mbb { 
         background-color:rgba(255, 255, 255, 1);
         opacity:0.9300000071525574;
@@ -152,7 +200,6 @@
     }
     .login_stuff { 
         width:90%;
-        height:100%;
         position:relative;
         left:0%;
         top:0%;
