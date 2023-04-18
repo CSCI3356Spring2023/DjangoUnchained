@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,15 +20,17 @@
                 <div class="login_stuff">
                     <form method="post">
                         {% csrf_token %}
-                        {{form.username}}
-                        {{form.password}}
-                        <button type="submit" class="login_button">Log In</button>
+                        <span  class="login_text">Login Using BC credentials</span>
+                        <li class="small">Email</li>
+                        <div class="contact">{{ form.username }}</div>
+                        <li class="small">Password</li>
+                        <div class="contact">{{ form.password }}</div>
+                        <button type="submit" class="login_button">Login</button>
                     </form>
                 </div>
             </div>
             <div class="inside_mbb"></div>
             <span  class="welcome_text">Welcome to Boston College’s Teaching Assistant Application System</span>
-            <span  class="login_text">Login Using BC credentials</span>
         </div>
       </div>
     
@@ -54,6 +59,9 @@
         left: 30%;
         top: 40%;
     }
+    .nav-menu > li{
+    content: "";
+}
     .bround_image { 
         position:absolute;
         left:0px;
@@ -64,6 +72,33 @@
         background-image:url('../static/bc_banner_1.png');
         background-repeat:no-repeat;
         background-size:cover;
+    }
+    input#id_username.bcemail {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+    input#id_password.bcpassword {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+    li.small { 
+        list-style: none;
+        font-family: Roboto;
+        font-size:14px;
     }
     .top_banner { 
         background-color:rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
@@ -154,13 +189,14 @@
     }
     .login_button { 
         background-color:rgba(168, 30, 30, 1);
+        font-family: Oxygen;
         width:100px;
         height:30px;
         color: white;
         position:relative;
         margin: auto;
         display: block;
-        top: 75px;
+        border: none;
     }
     .password_box{ 
         background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -217,8 +253,7 @@
         text-align:center;
         display: table;
         margin: 0 auto;
-        top: 8%;
-        font-size:16px;
+        font-size:18px;
         letter-spacing:0;
     }
     .e3_11 { 
