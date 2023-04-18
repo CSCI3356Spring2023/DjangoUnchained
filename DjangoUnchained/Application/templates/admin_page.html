@@ -31,37 +31,19 @@
             <input type="text" placeholder="Search for courses">
             <!-- Add course list items here -->
             {% for course in Courses %}
-            
-            <hr>
-
-            <div class="big_div">
-                <div>Subject</div>
-                <div>{{ course.subject }}</div> <br>
-
-                <div>Course Code</div>
-                <div>{{ course.courseCode }}</div> <br>
-
-                <div>Instructor Name</div>
-                <div>{{ course.instructorName }}</div> <br>
-
-                <div>Building</div>
-                <div>{{ course.building }}</div> <br>
-
-                <div>Discussion</div>
-                <div>{{ course.discussion }}</div> <br>
-
-                <div>Number of TA's</div>
-                <div>{{ course.numTAs }}</div> <br>
+            <div class="course-item">
+                <h3>{{ course.courseName }}</h3>
+                <p>Test</p>
+                <p>Subject: {{ course.subject }}</p>
+                <p>Course Code: {{ course.courseCode }}</p>
+                <p>Instructor Name: {{ course.instructorName }}</p>
+                <p>Building: {{ course.building }}</p>
+                <p>Discussion: {{ course.discussion }}</p>
+                <p>Number of TA's: {{ course.numTAs }}</p>
+                <a href="{% url 'delete_course' course.id %}">Delete</a>
             </div>
+            {% endfor %}
 
-        <button type="button" class="apply_button">
-            <a href="{% url 'student_apply' %}">Apply</a>
-        </button>
-
-        <hr>
-        <a href="{% url 'delete_course' course.id %}">Delete</a>
-
-        {% endfor %}
         </div>
 
         

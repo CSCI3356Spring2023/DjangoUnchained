@@ -4,6 +4,7 @@ from django.template import loader
 from .forms import StudentApply
 from .forms import CourseAddForm
 from django.shortcuts import get_object_or_404, redirect
+
 from .models import CourseAdd
 
 
@@ -17,12 +18,20 @@ def student_course(request):
         return render(request, "courses_student.html") 
 
 def add_course(request):
-    template = loader.get_template('Add_course.html')
-    return HttpResponse(template.render())
+    if request.user.is_authenticated:
+        userRole = request.user.get_role()
+        if (userRole == 'Instructor' or userRole == "Administrator"):
+            return render(request,'Add_course.html')
+        else:
+            return render(request, '404.html')
+    else:
+        return render(request, '404.html')
 
 # added to route admin.html in Application/templates
 def admin_page(request):
     courseInfo = CourseAdd.objects.all()
+    print("adminpages")
+    print(courseInfo)
     courses = {'Courses': courseInfo}
     return render(request, 'admin_page.html', courses)
 
@@ -34,7 +43,7 @@ def homepage(request):
         elif (userRole == 'Instructor'):
             return render(request, "instructor_visual.html")
         elif (userRole == 'Administrator'):
-            return render(request, "admin_page.html")
+            return admin_page(request)
         else:
             return render(request, "homepage.html")
         
@@ -70,7 +79,7 @@ def temp_add_course(request):
 def course_list(request):
 
     #template = loader.get_template('course_list.html')
-
+    print('courselist')
     courseInfo = CourseAdd.objects.all()
 
     courses = {'Courses': courseInfo}
@@ -78,8 +87,6 @@ def course_list(request):
     #return HttpResponse(template.render(courses, request))
 
     return render(request, 'course_list.html', courses)
-
-
 
 def delete_course(request, course_id):
     course = get_object_or_404(CourseAdd, id=course_id)
