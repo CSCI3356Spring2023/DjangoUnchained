@@ -23,6 +23,8 @@ def add_course(request):
 # added to route admin.html in Application/templates
 def admin_page(request):
     courseInfo = CourseAdd.objects.all()
+    print("adminpages")
+    print(courseInfo)
     courses = {'Courses': courseInfo}
     return render(request, 'admin_page.html', courses)
 
@@ -34,7 +36,7 @@ def homepage(request):
         elif (userRole == 'Instructor'):
             return render(request, "instructor_visual.html")
         elif (userRole == 'Administrator'):
-            return render(request, "admin_page.html")
+            return admin_page(request)
         else:
             return render(request, "homepage.html")
         
@@ -70,7 +72,7 @@ def temp_add_course(request):
 def course_list(request):
 
     #template = loader.get_template('course_list.html')
-
+    print('courselist')
     courseInfo = CourseAdd.objects.all()
 
     courses = {'Courses': courseInfo}
