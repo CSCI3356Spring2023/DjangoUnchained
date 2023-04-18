@@ -58,6 +58,94 @@ class CourseAdd(models.Model):
 
     )
 
+    TIMES = (
+
+        ('9:00', '9:00'),
+        ('9:30', '9:30'),
+        ('10:00', '10:00'),
+        ('10:30', '10:30'),
+        ('11:00', '11:00'),
+        ('11:30', '11:30'),
+        ('12:00', '12:00'),
+        ('12:30', '12:30'),
+        ('1:00', '1:00'),
+        ('1:30', '1:30'),
+        ('2:00', '2:00'),
+        ('2:30', '2:30'),
+        ('3:00', '3:00'),
+        ('3:30', '3:30'),
+        ('4:00', '4:00'),
+        ('4:30', '4:30'),
+        ('5:00', '5:00'),
+        ('5:30', '5:30'),
+        ('6:00', '6:00'),
+        ('6:30', '6:30'),
+        ('6:00', '6:00'),
+
+    )
+
+    DURATIONS = (
+
+        ('0:50', '0:50'),
+        ('1:15', '1:15'),
+        ('2:30', '2:30'),
+
+    )
+
+    NUM_TAS = (
+
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+
+    )
+
+    YES_NO = (
+
+        ('Yes', 'Yes'),
+        ('No', 'No'),
+
+    )
+
+    TIMES_NA = (
+
+        ('9:00', '9:00'),
+        ('9:30', '9:30'),
+        ('10:00', '10:00'),
+        ('10:30', '10:30'),
+        ('11:00', '11:00'),
+        ('11:30', '11:30'),
+        ('12:00', '12:00'),
+        ('12:30', '12:30'),
+        ('1:00', '1:00'),
+        ('1:30', '1:30'),
+        ('2:00', '2:00'),
+        ('2:30', '2:30'),
+        ('3:00', '3:00'),
+        ('3:30', '3:30'),
+        ('4:00', '4:00'),
+        ('4:30', '4:30'),
+        ('5:00', '5:00'),
+        ('5:30', '5:30'),
+        ('6:00', '6:00'),
+        ('6:30', '6:30'),
+        ('6:00', '6:00'),
+        ('N/A', 'N/A'),
+
+    )
+
+    DAYS_NA = (
+
+        ('Monday', 'Monday'),
+        ('Tuesday', 'Tuesday'),
+        ('Wednesday', 'Wednesday'),
+        ('Thursday', 'Thursday'),
+        ('Friday', 'Friday'),
+        ('N/A', 'N/A'),
+
+    )
+
     username = None
     subject = models.CharField(max_length=100)
     courseName = models.CharField(max_length=100)
@@ -65,6 +153,10 @@ class CourseAdd(models.Model):
     courseDescription = models.CharField(max_length=1000)
     building = models.CharField(max_length=100, choices = BUILDINGS, null=True)
     days = models.CharField(max_length=100, choices = DAYS, null=True)
-    discussion = models.CharField(max_length=100)
-    numTAs = models.CharField(max_length=100)
+    time = models.CharField(max_length=100, choices = TIMES, null=True)
+    duration = models.CharField(max_length=100, choices = DURATIONS, null=True)
+    numTAs = models.CharField(max_length=100, choices = NUM_TAS, null=True)
+    discussion = models.CharField(max_length=100, choices = YES_NO, null=True)
+    discussion_day = models.CharField(max_length=100, choices = DAYS_NA, null=True)
+    discussion_time = models.CharField(max_length=100, choices = TIMES_NA, null=True)
     
