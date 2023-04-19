@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto&family=Poppins&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto&family=Poppins&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+    </head>
 
-    <div class="big_div">
-        <div class="bround_image"></div>
-        <div class="top_banner"></div><span  class="e2_4">EagleTAs</span>
-        <div class="e3_2"></div>
-        <div class="middle_big_box">
-            <div class="middle_small_box">
-                <div class="login_stuff">
-                    <form method="post">
-                        {% csrf_token %}
-                        <span  class="login_text">Login Using BC credentials</span>
-                        <li class="small">Email</li>
-                        <div class="contact">{{ form.username }}</div>
-                        <li class="small">Password</li>
-                        <div class="contact">{{ form.password }}</div>
-                        <button type="submit" class="login_button">Login</button>
-                    </form>
-                </div>
+    <body>
+        <div class="big_div">
+            <div class="bround_image"></div>
+            <div class="top_banner">
+                <div class="crest"></div>
             </div>
-            <div class="inside_mbb"></div>
-            <span  class="welcome_text">Welcome to Boston College’s Teaching Assistant Application System</span>
+            <span  class="e2_4">EagleTAs</span>
+            <div class="middle_big_box">
+                <span  class="welcome_text">Welcome to Boston College’s Teaching Assistant Application System</span>
+                <div class="middle_small_box">
+                    <div class="login_stuff">
+                        <span  class="login_text">Login Using BC credentials</span>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="contact">{{ form.username }}</div>
+                            <div class="contact">{{ form.password }}</div>
+                            <button type="submit" class="login_button">Login</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="inside_mbb"></div>
+            </div>
         </div>
-      </div>
-    
-</body>
+    </body>
 </html>
 
 
-  <style>
-
+<style>
     div {
         overflow: hidden;
     }
@@ -49,7 +47,7 @@
         padding: 12px 15px;
         margin: 8px 0;
         display: inline-block;
-        border: 1px solid #ccc;
+        border: none;
         border-radius: 4px;
         box-sizing: border-box;
     }
@@ -83,6 +81,7 @@
         background-repeat:no-repeat;
         background-size:cover;
     }
+
     input#id_username.bcemail {
         list-style: none;
         background-color: #cacdcc;
@@ -94,6 +93,7 @@
         border-radius: 8px;
         box-sizing: border-box;
     }
+
     input#id_password.bcpassword {
         list-style: none;
         background-color: #cacdcc;
@@ -105,6 +105,7 @@
         border-radius: 8px;
         box-sizing: border-box;
     }
+
     li.small { 
         list-style: none;
         font-family: Roboto;
@@ -134,12 +135,12 @@
         font-size:40px;
         letter-spacing:0;
     }
-    .e3_2 { 
-        width:80px;
-        height:80px;
-        position:absolute;
-        left:10px;
-        top:10px;
+    .crest { 
+        width:70px;
+        height:70px;
+        position:relative;
+        left:1%;
+        top:12%;
         background-image:url("../static/bccrest_1.png");
         background-repeat:no-repeat;
         background-size:cover;
@@ -153,17 +154,12 @@
     }
     .middle_small_box { 
         background-color:rgba(0, 0, 0, 1);
-        width:86%;
+        width:66%;
         height:60%;
-        position:absolute;
-        left:7%;
-        top:30%;
-        bottom:10%;
-        right:400px;
-        border-top-left-radius:10px;
-        border-top-right-radius:10px;
-        border-bottom-left-radius:10px;
-        border-bottom-right-radius:10px;
+        position: relative;
+        margin: auto;
+        top: 10%;
+        border-radius: 10px;
     }
     .inside_mbb { 
         background-color:rgba(255, 255, 255, 1);
@@ -193,8 +189,6 @@
         width:90%;
         height:100%;
         position:relative;
-        left:0%;
-        top:0%;
         z-index: 1;
         margin: auto;
     }
@@ -208,7 +202,14 @@
         margin: auto;
         display: block;
         border: none;
+        top: 15%;
+        border-radius: 10px;
     }
+
+    .login_button:hover {
+        background-color:rgba(128, 30, 30, 1);
+    }
+
     .password_box{ 
         background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
         width:457px;
@@ -264,8 +265,9 @@
         text-align: center;
         display: table;
         margin: 0 auto;
-        font-size:18px;
+        font-size:14px;
         letter-spacing:0;
+        padding-top: 5%;
     }
     .e3_11 { 
         color:rgba(255, 255, 255, 1);
@@ -283,5 +285,6 @@
         position: relative;
         width: 100%;
         height: 100%;
+        top: 5%;
     }
 </style>

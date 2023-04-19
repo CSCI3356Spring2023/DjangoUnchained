@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto&family=Poppins&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto&family=Poppins&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register Account</title>
 </head>
-<body>
 
+<body>
     <div class="big_div">
         <div class="bround_image"></div>
-        <div class="top_banner"></div><span  class="e2_4">EagleTAs</span>
-        <div class="e3_2"></div>
+        <div class="top_banner">
+            <div class="crest"></div>
+        </div>
+        <span  class="e2_4">EagleTAs</span>
         <div class="middle_big_box">
+            <span  class="welcome_text">Welcome to Boston College’s Teaching Assistant Application System</span>
             <div class="middle_small_box">
-                <span  class="login_text">Signup Using BC credentials</span>
+                <span  class="login_text">Sign up using BC credentials</span>
                 <div class="login_stuff">
                 {% if form.errors %}
                     {{ form.errors }}
                 {% endif %}
                 <form method="post">
                     {% csrf_token %}
-                    <li class="small">First Name</li>
-                    <div class="contact">{{form.first_name}}</div>
-                    <li class="small">Last Name</li>
-                    <div class="contact">{{form.last_name}}</div>
-                    <li class="small">Email</li>
-                    <div class="contact">{{form.email}}</div>
-                    <li class="small">Password</li>
-                    <div class="contact">{{form.password1}}</div>
-                    <li class="small">Confirm Password</li>
-                    <div class="contact">{{form.password2}}</div>
-                    <div class="contact">{{form.role}}</div>
+                    {{form.first_name}}
+                    {{form.last_name}}
+                    {{form.email}}
+                    {{form.password1}}
+                    {{form.password2}}
+                    {{form.role}}
                     <button type="submit" class="submit_button">Submit</button>
                 </form>
                 </div>
             </div>
             <div class="inside_mbb"></div>
-            <span  class="welcome_text">Welcome to Boston College’s Teaching Assistant Application System</span>
         </div>
       </div>
     
@@ -67,9 +65,10 @@
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        border-radius: 8px;
+        border-radius: 10px;
         box-sizing: border-box;
     }
+    
     li.small { 
         list-style: none;
         font-family: Roboto;
@@ -125,12 +124,12 @@
         font-size:40px;
         letter-spacing:0;
     }
-    .e3_2 { 
-        width:80px;
-        height:80px;
-        position:absolute;
-        left:10px;
-        top:10px;
+    .crest { 
+        width:70px;
+        height:70px;
+        position:relative;
+        left:1%;
+        top:12%;
         background-image:url("../static/bccrest_1.png");
         background-repeat:no-repeat;
         background-size:cover;
@@ -144,37 +143,43 @@
     }
     .middle_small_box { 
         background-color:rgba(0, 0, 0, 1);
-        width:86%;
+        width:66%;
         height:50vh;
-        position:absolute;
-        left:7%;
-        bottom:5%;
-        right:400px;
+        top: 10%;
+        position: relative;
+        margin: auto;
         border-top-left-radius:10px;
         border-top-right-radius:10px;
         border-bottom-left-radius:10px;
         border-bottom-right-radius:10px;
         overflow-y: scroll;
     }
+
     /* width */        
-    ::-webkit-scrollbar {
-            width: 10px;
-        }
+    .middle_small_box::-webkit-scrollbar {
+        width: 10px;
+    }
   
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
+    /* Track */
+    .middle_small_box::-webkit-scrollbar-track {
+        border: 1px solid #000;
+        padding: 2px 0;
+        background-color: #404040;
+    }
+
+    /* Handle */
+    .middle_small_box::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #737272;
+        border: 1px solid #000;
+    }
   
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-        }
-  
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
+    /* Handle on hover */
+    .middle_small_box::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
     .inside_mbb { 
         background-color:rgba(255, 255, 255, 1);
         opacity:0.9300000071525574;
@@ -219,6 +224,11 @@
         border: 1px solid #ccc;
         border-radius: 4px;
     }
+
+    .submit_button:hover {
+        background-color:rgba(128, 30, 30, 1);
+    }
+
     .password_box{ 
         background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
         width:457px;
@@ -275,9 +285,10 @@
         display: table;
         margin: 0 auto;
         z-index: 2;
-        top: 6%;
-        font-size: 16px;
+        top: 0%;
+        font-size: 14px;
         letter-spacing: 0;
+        padding-top: 2%;
     }
     .e3_11 { 
         color:rgba(255, 255, 255, 1);

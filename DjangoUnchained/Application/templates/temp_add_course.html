@@ -1,47 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="big_div">
-        <div class="top_banner"></div>
-        <span  class="eagleTA_text">EagleTAs</span>
-        <br><br><br><br><br><br>
-        <form method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">submit</button>
-        </form>
-        <!--
-        <div class="e137_5"></div>
-            <span  class="top_text">Application for CSCI1101 Computer Science I</span>
-            <span  class="e137_8">Lastname, Firstname</span>
-    @@ -22,17 +44,25 @@
-            <span  class="e138_65">GPA</span>
-            <span  class="e138_73">Have you taken this class?</span>
-            <span  class="e138_62">BC Email</span>
-        
-        <div class="e138_67"></div>
-        <div class="e138_70"></div>
-        <div class="e138_71"></div>
-        <div class="e138_72"></div>
-        <div class="e138_69"></div>
-        -->
-    </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Course</title>
+    </head>
+    <body>
+        <div class="big_div">
+            <div class="top_banner">
+                <div class="crest"></div>
+            </div>
+            <span  class="eagleTA_text">EagleTAs</span>
+            <div class="container">
+                <span  class="form_title">Add New Course</span>
+                <form method="post">
+                    {% csrf_token %}
+                    {{form.subject}}
+                    {{form.courseName}}
+                    {{form.courseCode}}
+                    {{form.courseDescription}}
+                    {{form.building}}
+                    {{form.days}}
+                    {{form.time}}
+                    {{form.duration}}
+                    {{form.numTas}}
+                    {{form.discussion}}
+                    {{form.discussion_day}}
+                    {{form.discussion_time}}
+                    <button type="submit", id="submit_button">Publish</button>
+                </form>
+            </div>
+        </div>
     </body>
-    </html>
+</html>
     
-    <style>
-        .application {
-            position:absolute;
-            left: 5%;
-            top: 10%;
-            font-size:30px;
-        }
+<style>
+    .application {
+        position:absolute;
+        left: 5%;
+        top: 10%;
+        font-size:30px;
+    }
+
+    input, textarea {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 10px;
+        box-sizing: border-box;
+        text-align: start;
+    }
+
+    select {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 32.8%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+
+    .short_text {
+        width: 50%;
+    }
+
+    #submit_button {
+        background-color:rgba(168, 30, 30, 1);
+        border-radius: 10px;
+        color: white;
+        width:100px;
+        height:30px;
+        margin-left: 8%;
+    }
+
+    .form_title {
+        font-family: Oxygen;
+        font-size: 18px;
+    }
+
+    #submit_button:hover {
+        background-color:rgba(128, 30, 30, 1);
+    }
+
+    .class_description {
+        height: 100px;
+        resize: none;
+    }
     
     .big_div { 
         background-color:rgba(255, 255, 255, 1);
@@ -152,6 +204,16 @@
         text-align:left;
         font-size:25px;
         letter-spacing:0;
+    }
+    .crest { 
+        width:70px;
+        height:70px;
+        position:relative;
+        left:1%;
+        top:12%;
+        background-image:url("../static/bccrest_1.png");
+        background-repeat:no-repeat;
+        background-size:cover;
     }
     .app_stuff { 
         background-color:rgba(255, 255, 255, 1);
@@ -304,5 +366,15 @@
         border-top-right-radius:10px;
         border-bottom-left-radius:10px;
         border-bottom-right-radius:10px;
+    }
+    .container {
+        background-color:rgba(255, 255, 255, 1);
+        width:40%;
+        height:auto;
+        padding-bottom: 5%;
+        position: relative;
+        margin: auto;
+        top: 21%;
+        border-radius: 10px;
     }
 </style>
