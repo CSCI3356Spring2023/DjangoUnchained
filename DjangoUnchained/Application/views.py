@@ -6,7 +6,7 @@ from .forms import CourseAddForm
 from django.shortcuts import get_object_or_404, redirect
 
 from .models import CourseAdd
-
+from .models import StudentApplication
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -30,10 +30,9 @@ def add_course(request):
 # added to route admin.html in Application/templates
 def admin_page(request):
     courseInfo = CourseAdd.objects.all()
-    print("adminpages")
-    print(courseInfo)
-    courses = {'Courses': courseInfo}
-    return render(request, 'admin_page.html', courses)
+    applicantInfo = StudentApplication.objects.all()
+    context = {'Courses': courseInfo, 'Applicants': applicantInfo}
+    return render(request, 'admin_page.html', context)
 
 def homepage(request):
     if request.user.is_authenticated:
@@ -90,5 +89,11 @@ def course_list(request):
 
 def delete_course(request, course_id):
     course = get_object_or_404(CourseAdd, id=course_id)
+    course.delete()
+    return redirect('admin_page')  # Redirect to the admin_page or the page where you display the list of courses
+
+
+def delete_applicant(request, applicant_id):
+    course = get_object_or_404(StudentApplication, id=applicant_id)
     course.delete()
     return redirect('admin_page')  # Redirect to the admin_page or the page where you display the list of courses

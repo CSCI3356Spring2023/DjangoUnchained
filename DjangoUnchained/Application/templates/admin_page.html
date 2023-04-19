@@ -33,7 +33,6 @@
             {% for course in Courses %}
             <div class="course-item">
                 <h3>{{ course.courseName }}</h3>
-                <p>Test</p>
                 <p>Subject: {{ course.subject }}</p>
                 <p>Course Code: {{ course.courseCode }}</p>
                 <p>Instructor Name: {{ course.instructorName }}</p>
@@ -52,10 +51,15 @@
 			<a href="{% url 'student_apply' %}"><button>Add applicant</button></a>
             <input type="text" placeholder="Search for applicants">
             <!-- Add applicant list items here -->
-            <!-- {% for applicant in applicants %}
-                <div>{{ applicant.name }}</div>
+            {% for applicant in Applicants %}
+            <div class="applicant-item">
+                <h3>{{ applicant.name }}</h3>
+                <p>Emaill: {{ applicant.email }}</p>
+                <p>Graduation Year: {{ applicant.gradYear }}</p>
+                <p>GPA: {{ applicant.gpa }}</p>
                 <a href="{% url 'delete_applicant' applicant.id %}">Delete</a>
-            {% endfor %} -->
+            </div>
+            {% endfor %}
         </div>
     </div>
 </body>
