@@ -4,6 +4,19 @@ from .models import CourseAdd
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class StudentApply(forms.ModelForm):
+    YEARS = (
+
+        ('2024', '2024'),
+        ('2025', '2025'),
+        ('2026', '2026'),
+        ('2027', '2027'),
+    
+    )
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'name'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'email'}))
+    gpa = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'gpa'}))
+    gradYear = forms.CharField(widget=forms.Select(choices=YEARS))
+    longAns = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'longAns'}))
     class Meta:
         model = StudentApplication
         fields = ('name', 'email', 'gpa', 'gradYear', 'longAns')

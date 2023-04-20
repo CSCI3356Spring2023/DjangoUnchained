@@ -15,8 +15,17 @@
         <br><br><br><br><br><br>
         <form method="post">
             {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">submit</button>
+            {{form.name}}
+            <br>
+            {{form.email}}
+            <br>
+            {{form.gpa}}
+            <br>
+            {{form.gradYear}}
+            <br>
+            {{form.longAns}}
+            <br>
+            <button type="submit" class="submit_button">Submit</button>
         </form>
         <!--
         <div class="e137_5"></div>
@@ -34,5 +43,18 @@
         <div class="e138_69"></div>
         -->
     </div>
+    <style>
+        input, select {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 40%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+    </style>
     </body>
     </html>
