@@ -11,8 +11,9 @@ class StudentApplication(models.Model):
         ('2025', '2025'),
         ('2026', '2026'),
         ('2027', '2027'),
-
+    
     )
+
     username = None
     name = models.CharField(max_length=20)
     email = models.CharField(max_length=200)

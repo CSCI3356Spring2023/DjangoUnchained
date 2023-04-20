@@ -97,3 +97,15 @@ def delete_applicant(request, applicant_id):
     course = get_object_or_404(StudentApplication, id=applicant_id)
     course.delete()
     return redirect('admin_page')  # Redirect to the admin_page or the page where you display the list of courses
+
+def application_list(request):
+
+    #template = loader.get_template('application_list.html')
+    name = request.user.get_name()
+    courseAppliedTo = CourseAdd.objects.filter(CourseAdd.username==name)
+
+    applications = {'Applications': courseAppliedTo}
+
+    #return HttpResponse(template.render(courses, request))
+
+    return render(request, 'application_list.html', applications)
