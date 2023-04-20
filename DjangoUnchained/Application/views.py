@@ -59,7 +59,8 @@ def student_apply(request):
         form = StudentApply(request.POST)
         if form.is_valid():
             form.save()
-        
+            return redirect('/main')  # Redirect to the main page after successful form submission
+
     context['form'] = form
     return render(request, "studentApply.html", context)
 
