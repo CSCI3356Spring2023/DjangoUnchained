@@ -106,11 +106,11 @@ def delete_applicant(request, applicant_id):
 def application_list(request):
 
     #template = loader.get_template('application_list.html')
-    name = request.user.get_name()
-    courseAppliedTo = CourseAdd.objects.filter(CourseAdd.username==name)
+    email = request.user.get_email()
+    coursesAppliedTo = StudentApplication.objects.filter(StudentApplication.get_email==email)
 
-    applications = {'Applications': courseAppliedTo}
+    applications = {'Applications': coursesAppliedTo}
 
-    #return HttpResponse(template.render(courses, request))
+    #return HttpResponse(template.render(applications, request))
 
     return render(request, 'application_list.html', applications)
