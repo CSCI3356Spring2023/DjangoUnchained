@@ -67,18 +67,26 @@ def student_apply(request):
 def temp_add_course(request):
 
     form = CourseAddForm()
-
-    if request.method == 'POST':
-        form = CourseAddForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/main')  # Redirect to the main page after successful form submission
+    if request.user.is_authenticated:
+        userRole = request.user.get_role()
+        if (userRole == 'Instructor' or userRole == "Administrator"):
+            if request.method == 'POST':
+                form = CourseAddForm(request.POST)
+                if form.is_valid():
+                    print("hi")
+                    form.save()
+                    return redirect('/main')  # Redirect to the main page after successful form submission
+                else:
+                    # Render the form with error messages if it's not valid
+                    return render(request, 'temp_add_course.html', {'form': form})
+            else:
+                form = CourseAddForm()
+                return render(request, 'temp_add_course.html', {'form': form})
         else:
-            # Render the form with error messages if it's not valid
-            return render(request, 'temp_add_course.html', {'form': form})
+            return render(request, '404.html')
     else:
-        form = CourseAddForm()
-        return render(request, 'temp_add_course.html', {'form': form})
+        return render(request, '404.html')
+
 
 def course_list(request):
 
