@@ -48,7 +48,7 @@ def homepage(request):
             return render(request, "homepage.html")
         
     else:
-        return render("landingpage.html")
+        return render(request, "landingpage.html")
 
 def student_apply(request):
 
@@ -66,16 +66,18 @@ def student_apply(request):
 def temp_add_course(request):
 
     form = CourseAddForm()
-    context = {}
 
     if request.method == 'POST':
         form = CourseAddForm(request.POST)
         if form.is_valid():
             form.save()
-    
-    context['form'] = form
-
-    return render(request, "temp_add_course.html", context)
+            return redirect('/main')  # Redirect to the main page after successful form submission
+        else:
+            # Render the form with error messages if it's not valid
+            return render(request, 'temp_add_course.html', {'form': form})
+    else:
+        form = CourseAddForm()
+        return render(request, 'temp_add_course.html', {'form': form})
 
 def course_list(request):
 

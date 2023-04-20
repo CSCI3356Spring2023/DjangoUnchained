@@ -123,7 +123,7 @@ class CourseAddForm(forms.ModelForm):
     days = forms.CharField(widget=forms.Select(choices=days_choices))
     time = forms.CharField(widget=forms.Select(choices=class_times))
     duration = forms.CharField(widget=forms.Select(choices=durations))
-    numTas = forms.CharField(widget=forms.Select(choices=numTA_Choices))
+    numTAs = forms.CharField(widget=forms.Select(choices=numTA_Choices))
     discussion = forms.CharField(widget=forms.Select(choices=discussion_choices))
     discussion_day = forms.CharField(widget=forms.Select(choices=discussion_days))
     discussion_time = forms.CharField(widget=forms.Select(choices=discussion_times))
