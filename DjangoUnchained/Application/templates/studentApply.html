@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-    <head>
-	<link rel="stylesheet" href="{% static 'studentApply.css' %}">
+
+<head>
+  <link rel="stylesheet" href="{% static 'add_course.css' %}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <div class="big_div">
-        <div class="top_banner"></div>
-        <span  class="eagleTA_text">EagleTAs</span>
-        <br><br><br><br><br><br>
-        <form method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">submit</button>
-        </form>
-        <!--
-        <div class="e137_5"></div>
-            <span  class="top_text">Application for CSCI1101 Computer Science I</span>
-            <span  class="e137_8">Lastname, Firstname</span>
-    @@ -22,17 +44,25 @@
-            <span  class="e138_65">GPA</span>
-            <span  class="e138_73">Have you taken this class?</span>
-            <span  class="e138_62">BC Email</span>
-        
-        <div class="e138_67"></div>
-        <div class="e138_70"></div>
-        <div class="e138_71"></div>
-        <div class="e138_72"></div>
-        <div class="e138_69"></div>
-        -->
-    </div>
-    </body>
-    </html>
+  </head>
+  <body>
+      <div class="big_div">
+          <div class="top_banner">
+              <span class="eagleTA_text">Application</span>
+              <div class="bround_image"></div>
+            </div>
+          </div>
+          <form method="post">
+      {% csrf_token %}
+      <br><br>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <br><br>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" required>
+      <br><br>
+      <label for="gpa">GPA:</label>
+      <input type="text" id="gpa" name="gpa" required>
+      <br><br>
+      <label for="gradYear">Graduation Year:</label>
+      <select id="gradYear" name="gradYear" required>
+          <option value="">Graduation Year</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+      </select>
+      <br><br>
+      <label for="longAns">Long Answer:</label>
+      <textarea id="longAnd" name="longAns" rows="4" cols="50"></textarea>
+      <br><br>
+  <br><br>
+  <br><br>
+  <br><br>
+  <button type="submit" style="background-color: rgba(168, 30, 30, 1); color: white; font-size: 40px; position: absolute; bottom: 0%; left: 100%;">Publish</button>
+  </form>
