@@ -174,39 +174,43 @@ class CourseAdd(models.Model):
     discussion_day = models.CharField(max_length=100, choices = DAYS_NA, null=True)
     discussion_time = models.CharField(max_length=100, choices = TIMES_NA, null=True)
 
+    def __str__(self):
+        return self.courseCode
+    
     def get_subject(self):
-            return self.subject
+        return self.subject
     
     def get_courseName(self):
-            return self.courseName
+        return self.courseName
     
     def get_courseCode(self):
-            return self.courseCode
+        return self.courseCode
     
     def get_courseDescription(self):
-            return self.courseDescription
+        return self.courseDescription
     
     def get_building(self):
-            return self.building
+        return self.building
     
     def get_days(self):
-            return self.days
+        return self.days
     
     def get_time(self):
-            return self.time
+        return self.time
     
     def get_duration(self):
-            return self.duration
+        return self.duration
     
     def get_numTAs(self):
-            return self.numTAs
+        return self.numTAs
     
     def get_discussion(self):
-            return self.discussion
+        return self.discussion
     
     def get_discussion_day(self):
-            return self.discussion_day
+        return self.discussion_day
     
     def get_discussion_time(self):
-            return self.discussion_time
+        return self.discussion_time
+
     

@@ -32,6 +32,7 @@ def admin_page(request):
     courseInfo = CourseAdd.objects.all()
     applicantInfo = StudentApplication.objects.all()
     context = {'Courses': courseInfo, 'Applicants': applicantInfo}
+
     return render(request, 'admin_page.html', context)
 
 def homepage(request):
@@ -73,15 +74,17 @@ def temp_add_course(request):
             form.save()
     
     context['form'] = form
+
     return render(request, "temp_add_course.html", context)
 
 def course_list(request):
 
-    #template = loader.get_template('course_list.html')
-    print('courselist')
+    #template = loader.get_template('course_list.html')]
     courseInfo = CourseAdd.objects.all()
 
     courses = {'Courses': courseInfo}
+
+    print('courses: ', courses)
 
     #return HttpResponse(template.render(courses, request))
 

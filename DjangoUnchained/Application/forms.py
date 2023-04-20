@@ -9,6 +9,7 @@ class StudentApply(forms.ModelForm):
         fields = ('name', 'email', 'gpa', 'gradYear', 'longAns')
 
 class CourseAddForm(forms.ModelForm):
+
     buildings = [
         ('placeholder', 'Building'),
         ('245 Beacon', '245 Beacon'),
@@ -126,8 +127,10 @@ class CourseAddForm(forms.ModelForm):
     discussion = forms.CharField(widget=forms.Select(choices=discussion_choices))
     discussion_day = forms.CharField(widget=forms.Select(choices=discussion_days))
     discussion_time = forms.CharField(widget=forms.Select(choices=discussion_times))
-    
+
     class Meta:
         model = CourseAdd
         fields = ['subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'discussion', 'discussion_day', 'discussion_time']
+    
+    
     
