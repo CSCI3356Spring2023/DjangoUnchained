@@ -27,8 +27,7 @@ def landing_page(request):
     if request.user.is_authenticated:
         current_user = request.user
         return redirect("main/")
-    template = loader.get_template('landingpage.html')
-    return HttpResponse(template.render())
+    return bclogin(request)
 
 def bclogin(request):
     if request.method == 'POST':
