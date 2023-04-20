@@ -29,12 +29,18 @@ def add_course(request):
 
 # added to route admin.html in Application/templates
 def admin_page(request):
-    courseInfo = CourseAdd.objects.all()
-    applicantInfo = StudentApplication.objects.all()
-    context = {'Courses': courseInfo, 'Applicants': applicantInfo}
+    if request.user.is_authenticated:
+        userRole = request.user.get_role()
+        if (userRole == "Administrator"):
+            courseInfo = CourseAdd.objects.all()
+            applicantInfo = StudentApplication.objects.all()
+            context = {'Courses': courseInfo, 'Applicants': applicantInfo}
 
-    return render(request, 'admin_page.html', context)
-
+            return render(request, 'admin_page.html', context)
+        else: 
+            return render(request, '404.html')
+    else:
+        return render(request, '404.html')
 def homepage(request):
     if request.user.is_authenticated:
         userRole = request.user.get_role()
@@ -51,18 +57,25 @@ def homepage(request):
         return render(request, "landingpage.html")
 
 def student_apply(request):
+    if request.user.is_authenticated:
+        userRole = request.user.get_role()
+        if(userRole == 'Student' or userRole =="Admininstrator"):
+            form = StudentApply()
+            context = {}
 
-    form = StudentApply()
-    context = {}
+            if request.method == 'POST':
+                form = StudentApply(request.POST)
+                if form.is_valid():
+                    form.save()
+                    return redirect('/main')  # Redirect to the main page after successful form submission
 
-    if request.method == 'POST':
-        form = StudentApply(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/main')  # Redirect to the main page after successful form submission
+            context['form'] = form
+            return render(request, "studentApply.html", context)
+        else:
+            return render(request, '404.html')
+    else:
+        return render(request, '404.html')
 
-    context['form'] = form
-    return render(request, "studentApply.html", context)
 
 def temp_add_course(request):
 
