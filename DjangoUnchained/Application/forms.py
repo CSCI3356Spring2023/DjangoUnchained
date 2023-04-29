@@ -12,14 +12,24 @@ class StudentApply(forms.ModelForm):
         ('2027', '2027'),
     
     )
+
+    CS_RELATION = (
+
+        ('Computer Science Major BA', 'Computer Science Major BA'),
+        ('Computer Science Major BS', 'Computer Science Major BS'),
+        ('Computer Science Minor', 'Computer Science Minor'),
+
+    )
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'name'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'email'}))
     gpa = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'gpa'}))
     gradYear = forms.CharField(widget=forms.Select(choices=YEARS))
+    csRelation = forms.CharField(widget=forms.Select(choices=CS_RELATION))
     longAns = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'longAns'}))
+    
     class Meta:
         model = StudentApplication
-        fields = ('name', 'email', 'gpa', 'gradYear', 'longAns')
+        fields = ('name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns')
 
 class CourseAddForm(forms.ModelForm):
 
