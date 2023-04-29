@@ -45,7 +45,7 @@ def homepage(request):
     if request.user.is_authenticated:
         userRole = request.user.get_role()
         if (userRole == 'Student'):
-            return render(request, "courses_student.html")
+            return redirect('course_list')
         elif (userRole == 'Instructor'):
             return render(request, "instructor_visual.html")
         elif (userRole == 'Administrator'):
