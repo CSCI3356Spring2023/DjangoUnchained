@@ -17,21 +17,71 @@
     <div class="container">
         <form method=POST>
 
-            {% csrf_token %}
-            {{form.subject}}
-            {{form.courseName}}
-            {{form.courseCode}}
+            <!--
             {{form.courseDescription}}
+            <div class="label">Building</div>
             {{form.building}}
+            <div class="label">Class Days</div>
             {{form.days}}
+            <div class="label">Class Time</div>
+            {{form.time}}
+            <div class="label">Class Duration</div>
+            {{form.duration}}
+            <div class="label">Number of TAs Needed</div>
+            {{form.numTAs}}
+            <div class="label">Graded in Meetings?</div>
+            {{form.gradingType}}
+            <div class="label">Weekly Office Hours Required</div>
+            {{form.requiredOH}}
+            <div class="label">Discussion?</div>
+            {{form.discussion}}
+            <div class="label">Discussion Day</div>
+            {{form.discussion_day}}
+            <div class="label">Discussion Time</div>
+            {{form.discussion_time}}
+            <div class="label">Extra Relevant Information</div>
+            {{form.extra_info}}
+            -->
+
+            {% csrf_token %}
+            <div class="label">Subject</div>
+            {{form.subject}}
+            <div class="label">Course Name</div>
+            {{form.courseName}}
+            <div class="label">Course Code</div>
+            {{form.courseCode}}
+            <div class="label">Course Description</div>
+            {{form.courseDescription}}
+            <a>Building</a>
+            <!--Spacing characters for formatting, ignore/use easier way if you can-->
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+            <a>Class Time</a>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+            <a>Class Duration</a>
+            <br>
+            {{form.building}}
             {{form.time}}
             {{form.duration}}
+            <a>Number of TA's Needed</a>
+            &emsp;&nbsp;&nbsp;&nbsp;
+            <a>Graded in Meetings?</a>
+            &emsp;&emsp;&nbsp;&nbsp;&nbsp;
+            <a class="big-label">Required Weekly Office Hours</a>
+            <br>
             {{form.numTAs}}
             {{form.gradingType}}
             {{form.requiredOH}}
+            <a>Discussion?</a>
+            <!--Spacing characters for formatting, ignore/use easier way if you can-->
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <a>Discussion Day</a>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+            <a>Disucssion Time</a>
+            <br>
             {{form.discussion}}
             {{form.discussion_day}}
             {{form.discussion_time}}
+            <a>Extra Relevant Information</a>
             {{form.extra_info}}
             <br>
             <input type="submit" value="Update" class="btn">
@@ -43,6 +93,14 @@
 </html>
 
 <style>
+
+    .label, a {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .big-label {
+        font-size: 14px;
+    }
 
     .top_banner { 
         background-color:rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
@@ -81,7 +139,7 @@
 
     .top-text {
         text-align: center;
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
 
     input[type="submit"].btn:hover {
