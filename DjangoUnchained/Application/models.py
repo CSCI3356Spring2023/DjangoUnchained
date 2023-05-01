@@ -121,6 +121,13 @@ class CourseAdd(models.Model):
         ('No', 'No'),
 
     )
+    
+    NO_YES = (
+
+        ('No', 'No'),
+        ('Yes', 'Yes'),
+
+    )
 
     TIMES_NA = (
 
@@ -190,6 +197,7 @@ class CourseAdd(models.Model):
     discussion = models.CharField(max_length=100, choices = YES_NO, null=True)
     discussion_day = models.CharField(max_length=100, choices = DAYS_NA, null=True)
     discussion_time = models.CharField(max_length=100, choices = TIMES_NA, null=True)
+    fulfilled = models.CharField(max_length=100, choices = NO_YES, null=True)
     extra_info = models.CharField(max_length=100)
 
     def __str__(self):
@@ -236,6 +244,9 @@ class CourseAdd(models.Model):
     
     def get_discussion_time(self):
         return self.discussion_time
+    
+    def get_fulfilled(self):
+        return self.fulfilled
     
     def get_extraInfo(self):
         return self.extra_info

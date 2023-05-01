@@ -8,9 +8,6 @@ from django.shortcuts import get_object_or_404, redirect
 from .models import CourseAdd
 from .models import StudentApplication
 
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-
 # Create your views here.
 
 def student_course(request):
@@ -28,6 +25,15 @@ def add_course(request):
     else:
         return render(request, '404.html')
 
+def num_fulfilled_TA(queryset):
+    count = 0
+    TAs = 0
+    for i in queryset:
+        if i.fulfilled == "Yes":
+            count += 1
+        else:
+            TAs += int(i.numTAs)
+    return count, TAs
 # added to route admin.html in Application/templates
 def admin_page(request):
     if request.user.is_authenticated:
@@ -39,8 +45,11 @@ def admin_page(request):
         if (userRole == "Administrator"):
             courseInfo = CourseAdd.objects.all()
             applicantInfo = StudentApplication.objects.all()
+            fulfilled_courses, TAneeded = num_fulfilled_TA(courseInfo)
+            not_filled_courses = len(courseInfo) - fulfilled_courses
             context = {'Courses': courseInfo, 'Applicants': applicantInfo, 'Users': userInfo, 'FirstName': firstName, 'LastName': lastName,
-                       'Applicant_Number': len(applicantInfo), 'Course_Number': len(courseInfo)}
+                       'Applicant_Number': len(applicantInfo), 'Course_Number': len(courseInfo), 'Fulfilled': fulfilled_courses,
+                       'Not_Fulfilled': not_filled_courses, 'TAs': TAneeded}
 
             return render(request, 'admin_page.html', context)
         else: 

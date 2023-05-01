@@ -145,6 +145,11 @@ class CourseAddForm(forms.ModelForm):
         ('6:30', '6:30'),
         ('7:00', '7:00'),
     ]
+    fulfilleds = [
+        ('No', 'No'),
+        ('Yes', 'Yes'),
+        ('placeholder', 'Course Fulfilled?'),
+    ]
 
     number_choices = [
         ('placeholder', 'Hours Required?'),
@@ -174,11 +179,12 @@ class CourseAddForm(forms.ModelForm):
     discussion = forms.CharField(widget=forms.Select(choices=discussion_choices))
     discussion_day = forms.CharField(widget=forms.Select(choices=discussion_days))
     discussion_time = forms.CharField(widget=forms.Select(choices=discussion_times))
+    fulfilled = forms.CharField(widget=forms.Select(choices=fulfilleds))
     extra_info = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Extra Information Relevant to the Course', 'class': 'class_description'}))
 
     class Meta:
         model = CourseAdd
-        fields = ['subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType', 'requiredOH', 'discussion', 'discussion_day', 'discussion_time', 'extra_info']
+        fields = ['subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType', 'requiredOH', 'discussion', 'discussion_day', 'discussion_time', 'fulfilled', 'extra_info']
     
     
     
