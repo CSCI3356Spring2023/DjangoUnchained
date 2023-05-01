@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course List</title>
+</head>
+<body style="background: brown">
+
+    <h1 class="heading">Application List</h1>
+
+    {% for application in Applications %}
+    
+        <hr>
+
+        <div class="big_div">
+            <div>Subject</div>
+            <div>{{ application.subject }}</div> <br>
+
+            <div>Course Name</div>
+            <div>{{ application.courseName }}</div> <br>
+
+            <div>Course Code</div>
+            <div>{{ application.courseCode }}</div> <br>
+
+            <div>Building</div>
+            <div>{{ application.building }}</div> <br>
+
+            <div>Days</div>
+            <div>{{ application.days }}</div> <br>
+
+            <div>Time</div>
+            <div>{{ application.time }}</div> <br>
+
+            <div>Number of TA's</div>
+            <div>{{ application.numTAs }}</div> <br>
+
+            <div>Discussion</div>
+            <div>{{ application.discussion }}</div> <br>
+
+            <div>Discussion Day</div>
+            <div>{{ application.discussion_day }}</div> <br>
+
+            <div>Discussion Time</div>
+            <div>{{ application.discussion_time }}</div> <br>
+
+    
+        </div>
+
+        <button type="button" class="apply_button">
+            <a href="{% url 'application_list' %}">Remove</a>
+        </button>
+
+        <hr>
+
+    {% endfor %}
+    
+    
+</body>
+</html>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+    .heading {
+        text-align: center;
+        color: white;
+    }
+
+    .big_div {
+        width: 50%;
+        margin-left: 25%;
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 20px;
+        text-align: center;
+        background-color: white;
+    }
+
+    .line {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .apply_button {
+        margin-left: 48.3%;
+    }
+
+
+</style>

@@ -18,21 +18,39 @@
             <div>Subject</div>
             <div>{{ course.subject }}</div> <br>
 
+            <div>Course Name</div>
+            <div>{{ course.courseName }}</div> <br>
+
             <div>Course Code</div>
             <div>{{ course.courseCode }}</div> <br>
-
-            <div>Instructor Name</div>
-            <div>{{ course.instructorName }}</div> <br>
 
             <div>Building</div>
             <div>{{ course.building }}</div> <br>
 
-            <div>Discussion</div>
-            <div>{{ course.discussion }}</div> <br>
+            <div>Days</div>
+            <div>{{ course.days }}</div> <br>
+
+            <div>Time</div>
+            <div>{{ course.time }}</div> <br>
 
             <div>Number of TA's</div>
             <div>{{ course.numTAs }}</div> <br>
+
+            <div>Discussion</div>
+            <div>{{ course.discussion }}</div> <br>
+
+            <div>Discussion Day</div>
+            <div>{{ course.discussion_day }}</div> <br>
+
+            <div>Discussion Time</div>
+            <div>{{ course.discussion_time }}</div> <br>
+
+    
         </div>
+
+        <script>
+            sessionStorage.setItem('courseCode', course.courseCode);
+        </script>
 
         <button type="button" class="apply_button">
             <a href="{% url 'student_apply' %}">Apply</a>

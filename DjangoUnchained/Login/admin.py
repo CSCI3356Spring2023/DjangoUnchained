@@ -4,9 +4,20 @@ from .models import CustomUser
 
 from django.shortcuts import render
 
+from django.core import mail
+from .models import SendEmail
+
 
 @admin.action(description='Send Email')
 def send_email(modeladmin, request, queryset):
+    connection = mail.get_connection()
+    connection.open()
+    for user in queryset:
+        email = mail.EmailMessage("Test Subject", "Test Body", 'djangounchainedtest@outlook.com', 
+                                  [user.email], connection=connection)
+        email.send()
+    
+    connection.close()
     return render(request, 'send_email.html', context={})
 
 class CustomUserAdmin(admin.ModelAdmin):

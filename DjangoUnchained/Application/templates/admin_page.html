@@ -12,13 +12,14 @@
     <div class="header">
         <div class="logo">Eagle TAs</div>
         <div class="header-info">
-            <div>First Name, Last Name</div>
+            <div>{{ Users }}</div>
+            <div>{{ FirstName }} {{ LastName }}</div>
             <div>Admin</div>
         </div>
     </div>
     <div class="dashboard">
-        <div class="dashboard-item">Total Courses:</div>
-        <div class="dashboard-item">Total Applicants:</div>
+        <div class="dashboard-item">Total Courses: {{Course_Number}}</div>
+        <div class="dashboard-item">Total Applications: {{Applicant_Number}}</div>
         <div class="dashboard-item">Unfulfilled Courses:</div>
         <div class="dashboard-item">Fulfilled Courses:</div>
         <div class="dashboard-item">TA needed:</div>
@@ -31,36 +32,20 @@
             <input type="text" placeholder="Search for courses">
             <!-- Add course list items here -->
             {% for course in Courses %}
-    
-            <hr>
-
-            <div class="big_div">
-                <div>Subject</div>
-                <div>{{ course.subject }}</div> <br>
-
-                <div>Course Code</div>
-                <div>{{ course.courseCode }}</div> <br>
-
-                <div>Instructor Name</div>
-                <div>{{ course.instructorName }}</div> <br>
-
-                <div>Building</div>
-                <div>{{ course.building }}</div> <br>
-
-                <div>Discussion</div>
-                <div>{{ course.discussion }}</div> <br>
-
-                <div>Number of TA's</div>
-                <div>{{ course.numTAs }}</div> <br>
+            <div class="course-item">
+                <h3>{{ course.courseName }}</h3>
+                <p>Subject: {{ course.subject }}</p>
+                <p>Course Code: {{ course.courseCode }}</p>
+                <p>Instructor Name: {{ course.instructorName }}</p>
+                <p>Building: {{ course.building }}</p>
+                <p>Discussion: {{ course.discussion }}</p>
+                <p>Number of TA's: {{ course.numTAs }}</p>
+                <a href="{% url 'delete_course' course.id %}">Delete</a>
+                <br>
+                <a href="{% url 'edit_course' course.id %}">Edit</a>
             </div>
+            {% endfor %}
 
-        <button type="button" class="apply_button">
-            <a href="{% url 'student_apply' %}">Apply</a>
-        </button>
-
-        <hr>
-
-        {% endfor %}
         </div>
 
         
@@ -69,10 +54,15 @@
 			<a href="{% url 'student_apply' %}"><button>Add applicant</button></a>
             <input type="text" placeholder="Search for applicants">
             <!-- Add applicant list items here -->
-            <!-- {% for applicant in applicants %}
-                <div>{{ applicant.name }}</div>
+            {% for applicant in Applicants %}
+            <div class="applicant-item">
+                <h3>{{ applicant.name }}</h3>
+                <p>Emaill: {{ applicant.email }}</p>
+                <p>Graduation Year: {{ applicant.gradYear }}</p>
+                <p>GPA: {{ applicant.gpa }}</p>
                 <a href="{% url 'delete_applicant' applicant.id %}">Delete</a>
-            {% endfor %} -->
+            </div>
+            {% endfor %}
         </div>
     </div>
 </body>

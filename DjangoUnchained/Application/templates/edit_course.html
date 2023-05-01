@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Course</title>
+</head>
+<body>
+
+    <div class="top_banner">
+    </div>
+    <span  class="eagleTA_text">EagleTAs</span>
+    <br><br><br><br><br>
+    <h1 class="top-text">Edit {{course.courseName}}</h1>
+    <div class="container">
+        <form method=POST>
+
+            {% csrf_token %}
+            {{form.subject}}
+            {{form.courseName}}
+            {{form.courseCode}}
+            {{form.courseDescription}}
+            {{form.building}}
+            {{form.days}}
+            {{form.time}}
+            {{form.duration}}
+            {{form.numTAs}}
+            {{form.gradingType}}
+            {{form.requiredOH}}
+            {{form.discussion}}
+            {{form.discussion_day}}
+            {{form.discussion_time}}
+            {{form.extra_info}}
+            
+
+            <!--
+            {% csrf_token %}
+            <div class="label">Subject</div>
+            {{form.subject}}
+            <div class="label">Course Name</div>
+            {{form.courseName}}
+            <div class="label">Course Code</div>
+            {{form.courseCode}}
+            <div class="label">Course Description</div>
+            {{form.courseDescription}}
+            <a>Building</a>
+            <!--Spacing characters for formatting, ignore/use easier way if you can
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+            <a>Class Time</a>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+            <a>Class Duration</a>
+            <br>
+            {{form.building}}
+            {{form.time}}
+            {{form.duration}}
+            <a>Number of TA's Needed</a>
+            &emsp;&nbsp;&nbsp;&nbsp;
+            <a>Graded in Meetings?</a>
+            &emsp;&emsp;&nbsp;&nbsp;&nbsp;
+            <a class="big-label">Required Weekly Office Hours</a>
+            <br>
+            {{form.numTAs}}
+            {{form.gradingType}}
+            {{form.requiredOH}}
+            <a>Discussion?</a>
+            <!--Spacing characters for formatting, ignore/use easier way if you can
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <a>Discussion Day</a>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+            <a>Disucssion Time</a>
+            <br>
+            {{form.discussion}}
+            {{form.discussion_day}}
+            {{form.discussion_time}}
+            <a>Extra Relevant Information</a>
+            {{form.extra_info}}
+            -->
+            <br>
+            <input type="submit" value="Update" class="btn">
+            
+        </form>
+    </div>
+    
+</body>
+</html>
+
+<style>
+
+    .label, a {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .big-label {
+        font-size: 14px;
+    }
+
+    .top_banner { 
+        background-color:rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
+        width:100%;
+        height:13%;
+        position:absolute;
+        left:0px;
+        top:0px;
+        right:0px;
+        bottom:0px;
+    }
+
+    .eagleTA_text { 
+        color:rgba(255, 255, 255, 1);
+        width:399px;
+        height:59px;
+        position:absolute;
+        left:110px;
+        top:20px;
+        font-family:Poppins;
+        text-align:left;
+        font-size:40px;
+        letter-spacing:0;
+    }
+
+    .crest { 
+        width:70px;
+        height:70px;
+        position:relative;
+        left:1%;
+        top:12%;
+        background-image:url("../static/bccrest_1.png");
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
+
+    .top-text {
+        text-align: center;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    input[type="submit"].btn:hover {
+        border: 1px solid black;
+        background-color: rgb(131, 23, 23);
+    }
+     
+    .btn {
+        width: 14%;
+        left: 30%;
+        color: white;
+        background-color: rgb(168, 30, 30, 1);
+    }
+
+    .application {
+        position:absolute;
+        left: 5%;
+        top: 10%;
+        font-size:30px;
+    }
+
+    input, textarea {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 6px;
+        box-sizing: border-box;
+        text-align: start;
+    }
+
+    select {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 32.8%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+
+    .short_text {
+        width: 50%;
+    }
+
+    #submit_button {
+        background-color:rgba(168, 30, 30, 1);
+        border-radius: 6px;
+        color: white;
+        width:100px;
+        height:30px;
+    }
+
+    .form_title {
+        font-family: Oxygen;
+        font-size: 18px;
+    }
+
+    .container {
+        background-color:rgba(255, 255, 255, 1);
+        width:40%;
+        height:auto;
+        padding-bottom: 5%;
+        position: relative;
+        margin: auto;
+        top: 21%;
+        border-radius: 10px;
+    }
+
+</style>
