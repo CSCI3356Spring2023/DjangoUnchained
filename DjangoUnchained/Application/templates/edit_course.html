@@ -9,40 +9,32 @@
 <body>
 
     <div class="top_banner">
-        <div class="crest"></div>
     </div>
     <span  class="eagleTA_text">EagleTAs</span>
     <br><br><br><br><br>
-    <h1 class="top-text">Edit {{course.courseName}}</h1>   
+    <h1 class="top-text">Edit {{course.courseName}}</h1>
     <div class="container">
         <form method=POST>
 
-            <!--
+            {% csrf_token %}
+            {{form.subject}}
+            {{form.courseName}}
+            {{form.courseCode}}
             {{form.courseDescription}}
-            <div class="label">Building</div>
             {{form.building}}
-            <div class="label">Class Days</div>
             {{form.days}}
-            <div class="label">Class Time</div>
             {{form.time}}
-            <div class="label">Class Duration</div>
             {{form.duration}}
-            <div class="label">Number of TAs Needed</div>
             {{form.numTAs}}
-            <div class="label">Graded in Meetings?</div>
             {{form.gradingType}}
-            <div class="label">Weekly Office Hours Required</div>
             {{form.requiredOH}}
-            <div class="label">Discussion?</div>
             {{form.discussion}}
-            <div class="label">Discussion Day</div>
             {{form.discussion_day}}
-            <div class="label">Discussion Time</div>
             {{form.discussion_time}}
-            <div class="label">Extra Relevant Information</div>
             {{form.extra_info}}
-            -->
+            
 
+            <!--
             {% csrf_token %}
             <div class="label">Subject</div>
             {{form.subject}}
@@ -53,7 +45,7 @@
             <div class="label">Course Description</div>
             {{form.courseDescription}}
             <a>Building</a>
-            <!--Spacing characters for formatting, ignore/use easier way if you can-->
+            <!--Spacing characters for formatting, ignore/use easier way if you can
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
             <a>Class Time</a>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
@@ -72,7 +64,7 @@
             {{form.gradingType}}
             {{form.requiredOH}}
             <a>Discussion?</a>
-            <!--Spacing characters for formatting, ignore/use easier way if you can-->
+            <!--Spacing characters for formatting, ignore/use easier way if you can
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             <a>Discussion Day</a>
             &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
@@ -83,6 +75,7 @@
             {{form.discussion_time}}
             <a>Extra Relevant Information</a>
             {{form.extra_info}}
+            -->
             <br>
             <input type="submit" value="Update" class="btn">
             
