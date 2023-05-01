@@ -65,7 +65,7 @@ def homepage(request):
 def student_apply(request):
     if request.user.is_authenticated:
         userRole = request.user.get_role()
-        if(userRole == 'Student' or userRole =="Admininstrator"):
+        if(userRole == 'Student' or userRole =="Administrator"):
             form = StudentApply()
             context = {}
 
