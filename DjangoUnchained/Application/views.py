@@ -39,7 +39,8 @@ def admin_page(request):
         if (userRole == "Administrator"):
             courseInfo = CourseAdd.objects.all()
             applicantInfo = StudentApplication.objects.all()
-            context = {'Courses': courseInfo, 'Applicants': applicantInfo, 'Users': userInfo, 'FirstName': firstName, 'LastName': lastName}
+            context = {'Courses': courseInfo, 'Applicants': applicantInfo, 'Users': userInfo, 'FirstName': firstName, 'LastName': lastName,
+                       'Applicant_Number': len(applicantInfo), 'Course_Number': len(courseInfo)}
 
             return render(request, 'admin_page.html', context)
         else: 
