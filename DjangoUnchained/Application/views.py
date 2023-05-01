@@ -20,6 +20,7 @@ def student_course(request):
 def add_course(request):
     if request.user.is_authenticated:
         userRole = request.user.get_role()
+
         if (userRole == 'Instructor' or userRole == "Administrator"):
             return render(request,'Add_course.html')
         else:
@@ -30,17 +31,22 @@ def add_course(request):
 # added to route admin.html in Application/templates
 def admin_page(request):
     if request.user.is_authenticated:
+        userInfo = request.user
+        firstName = userInfo.get_first_name()
+        lastName = userInfo.get_last_name()
+
         userRole = request.user.get_role()
         if (userRole == "Administrator"):
             courseInfo = CourseAdd.objects.all()
             applicantInfo = StudentApplication.objects.all()
-            context = {'Courses': courseInfo, 'Applicants': applicantInfo}
+            context = {'Courses': courseInfo, 'Applicants': applicantInfo, 'Users': userInfo, 'FirstName': firstName, 'LastName': lastName}
 
             return render(request, 'admin_page.html', context)
         else: 
             return render(request, '404.html')
     else:
         return render(request, '404.html')
+    
 def homepage(request):
     if request.user.is_authenticated:
         userRole = request.user.get_role()
