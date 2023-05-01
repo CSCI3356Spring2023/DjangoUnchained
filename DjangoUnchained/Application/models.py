@@ -160,6 +160,21 @@ class CourseAdd(models.Model):
 
     )
 
+    NUM_CHOICES = (
+
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+
+    )
+
     username = None
     subject = models.CharField(max_length=100)
     courseName = models.CharField(max_length=100)
@@ -170,9 +185,12 @@ class CourseAdd(models.Model):
     time = models.CharField(max_length=100, choices = TIMES, null=True)
     duration = models.CharField(max_length=100, choices = DURATIONS, null=True)
     numTAs = models.CharField(max_length=100, choices = NUM_TAS, null=True)
+    gradingType = models.CharField(max_length=100, choices = YES_NO, null=True)
+    requiredOH = models.CharField(max_length=100, choices = NUM_CHOICES, null=True)
     discussion = models.CharField(max_length=100, choices = YES_NO, null=True)
     discussion_day = models.CharField(max_length=100, choices = DAYS_NA, null=True)
     discussion_time = models.CharField(max_length=100, choices = TIMES_NA, null=True)
+    extra_info = models.CharField(max_length=100)
 
     def __str__(self):
         return self.courseCode
@@ -204,6 +222,12 @@ class CourseAdd(models.Model):
     def get_numTAs(self):
         return self.numTAs
     
+    def get_gradingType(self):
+        return self.gradingType
+    
+    def get_requiredOH(self):
+        return self.requiredOH
+    
     def get_discussion(self):
         return self.discussion
     
@@ -212,5 +236,8 @@ class CourseAdd(models.Model):
     
     def get_discussion_time(self):
         return self.discussion_time
+    
+    def get_extraInfo(self):
+        return self.extra_info
 
     

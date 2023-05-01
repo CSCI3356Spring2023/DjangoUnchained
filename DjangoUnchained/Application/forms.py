@@ -6,20 +6,32 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class StudentApply(forms.ModelForm):
     YEARS = (
 
+        ('placeholder', 'Grad Year'),
         ('2024', '2024'),
         ('2025', '2025'),
         ('2026', '2026'),
         ('2027', '2027'),
     
     )
+
+    CS_RELATION = (
+
+        ('placeholder', 'CS Relation'),
+        ('Computer Science Major BA', 'Computer Science Major BA'),
+        ('Computer Science Major BS', 'Computer Science Major BS'),
+        ('Computer Science Minor', 'Computer Science Minor'),
+
+    )
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'name'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'email'}))
     gpa = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'gpa'}))
     gradYear = forms.CharField(widget=forms.Select(choices=YEARS))
+    csRelation = forms.CharField(widget=forms.Select(choices=CS_RELATION))
     longAns = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'longAns'}))
+    
     class Meta:
         model = StudentApplication
-        fields = ('name', 'email', 'gpa', 'gradYear', 'longAns')
+        fields = ('name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns')
 
 class CourseAddForm(forms.ModelForm):
 
@@ -92,6 +104,12 @@ class CourseAddForm(forms.ModelForm):
         ('No', 'No')
     ]
 
+    grading_types = [
+        ('placeholder', 'Grading in Meetings?'),
+        ('Yes', 'Yes'),
+        ('No', 'No')
+    ]
+
     discussion_days = [
         ('placeholder', 'Discussion Day'),
         ('N/A', 'N/A'),
@@ -128,6 +146,20 @@ class CourseAddForm(forms.ModelForm):
         ('7:00', '7:00'),
     ]
 
+    number_choices = [
+        ('placeholder', 'Hours Required?'),
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10')
+    ]
+
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Subject', 'class': 'short_text'}))
     courseName = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Course Name', 'class': 'short_text'}))
     courseCode = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Course Code', 'class': 'short_text'}))
@@ -137,13 +169,16 @@ class CourseAddForm(forms.ModelForm):
     time = forms.CharField(widget=forms.Select(choices=class_times))
     duration = forms.CharField(widget=forms.Select(choices=durations))
     numTAs = forms.CharField(widget=forms.Select(choices=numTA_Choices))
+    gradingType = forms.CharField(widget=forms.Select(choices=grading_types))
+    requiredOH = forms.CharField(widget=forms.Select(choices=number_choices))
     discussion = forms.CharField(widget=forms.Select(choices=discussion_choices))
     discussion_day = forms.CharField(widget=forms.Select(choices=discussion_days))
     discussion_time = forms.CharField(widget=forms.Select(choices=discussion_times))
+    extra_info = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Extra Information Relevant to the Course', 'class': 'class_description'}))
 
     class Meta:
         model = CourseAdd
-        fields = ['subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'discussion', 'discussion_day', 'discussion_time']
+        fields = ['subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType', 'requiredOH', 'discussion', 'discussion_day', 'discussion_time', 'extra_info']
     
     
     

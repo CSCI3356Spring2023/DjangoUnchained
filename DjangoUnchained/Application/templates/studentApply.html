@@ -2,46 +2,135 @@
 {% load static %}
 <html lang="en">
 
+
 <head>
   <link rel="stylesheet" href="{% static 'add_course.css' %}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto&family=Poppins&display=swap" rel="stylesheet">
     <title>Document</title>
   </head>
   <body>
       <div class="big_div">
           <div class="top_banner">
-              <span class="eagleTA_text">Application</span>
+              <span class="eagleTA_text">Eagle TAs</span>
               <div class="bround_image"></div>
             </div>
           </div>
-          <form method="post">
-      {% csrf_token %}
-      <br><br>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-      <br><br>
-      <label for="email">Email:</label>
-      <input type="text" id="email" name="email" required>
-      <br><br>
-      <label for="gpa">GPA:</label>
-      <input type="text" id="gpa" name="gpa" required>
-      <br><br>
-      <label for="gradYear">Graduation Year:</label>
-      <select id="gradYear" name="gradYear" required>
-          <option value="">Graduation Year</option>
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-          <option value="2026">2026</option>
-          <option value="2027">2027</option>
-      </select>
-      <br><br>
-      <label for="longAns">Long Answer:</label>
-      <textarea id="longAnd" name="longAns" rows="4" cols="50"></textarea>
-      <br><br>
-  <br><br>
-  <br><br>
-  <br><br>
-  <button type="submit" style="background-color: rgba(168, 30, 30, 1); color: white; font-size: 40px; position: absolute; bottom: 0%; left: 100%;">Apply</button>
+          <div class="top_text">
+            Application for (Insert Course Name)
+          </div>
+          <br>
+          <div class="container">
+            <form method="post">
+              {% csrf_token %}
+              <div class="label">
+                Name
+              </div>
+              {{form.name}}
+              <br>
+              <div class="label">
+                Email
+              </div>
+              {{form.email}}
+              <br>
+              <div class="label">
+                GPA
+              </div>
+              {{form.gpa}}
+              <br>
+              <div class="label">
+                Projected Graduation Year
+              </div>
+              {{form.gradYear}}
+              <br>
+              <div class="label">
+                Relation to CS Department
+              </div>
+              {{form.csRelation}}
+              <br>
+              <div class="label">
+                Extra Information About Yourself
+              </div>
+              {{form.longAns}}
+              <br><br><br>
+            <button type="submit" style="background-color: rgba(168, 30, 30, 1); color: white; font-size: 20px; position: absolute; bottom: 0%; left: 100%;">Apply</button>
+         
+          </div>
+          
   </form>
+
+
+<style>
+
+    .top_text {
+      position: relative;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 11%;
+      text-align: center;
+    }
+
+    .top_banner {
+      height: 11%;
+    }
+
+    .eagleTA_text {
+      font-size: 50px;
+    }
+
+    .label {
+      font-family: Poppins;
+      font-size: 25px;
+    }
+
+    .application {
+        position:absolute;
+        left: 10%;
+        font-size:30px;
+    }
+
+    input, textarea {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 6px;
+        box-sizing: border-box;
+        text-align: start;
+    }
+
+    select {
+        list-style: none;
+        background-color: #cacdcc;
+        color: black;
+        border: none;
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+
+    .short_text {
+        width: 50%;
+    }
+
+    .container {
+        background-color:rgba(255, 255, 255, 1);
+        width:40%;
+        height:auto;
+        padding-bottom: 5%;
+        position: relative;
+        margin: auto;
+        top: 40%;
+        border-radius: 10px;
+    }
+
+
+</style>

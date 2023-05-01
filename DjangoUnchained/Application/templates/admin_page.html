@@ -12,7 +12,8 @@
     <div class="header">
         <div class="logo">Eagle TAs</div>
         <div class="header-info">
-            <div>First Name, Last Name</div>
+            <div>{{ Users }}</div>
+            <div>{{ FirstName }} {{ LastName }}</div>
             <div>Admin</div>
         </div>
     </div>
@@ -40,6 +41,8 @@
                 <p>Discussion: {{ course.discussion }}</p>
                 <p>Number of TA's: {{ course.numTAs }}</p>
                 <a href="{% url 'delete_course' course.id %}">Delete</a>
+                <br>
+                <a href="{% url 'edit_course' course.id %}">Edit</a>
             </div>
             {% endfor %}
 
