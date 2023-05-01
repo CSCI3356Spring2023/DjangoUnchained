@@ -22,7 +22,7 @@
         <div class="dashboard-item">Unfulfilled Courses: {{Not_Fulfilled}}</div>
         <div class="dashboard-item">Fulfilled Courses: {{Fulfilled}}</div>
         <div class="dashboard-item">TA needed: {{TAs}}</div>
-        <div class="dashboard-item">Notifications:</div>
+        <div class="dashboard-item">Notifications</div>
     </div>
     <div class="list-section">
         <div class="list-container">
@@ -56,7 +56,7 @@
             {% for applicant in Applicants %}
             <div class="applicant-item">
                 <h3>{{ applicant.name }}</h3>
-                <p>Emaill: {{ applicant.email }}</p>
+                <p>Email: {{ applicant.email }}</p>
                 <p>Graduation Year: {{ applicant.gradYear }}</p>
                 <p>GPA: {{ applicant.gpa }}</p>
                 <a href="{% url 'delete_applicant' applicant.id %}">Delete</a>
