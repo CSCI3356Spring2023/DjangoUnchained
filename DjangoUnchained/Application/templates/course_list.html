@@ -48,16 +48,14 @@
             <div>Discussion Time</div>
             <div>{{ course.fulfilled }}</div> <br>
 
-    
+            
         </div>
 
         <script>
             sessionStorage.setItem('courseCode', course.courseCode);
         </script>
 
-        <button type="button" class="apply_button">
-            <a href="{% url 'student_apply' %}">Apply</a>
-        </button>
+        <a href="{% url 'student_apply' course.id %}" class="apply-button">Apply</a>
 
         <hr>
 
@@ -70,6 +68,11 @@
 <style>
 
     @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+    .apply_button {
+        color: white;
+        left:50%;
+    }
 
     .heading {
         text-align: center;

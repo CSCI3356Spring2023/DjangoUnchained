@@ -72,26 +72,6 @@ def homepage(request):
     else:
         return render(request, "landingpage.html")
 
-def student_apply(request):
-    if request.user.is_authenticated:
-        userRole = request.user.get_role()
-        if(userRole == 'Student' or userRole =="Administrator"):
-            form = StudentApply()
-            context = {}
-
-            if request.method == 'POST':
-                form = StudentApply(request.POST)
-                if form.is_valid():
-                    form.save()
-                    return redirect('/main')  # Redirect to the main page after successful form submission
-
-            context['form'] = form
-            return render(request, "studentApply.html", context)
-        else:
-            return render(request, '404.html')
-    else:
-        return render(request, '404.html')
-
 
 def temp_add_course(request):
 
@@ -172,6 +152,27 @@ def edit_course(request, course_id):
                 return redirect('admin_page')
 
             return render(request, 'edit_course.html', {'course': course, 'form': form})
+        
+        else:
+            return render(request, '404.html')
+    else:
+        return render(request, '404.html')
+    
+
+def student_apply(request, course_id):
+    if request.user.is_authenticated:
+        userRole = request.user.get_role()
+        if(userRole == 'Student' or userRole =="Administrator"):
+            form = StudentApply()
+            course = get_object_or_404(CourseAdd, id=course_id)
+
+            if request.method == 'POST':
+                form = StudentApply(request.POST)
+                if form.is_valid():
+                    form.save()
+                    return redirect('/main')  # Redirect to the main page after successful form submission
+
+            return render(request, "studentApply.html", {'form': form, 'course': course})
         
         else:
             return render(request, '404.html')
