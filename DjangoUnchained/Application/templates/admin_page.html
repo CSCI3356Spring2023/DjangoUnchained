@@ -71,10 +71,10 @@
                         <a href="{% url 'deny_applicant' applicant.id %}"><button>Deny Applicant</button></a>
                     {% endif %}
                     {% if applicant.results == 'Accepted' %}
-                        <p>Applicant Accepted</p>
+                        <h4>Applicant Accepted</h4>
                     {% endif %}
                     {% if applicant.results == 'Denied' %}
-                        <p>Applicant Denied</p>
+                        <h4>Applicant Denied</h4>
                     {% endif %}
                 </div>
             </div>
