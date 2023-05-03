@@ -54,9 +54,19 @@
                 <p>GPA: {{ applicant.gpa }}</p>
                 <p>For: {{applicant.courseName}}</p>
                 
-                <a href="{% url 'delete_applicant' applicant.id %}">Delete</a>
-                <a href="{% url 'accept_applicant' applicant.id %}"><button>Accept Applicant</button></a>
-                <a href="{% url 'deny_applicant' applicant.id %}"><button>Deny Applicant</button></a>
+                <div class="actions"> 
+                    {% if applicant.results == 'Pending' %}
+                            <a href="{% url 'delete_applicant' applicant.id %}"><button>Delete</button></a>
+                            <a href="{% url 'accept_applicant' applicant.id %}"><button>Accept Applicant</button></a>
+                            <a href="{% url 'deny_applicant' applicant.id %}"><button>Deny Applicant</button></a>
+                        {% endif %}
+                        {% if applicant.results == 'Accepted' %}
+                            <p>Applicant Accepted</p>
+                        {% endif %}
+                        {% if applicant.results == 'Denied' %}
+                            <p>Applicant Denied</p>
+                        {% endif %}
+                </div>
             </div>
             {% endfor %}
         </div>
