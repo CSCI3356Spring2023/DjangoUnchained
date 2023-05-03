@@ -45,7 +45,6 @@
                     <a href="{% url 'delete_course' course.id %}"><button>Delete</button></a>
                     <a href="{% url 'edit_course' course.id %}"><button>Edit</button></a>
                 </div>
-                
             </div>
             {% endfor %}
 
@@ -59,11 +58,15 @@
             {% for applicant in Applicants %}
             <div class="applicant-item">
                 <h3>{{ applicant.name }}</h3>
-                <p>Email: {{ applicant.email }}</p>
-                <p>Graduation Year: {{ applicant.gradYear }}</p>
-                <p>GPA: {{ applicant.gpa }}</p>
-                <p>For: {{ applicant.courseName }}</p>
-                <a href="{% url 'delete_applicant' applicant.id %}">Delete</a>
+                <div class="applicant-info">
+                    <p>Email: {{ applicant.email }}</p>
+                    <p>Graduation Year: {{ applicant.gradYear }}</p>
+                    <p>GPA: {{ applicant.gpa }}</p>
+                    <p>For: {{ applicant.courseName }}</p>
+                </div>
+                <div class="actions">                
+                    <a href="{% url 'delete_applicant' applicant.id %}"><button>Delete</button></a>
+                </div>
             </div>
             {% endfor %}
         </div>
