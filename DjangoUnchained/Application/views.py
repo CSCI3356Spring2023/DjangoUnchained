@@ -65,7 +65,7 @@ def instructor_page(request):
 
         userRole = request.user.get_role()
         if (userRole == "Instructor"):
-            courseInfo = CourseAdd.objects.all()
+            courseInfo = CourseAdd.objects.filter(instructor=userInfo.get_full_name())
             print(courseInfo)
             applicantInfo = StudentApplication.objects.all()
             fulfilled_courses, TAneeded = num_fulfilled_TA(courseInfo)
@@ -207,7 +207,6 @@ def student_apply(request, course_id):
                 form = StudentApply(request.POST)
                 if form.is_valid():
                     my_instance = form.save(commit=False)
-                    my_instance.instructor = course.instructor
                     my_instance.courseName = course.courseName
                     my_instance.save()
                     form.save()
