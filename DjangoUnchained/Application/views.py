@@ -40,7 +40,6 @@ def admin_page(request):
         userInfo = request.user
         firstName = userInfo.get_first_name()
         lastName = userInfo.get_last_name()
-
         userRole = request.user.get_role()
         if (userRole == "Administrator"):
             courseInfo = CourseAdd.objects.all()
@@ -61,7 +60,7 @@ def homepage(request):
     if request.user.is_authenticated:
         userRole = request.user.get_role()
         if (userRole == 'Student'):
-            return redirect('course_list')
+            return student_page(request)
         elif (userRole == 'Instructor'):
             return render(request, "instructor_visual.html")
         elif (userRole == 'Administrator'):
@@ -95,6 +94,16 @@ def temp_add_course(request):
     else:
         return render(request, '404.html')
 
+def student_page(request):
+    if request.user.is_authenticated:
+        userRole = request.user.get_role()
+        userInfo = request.user
+        firstName = userInfo.get_first_name()
+        lastName = userInfo.get_last_name()
+        if(userRole == "Student"):
+            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName}
+            return render(request, 'studentTAapplication.html', context)
+    return render(request, '404.html')
 
 def course_list(request):
 
