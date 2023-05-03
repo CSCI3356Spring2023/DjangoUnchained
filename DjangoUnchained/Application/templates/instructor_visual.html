@@ -9,11 +9,11 @@
     <title>Instructor Visual</title>
 </head>
 <body>
-    <p class="logout"><a href="{% url 'logout' %}">Log Out</a></p>
     <div class="header">
         <div class="crest"></div>
         <div class="logo">Eagle TAs</div>
         <div class="header-info">
+            <p class="logout"><a href="{% url 'logout' %}"><button>Log Out</button></a></p>
             <div>{{ Users }}</div>
             <div>{{ FirstName }} {{ LastName }}</div>
         </div>
