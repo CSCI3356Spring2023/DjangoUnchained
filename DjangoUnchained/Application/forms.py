@@ -187,7 +187,7 @@ class CourseAddForm(forms.ModelForm):
     
     class Meta:
         model = CourseAdd
-        fields = ['subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType', 'requiredOH', 'discussion', 'discussion_day', 'discussion_time', 'fulfilled', 'extra_info']
+        fields = ['instructor', 'subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType', 'requiredOH', 'discussion', 'discussion_day', 'discussion_time', 'fulfilled', 'extra_info']
     
     
     
