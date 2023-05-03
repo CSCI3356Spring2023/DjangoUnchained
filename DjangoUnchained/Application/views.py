@@ -44,8 +44,7 @@ def add_TA(applicantInfo):
         course = i
     num = course.get_currTAs() + 1
     course.set_currTAs(num)
-    #closes course if current TA number reaches the total needed
-    if course.get_currTAs == course.get_numTAs():
+    if (num == course.get_numTAs()):
         course.set_courseState("Closed")
     course.save()
 

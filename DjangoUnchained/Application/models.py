@@ -40,8 +40,8 @@ class StudentApplication(models.Model):
     def get_courseName(self):
         return self.courseName
 
-    def set_results(self, str):
-        self.results = str
+    def set_results(self, string):
+        self.results = string
     
 
 class CourseAdd(models.Model):
@@ -275,7 +275,7 @@ class CourseAdd(models.Model):
     def get_courseState(self):
         return self.courseState
 
-    def set_courseState(self, str):
-        self.courseState = str
+    def set_courseState(self, string):
+        self.courseState = string
 
     
