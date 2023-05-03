@@ -193,17 +193,45 @@ def accept_applicant(request, applicant_id):
     userRole = request.user.get_role()
     applicant = get_object_or_404(StudentApplication, id=applicant_id)
     name = applicant.name
-    add_TA(applicant)
     emailAddress = applicant.email
+    courseName = applicant.courseName.replace(" ", "-")
+    instructor = applicant.instructor.replace(" ", "-")
     subject = f"Update on {name}'s TA Application"
-    body = f"Congrats {name}! You've accepted as a TA for {applicant.courseName}!"
+    body = f"Congrats {name}! You've accepted as a TA for {applicant.courseName}! Click the link here to accept or reject the offer: http://127.0.0.1:8000/offer_role/?course_info={courseName}!{instructor}"
     send_email(body, emailAddress, subject)
-    applicant.set_results("Accepted")
-    applicant.save()
+    applicant.set_results("Awaiting Student Decision")
     if userRole == "Administrator": 
         return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
-    if userRole == "Administrator": 
+    if userRole == "Instructor": 
         return redirect('instructor_page')  # Redirect to the instructor_page or the page where you display the list of courses
+
+def offer_role(request):
+    if request.method == 'POST':
+        userInfo = request.user
+        course_info = request.GET.get('course_info')
+        temp = course_info.split('!')
+        courseName = temp[0].replace("-"," ")
+        instructor = temp[1].replace("-"," ")
+        applications = StudentApplication.objects.filter(email = userInfo.get_email())
+        print(applications)
+        applications = applications.filter(courseName = courseName)
+        print(applications)
+        applications = applications.filter(instructor = instructor)
+        print(applications)
+        for i in applications:
+            applicant = i
+        if 'accept' in request.POST:
+            applicant.set_results("Accepted Offer")
+            applicant.save()
+            add_TA(applicant)
+            return redirect('/main')
+        elif 'deny' in request.POST:
+            applicant.set_results("Denied Offer")
+            applicant.save()
+            return redirect('/main')
+        else:
+            return
+    return render(request, 'offer_role.html')
 
 def deny_applicant(request, applicant_id):
     userRole = request.user.get_role()
