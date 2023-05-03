@@ -180,9 +180,9 @@ class CourseAddForm(forms.ModelForm):
     discussion = forms.CharField(widget=forms.Select(choices=discussion_choices))
     discussion_day = forms.CharField(widget=forms.Select(choices=discussion_days))
     discussion_time = forms.CharField(widget=forms.Select(choices=discussion_times))
-    fulfilled = forms.CharField(widget=forms.Select(choices=fulfilleds))
+    fulfilled = forms.CharField(widget=forms.HiddenInput(), required = False)
     extra_info = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Extra Information Relevant to the Course', 'class': 'class_description'}))
-
+    
     class Meta:
         model = CourseAdd
         fields = ['subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType', 'requiredOH', 'discussion', 'discussion_day', 'discussion_time', 'fulfilled', 'extra_info']

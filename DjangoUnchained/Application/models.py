@@ -198,7 +198,7 @@ class CourseAdd(models.Model):
     discussion = models.CharField(max_length=100, choices = YES_NO, null=True)
     discussion_day = models.CharField(max_length=100, choices = DAYS_NA, null=True)
     discussion_time = models.CharField(max_length=100, choices = TIMES_NA, null=True)
-    fulfilled = models.CharField(max_length=100, choices = NO_YES, null=True)
+    fulfilled = models.CharField(max_length=100, null=True)
     extra_info = models.CharField(max_length=100)
 
     def __str__(self):

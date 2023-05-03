@@ -29,6 +29,7 @@ def num_fulfilled_TA(queryset):
     count = 0
     TAs = 0
     for i in queryset:
+        print(i.fulfilled)
         if i.fulfilled == "Yes":
             count += 1
         else:
@@ -51,7 +52,7 @@ def admin_page(request):
                        'Not_Fulfilled': not_filled_courses, 'TAs': TAneeded}
 
             return render(request, 'admin_page.html', context)
-        else: 
+        else:
             return render(request, '404.html')
     else:
         return render(request, '404.html')
@@ -103,6 +104,12 @@ def temp_add_course(request):
         if (userRole == 'Instructor' or userRole == "Administrator"):
             if request.method == 'POST':
                 form = CourseAddForm(request.POST)
+                # CODE FOR CHANGING DATA
+                data = request.POST
+                data._mutable = True
+                data['fulfilled'] = "No"
+                data._mutable = False
+                #CODE ABOVE FOR CHANGING DATA
                 if form.is_valid():
                     form.save()
                     return redirect('/main')  # Redirect to the main page after successful form submission
