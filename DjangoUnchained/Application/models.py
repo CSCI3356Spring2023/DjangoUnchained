@@ -201,6 +201,7 @@ class CourseAdd(models.Model):
     discussion_day = models.CharField(max_length=100, choices = DAYS_NA, null=True)
     discussion_time = models.CharField(max_length=100, choices = TIMES_NA, null=True)
     fulfilled = models.CharField(max_length=100, null=True)
+    currTAs = models.IntegerField(null=True)
     extra_info = models.CharField(max_length=100)
 
     def __str__(self):
@@ -256,5 +257,8 @@ class CourseAdd(models.Model):
     
     def get_extraInfo(self):
         return self.extra_info
+    
+    def get_currTAs(self):
+        return self.currTAs
 
     
