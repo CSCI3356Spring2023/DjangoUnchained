@@ -30,10 +30,11 @@ class StudentApply(forms.ModelForm):
     longAns = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'longAns'}))
     courseName = forms.CharField(required=False)
     instructor = forms.CharField(required=False)
+    results = forms.IntegerField(widget=forms.HiddenInput(), required = False)
     
     class Meta:
         model = StudentApplication
-        fields = ('name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns', 'courseName', 'instructor')
+        fields = ('name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns', 'courseName', 'instructor', 'results')
 
 class CourseAddForm(forms.ModelForm):
 

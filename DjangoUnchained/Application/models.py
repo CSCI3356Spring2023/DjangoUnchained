@@ -22,6 +22,7 @@ class StudentApplication(models.Model):
     longAns = models.CharField(max_length=100000)
     courseName = models.CharField(max_length=100000)
     instructor = models.CharField(max_length=100000)
+    results = models.IntegerField(null=True)
 
     #role = models.CharField(max_length=50, choices = ROLES, null=True)
     #USERNAME_FIELD = 'email'
@@ -33,8 +34,8 @@ class StudentApplication(models.Model):
     def get_email(self):
         return self.email
     
-    def get_role(self):
-        return self.role
+    def get_results(self):
+        return self.results
     
 
 class CourseAdd(models.Model):

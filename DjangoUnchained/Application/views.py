@@ -203,6 +203,12 @@ def student_apply(request, course_id):
             course = get_object_or_404(CourseAdd, id=course_id)
             if request.method == 'POST':
                 form = StudentApply(request.POST)
+                # CODE FOR CHANGING DATA
+                data = request.POST
+                data._mutable = True
+                data['result'] = "Pending"
+                data._mutable = False
+                #CODE ABOVE FOR CHANGING DATA
                 if form.is_valid():
                     my_instance = form.save(commit=False)
                     my_instance.instructor = course.instructor
