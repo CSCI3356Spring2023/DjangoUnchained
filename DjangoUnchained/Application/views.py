@@ -66,11 +66,12 @@ def instructor_page(request):
         if (userRole == "Instructor"):
             courseInfo = CourseAdd.objects.filter(instructor=userInfo.get_full_name())
             applicantInfo = StudentApplication.objects.all()
+            #need to edit
             fulfilled_courses, TAneeded = num_fulfilled_TA(courseInfo)
+            #need to edit
             not_filled_courses = len(courseInfo) - fulfilled_courses
             context = {'Courses': courseInfo, 'Applicants': applicantInfo, 'Users': userInfo, 'FirstName': firstName, 'LastName': lastName,
-                       'Applicant_Number': len(applicantInfo), 'Course_Number': len(courseInfo), 'Fulfilled': fulfilled_courses,
-                       'Not_Fulfilled': not_filled_courses, 'TAs': TAneeded}
+                       'Applicant_Number': len(applicantInfo), 'Course_Number': len(courseInfo), 'TAs': TAneeded}
 
             return render(request, 'instructor_visual.html', context)
         else: 
@@ -135,8 +136,9 @@ def student_page(request):
         allInfo = []
         for i in range(len(appliedCourses)):
             allInfo.append([appliedCourses[i], getResults[i]])
+        numOfTAs = len(allInfo)
         if(userRole == "Student"):
-            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'Courses': courseInfo, 'Applications': allInfo}
+            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'Courses': courseInfo, 'Applications': allInfo, "NumberTA": numOfTAs}
             return render(request, 'studentTAapplication.html', context)
     return render(request, '404.html')
 
