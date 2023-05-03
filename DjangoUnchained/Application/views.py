@@ -204,6 +204,7 @@ def student_apply(request, course_id):
                 form = StudentApply(request.POST)
                 if form.is_valid():
                     my_instance = form.save(commit=False)
+                    my_instance.instructor = course.instructor
                     my_instance.courseName = course.courseName
                     my_instance.save()
                     form.save()
