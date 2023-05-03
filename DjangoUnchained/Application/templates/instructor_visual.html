@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'instructor_visual.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
+    <title>Instructor Visual</title>
 </head>
 <body>
     <p><a href="{% url 'logout' %}">Log Out</a></p>
@@ -23,11 +23,12 @@
             <input type="text" placeholder="Search for courses">
             <!-- Add course list items here -->
             {% for course in Courses %}
+
             <div class="course-item">
                 <h3>{{ course.courseName }}</h3>
                 <p>Subject: {{ course.subject }}</p>
                 <p>Course Code: {{ course.courseCode }}</p>
-                <p>Instructor Name: {{ course.instructorName }}</p>
+                <p>Instructor Name: {{ FirstName }} {{LastName}}</p>
                 <p>Building: {{ course.building }}</p>
                 <p>Discussion: {{ course.discussion }}</p>
                 <p>Number of TA's: {{ course.numTAs }}</p>
@@ -42,7 +43,6 @@
         
         <div class="list-container">
             <div class="list-title">Applicant List</div>
-			<a href="{% url 'student_apply' %}"><button>Add applicant</button></a>
             <input type="text" placeholder="Search for applicants">
             <!-- Add applicant list items here -->
             {% for applicant in Applicants %}

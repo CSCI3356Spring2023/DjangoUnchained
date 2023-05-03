@@ -55,6 +55,29 @@ def admin_page(request):
             return render(request, '404.html')
     else:
         return render(request, '404.html')
+
+def instructor_page(request):
+    if request.user.is_authenticated:
+        userInfo = request.user
+        firstName = userInfo.get_first_name()
+        lastName = userInfo.get_last_name()
+
+        userRole = request.user.get_role()
+        if (userRole == "Instructor"):
+            courseInfo = CourseAdd.objects.all()
+            print(courseInfo)
+            applicantInfo = StudentApplication.objects.all()
+            fulfilled_courses, TAneeded = num_fulfilled_TA(courseInfo)
+            not_filled_courses = len(courseInfo) - fulfilled_courses
+            context = {'Courses': courseInfo, 'Applicants': applicantInfo, 'Users': userInfo, 'FirstName': firstName, 'LastName': lastName,
+                       'Applicant_Number': len(applicantInfo), 'Course_Number': len(courseInfo), 'Fulfilled': fulfilled_courses,
+                       'Not_Fulfilled': not_filled_courses, 'TAs': TAneeded}
+
+            return render(request, 'instructor_visual.html', context)
+        else: 
+            return render(request, '404.html')
+    else:
+        return render(request, '404.html')
     
 def homepage(request):
     if request.user.is_authenticated:
@@ -62,7 +85,7 @@ def homepage(request):
         if (userRole == 'Student'):
             return student_page(request)
         elif (userRole == 'Instructor'):
-            return render(request, "instructor_visual.html")
+            return instructor_page(request)
         elif (userRole == 'Administrator'):
             return admin_page(request)
         else:
