@@ -17,6 +17,7 @@
                 <span  class="form_title">Add New Course</span>
                 <form method="post">
                     {% csrf_token %}
+                    {{form.instructor}}
                     {{form.subject}}
                     {{form.courseName}}
                     {{form.courseCode}}

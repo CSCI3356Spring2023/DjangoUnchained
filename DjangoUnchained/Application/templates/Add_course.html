@@ -20,6 +20,9 @@
           <form method="post">
       {% csrf_token %}
       <br><br>
+      <label for="instructor">Instructor:</label>
+      <input type="text" id="instructor" name="instructor" required>
+      <br><br>
       <label for="subject">Subject:</label>
       <input type="text" id="subject" name="subject" required>
       <br><br>

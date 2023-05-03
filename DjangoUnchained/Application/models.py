@@ -21,6 +21,7 @@ class StudentApplication(models.Model):
     gpa = models.CharField(max_length=4)
     longAns = models.CharField(max_length=100000)
     courseName = models.CharField(max_length=100000)
+    instructor = models.CharField(max_length=100000)
 
     #role = models.CharField(max_length=50, choices = ROLES, null=True)
     #USERNAME_FIELD = 'email'
@@ -184,6 +185,7 @@ class CourseAdd(models.Model):
     )
 
     username = None
+    instructor = models.CharField(max_length=100)
     subject = models.CharField(max_length=100)
     courseName = models.CharField(max_length=100)
     courseCode = models.CharField(max_length=100)
@@ -206,6 +208,9 @@ class CourseAdd(models.Model):
     
     def get_subject(self):
         return self.subject
+    
+    def get_instructor(self):
+        return self.instructor
     
     def get_courseName(self):
         return self.courseName

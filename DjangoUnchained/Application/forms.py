@@ -29,10 +29,11 @@ class StudentApply(forms.ModelForm):
     csRelation = forms.CharField(widget=forms.Select(choices=CS_RELATION))
     longAns = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'longAns'}))
     courseName = forms.CharField(required=False)
+    instructor = forms.CharField(required=False)
     
     class Meta:
         model = StudentApplication
-        fields = ('name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns', 'courseName')
+        fields = ('name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns', 'courseName', 'instructor')
 
 class CourseAddForm(forms.ModelForm):
 
@@ -166,6 +167,7 @@ class CourseAddForm(forms.ModelForm):
         ('10', '10')
     ]
 
+    instructor = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Instructor', 'class': 'short_text'}))
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Subject', 'class': 'short_text'}))
     courseName = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Course Name', 'class': 'short_text'}))
     courseCode = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Course Code', 'class': 'short_text'}))
