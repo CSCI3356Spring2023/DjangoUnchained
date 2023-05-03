@@ -210,6 +210,7 @@ class CourseAdd(models.Model):
     fulfilled = models.CharField(max_length=100, null=True)
     currTAs = models.IntegerField(null=True)
     extra_info = models.CharField(max_length=100)
+    courseState = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.courseCode
@@ -270,5 +271,11 @@ class CourseAdd(models.Model):
 
     def set_currTAs(self, number):
         self.currTAs = number
+
+    def get_courseState(self):
+        return self.courseState
+
+    def set_courseState(self, str):
+        self.courseState = str
 
     

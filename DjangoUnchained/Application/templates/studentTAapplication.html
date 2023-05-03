@@ -27,13 +27,21 @@
                 {% for course in Courses %}
                 <div class="course-item">
                     <h3>{{ course.courseName }}</h3>
+                    <p>State: {{ course.courseState }}</p>
+                    <p>Instructor: {{ course.instructor }}</p>
                     <p>Subject: {{ course.subject }}</p>
                     <p>Course Code: {{ course.courseCode }}</p>
                     <p>Instructor Name: {{ course.instructor }}</p>
                     <p>Building: {{ course.building }}</p>
                     <p>Discussion: {{ course.discussion }}</p>
-                    <p>Number of TA's: {{ course.numTAs }}</p>
-                    <a href="{% url 'student_apply' course.id %}"><button>Apply</button></a>
+                    <p>Total TA's Needed: {{ course.numTAs }}</p>
+                    <p>TA's Accepted: {{ course.currTAs }}</p>
+                    {% if course.courseState == 'Open For Application' %}
+                        <a href="{% url 'student_apply' course.id %}"><button>Apply</button></a>
+                    {% endif %}
+                    {% if course.courseState == 'Closed' %}
+                        <h4>COURSE CLOSED</h4>
+                    {% endif %}
                     <br>
                 </div>
                 {% endfor %}
@@ -48,7 +56,8 @@
                     <p>Instructor Name: {{ application.0.instructor }}</p>
                     <p>Building: {{ application.0.building }}</p>
                     <p>Discussion: {{ application.0.discussion }}</p>
-                    <p>Number of TA's: {{ application.0.numTAs }}</p>
+                    <p>Total TA's Needed: {{ application.0.numTAs }}</p>
+                    <p>TA's Accepted: {{ application.0.currTAs }}</p>
                     <p>Application Result: {{application.1}}</p>
                     {% endfor %}
                 </div>

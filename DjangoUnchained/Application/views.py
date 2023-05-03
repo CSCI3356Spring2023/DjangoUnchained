@@ -44,6 +44,10 @@ def add_TA(applicantInfo):
         course = i
     num = course.get_currTAs() + 1
     course.set_currTAs(num)
+    #closes course if current TA number reaches the total needed
+    if course.get_currTAs == course.get_numTAs():
+        course.set_courseState("Closed")
+    course.save()
 
 def admin_page(request):
     if request.user.is_authenticated:
@@ -116,6 +120,7 @@ def temp_add_course(request):
                 # CODE FOR CHANGING DATA
                 data = request.POST
                 data._mutable = True
+                data['courseState'] = "Open For Application"
                 data['fulfilled'] = "No"
                 data['currTAs'] = 0
                 data._mutable = False
@@ -269,9 +274,7 @@ def student_apply(request, course_id):
                 data['results'] = "Pending"
                 data._mutable = False
                 #CODE ABOVE FOR CHANGING DATA
-                print("hmmm")
                 if form.is_valid():
-                    print("yay")
                     my_instance = form.save(commit=False)
                     my_instance.instructor = course.instructor
                     my_instance.courseName = course.courseName
