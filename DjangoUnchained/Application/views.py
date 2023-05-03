@@ -136,17 +136,14 @@ def student_page(request):
     return render(request, '404.html')
 
 def course_list(request):
-
+    if request.user.is_authenticated:
     #template = loader.get_template('course_list.html')]
-    courseInfo = CourseAdd.objects.all()
+        courseInfo = CourseAdd.objects.all()
+        courses = {'Courses': courseInfo}
+        #return HttpResponse(template.render(courses, request))
 
-    courses = {'Courses': courseInfo}
-
-    print('courses: ', courses)
-
-    #return HttpResponse(template.render(courses, request))
-
-    return render(request, 'course_list.html', courses)
+        return render(request, 'course_list.html', courses)
+    return render(request, '404.html')
 
 def delete_course(request, course_id):
     course = get_object_or_404(CourseAdd, id=course_id)
