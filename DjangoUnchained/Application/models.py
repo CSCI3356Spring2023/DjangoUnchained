@@ -39,6 +39,9 @@ class StudentApplication(models.Model):
     
     def get_courseName(self):
         return self.courseName
+
+    def set_results(self, str):
+        self.results = str
     
 
 class CourseAdd(models.Model):

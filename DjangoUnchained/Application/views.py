@@ -4,6 +4,7 @@ from django.template import loader
 from .forms import StudentApply
 from .forms import CourseAddForm
 from django.shortcuts import get_object_or_404, redirect
+from django.core import mail
 
 from .models import CourseAdd
 from .models import StudentApplication
@@ -170,9 +171,35 @@ def delete_course(request, course_id):
 
 
 def delete_applicant(request, applicant_id):
-    course = get_object_or_404(StudentApplication, id=applicant_id)
-    course.delete()
+    applicant = get_object_or_404(StudentApplication, id=applicant_id)
+    applicant.delete()
     return redirect('admin_page')  # Redirect to the admin_page or the page where you display the list of courses
+
+def accept_applicant(request, applicant_id):
+    userRole = request.user.get_role()
+    applicant = get_object_or_404(StudentApplication, id=applicant_id)
+    applicant.set_results("Accepted")
+    emailAddress = applicant.email
+    print(emailAddress)
+    body = "Congrats. You've accepted as a TA!"
+    send_email(body, emailAddress)
+    if userRole == "Administrator": 
+        return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
+    if userRole == "Administrator": 
+        return redirect('instructor_page')  # Redirect to the instructor_page or the page where you display the list of courses
+
+def deny_applicant(request, applicant_id):
+    userRole = request.user.get_role()
+    applicant = get_object_or_404(StudentApplication, id=applicant_id)
+    applicant.set_results("Denied")
+    emailAddress = applicant.email
+    print(emailAddress)
+    body = "Sorry, unfortunately you were not selected as a TA."
+    send_email(body, emailAddress)
+    if userRole == "Administrator": 
+        return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
+    if userRole == "Administrator": 
+        return redirect('instructor_page')  # Redirect to the instructor_page or the page where you display the list of courses
 
 def application_list(request):
 
@@ -243,3 +270,11 @@ def student_apply(request, course_id):
             return render(request, '404.html')
     else:
         return render(request, '404.html')
+
+def send_email(body, emailAddress):
+    connection = mail.get_connection()
+    connection.open()
+    email = mail.EmailMessage("TA Application Status Update", body, 'djangounchainedtest@outlook.com', [emailAddress], connection=connection)
+    email.send()
+    connection.close()
+    return 

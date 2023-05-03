@@ -66,6 +66,8 @@
                 </div>
                 <div class="actions">                
                     <a href="{% url 'delete_applicant' applicant.id %}"><button>Delete</button></a>
+                    <a href="{% url 'accept_applicant' applicant.id %}"><button>Accept Applicant</button></a>
+                    <a href="{% url 'deny_applicant' applicant.id %}"><button>Deny Applicant</button></a>
                 </div>
             </div>
             {% endfor %}
