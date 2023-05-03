@@ -29,7 +29,6 @@ def num_fulfilled_TA(queryset):
     count = 0
     TAs = 0
     for i in queryset:
-        print(i.fulfilled)
         if i.fulfilled == "Yes":
             count += 1
         else:
@@ -66,7 +65,6 @@ def instructor_page(request):
         userRole = request.user.get_role()
         if (userRole == "Instructor"):
             courseInfo = CourseAdd.objects.all()
-            print(courseInfo)
             applicantInfo = StudentApplication.objects.all()
             fulfilled_courses, TAneeded = num_fulfilled_TA(courseInfo)
             not_filled_courses = len(courseInfo) - fulfilled_courses
@@ -201,8 +199,6 @@ def student_apply(request, course_id):
         if(userRole == 'Student' or userRole =="Administrator"):
             form = StudentApply()
             course = get_object_or_404(CourseAdd, id=course_id)
-            print(course.courseName)
-
             if request.method == 'POST':
                 form = StudentApply(request.POST)
                 if form.is_valid():
