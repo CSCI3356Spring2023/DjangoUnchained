@@ -22,7 +22,7 @@ class StudentApplication(models.Model):
     longAns = models.CharField(max_length=100000)
     courseName = models.CharField(max_length=100000)
     instructor = models.CharField(max_length=100000)
-    results = models.IntegerField(null=True)
+    results = models.CharField(max_length=100, null=True)
 
     #role = models.CharField(max_length=50, choices = ROLES, null=True)
     #USERNAME_FIELD = 'email'

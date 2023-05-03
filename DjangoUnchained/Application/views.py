@@ -129,24 +129,27 @@ def student_page(request):
         userInfo = request.user
         firstName = userInfo.get_first_name()
         lastName = userInfo.get_last_name()
-        result = userInfo.get_results()
         applicantInfo = StudentApplication.objects.filter(email = userInfo.get_email())
         courseInfo = CourseAdd.objects.all()
-        appliedCourses = get_applied_courses(applicantInfo, courseInfo)
-
+        appliedCourses, getResults = get_applied_courses(applicantInfo, courseInfo)
+        allInfo = []
+        for i in range(len(appliedCourses)):
+            allInfo.append([appliedCourses[i], getResults[i]])
         if(userRole == "Student"):
-            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'Courses': courseInfo, 'Applications': appliedCourses}
+            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'Courses': courseInfo, 'Applications': allInfo}
             return render(request, 'studentTAapplication.html', context)
     return render(request, '404.html')
 
 def get_applied_courses(applicantInfo, courseInfo):
     appliedCourses = []
-
+    getResult = []
     for i in range(len(applicantInfo)):
         name = applicantInfo[i].courseName
         appliedCourses.append(name)
+        result = applicantInfo[i].results
+        getResult.append(result)
 
-    return courseInfo.filter(courseName__in=appliedCourses)
+    return courseInfo.filter(courseName__in=appliedCourses), getResult
 
 def course_list(request):
     if request.user.is_authenticated:
@@ -219,17 +222,19 @@ def student_apply(request, course_id):
                 # CODE FOR CHANGING DATA
                 data = request.POST
                 data._mutable = True
-                data['result'] = "Pending"
+                data['results'] = "Pending"
                 data._mutable = False
                 #CODE ABOVE FOR CHANGING DATA
+                print("hmmm")
                 if form.is_valid():
+                    print("yay")
                     my_instance = form.save(commit=False)
                     my_instance.instructor = course.instructor
                     my_instance.courseName = course.courseName
                     my_instance.save()
                     form.save()
                     return redirect('/main')  # Redirect to the main page after successful form submission
-
+        
             return render(request, "studentApply.html", {'form': form, 'course': course})
         
         else:

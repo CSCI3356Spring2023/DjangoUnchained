@@ -39,16 +39,17 @@
             <div class="list-container">
                 <div class="list-title">My Applications</div>
                 <!-- Add applicant list items here -->
-                {% for application in Applications %}
                 <div class="applicant-item">
-                    <p>Subject: {{ application.subject }}</p>
-                    <p>Course Code: {{ application.courseCode }}</p>
-                    <p>Instructor Name: {{ application.instructor }}</p>
-                    <p>Building: {{ application.building }}</p>
-                    <p>Discussion: {{ application.discussion }}</p>
-                    <p>Number of TA's: {{ application.numTAs }}</p>
+                  {% for application in Applications %}
+                    <p>Subject: {{ application.0.subject }}</p>
+                    <p>Course Code: {{ application.0.courseCode }}</p>
+                    <p>Instructor Name: {{ application.0.instructor }}</p>
+                    <p>Building: {{ application.0.building }}</p>
+                    <p>Discussion: {{ application.0.discussion }}</p>
+                    <p>Number of TA's: {{ application.0.numTAs }}</p>
+                    <p>Application Result: {{application.1}}</p>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </body>
