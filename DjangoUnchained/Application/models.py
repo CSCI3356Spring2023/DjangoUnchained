@@ -206,11 +206,11 @@ class CourseAdd(models.Model):
     def __str__(self):
         return self.courseCode
     
-    def get_subject(self):
-        return self.subject
-    
     def get_instructor(self):
         return self.instructor
+    
+    def get_subject(self):
+        return self.subject
     
     def get_courseName(self):
         return self.courseName
