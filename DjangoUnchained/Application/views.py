@@ -179,11 +179,12 @@ def delete_applicant(request, applicant_id):
 def accept_applicant(request, applicant_id):
     userRole = request.user.get_role()
     applicant = get_object_or_404(StudentApplication, id=applicant_id)
+    name = applicant.name
     applicant.set_results("Accepted")
     applicant.save()
+    subject
     emailAddress = applicant.email
-    print(emailAddress)
-    body = "Congrats. You've accepted as a TA!"
+    body = f"Congrats {name}! You've accepted as a TA for {applicant.courseName}!'"
     send_email(body, emailAddress)
     if userRole == "Administrator": 
         return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
@@ -193,11 +194,11 @@ def accept_applicant(request, applicant_id):
 def deny_applicant(request, applicant_id):
     userRole = request.user.get_role()
     applicant = get_object_or_404(StudentApplication, id=applicant_id)
+    name = applicant.name
     applicant.set_results("Denied")
     applicant.save()
     emailAddress = applicant.email
-    print(emailAddress)
-    body = "Sorry, unfortunately you were not selected as a TA."
+    body = f"Sorry {name}, unfortunately you were not selected as a TA for {applicant.courseName}."
     send_email(body, emailAddress)
     if userRole == "Administrator": 
         return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
