@@ -182,7 +182,6 @@ def accept_applicant(request, applicant_id):
     name = applicant.name
     applicant.set_results("Accepted")
     applicant.save()
-    subject
     emailAddress = applicant.email
     body = f"Congrats {name}! You've accepted as a TA for {applicant.courseName}!'"
     send_email(body, emailAddress)
