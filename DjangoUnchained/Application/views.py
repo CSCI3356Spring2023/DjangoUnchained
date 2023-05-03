@@ -36,6 +36,7 @@ def num_fulfilled_TA(queryset):
             TAs += int(i.numTAs) - int(i.currTAs)
     return count, TAs
 # added to route admin.html in Application/templates
+
 def admin_page(request):
     if request.user.is_authenticated:
         userInfo = request.user
@@ -179,6 +180,7 @@ def accept_applicant(request, applicant_id):
     userRole = request.user.get_role()
     applicant = get_object_or_404(StudentApplication, id=applicant_id)
     applicant.set_results("Accepted")
+    applicant.save()
     emailAddress = applicant.email
     print(emailAddress)
     body = "Congrats. You've accepted as a TA!"
@@ -192,6 +194,7 @@ def deny_applicant(request, applicant_id):
     userRole = request.user.get_role()
     applicant = get_object_or_404(StudentApplication, id=applicant_id)
     applicant.set_results("Denied")
+    applicant.save()
     emailAddress = applicant.email
     print(emailAddress)
     body = "Sorry, unfortunately you were not selected as a TA."
