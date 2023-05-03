@@ -183,8 +183,9 @@ def accept_applicant(request, applicant_id):
     applicant.set_results("Accepted")
     applicant.save()
     emailAddress = applicant.email
+    subject = f"Update on {name}'s TA Application"
     body = f"Congrats {name}! You've accepted as a TA for {applicant.courseName}!'"
-    send_email(body, emailAddress)
+    send_email(body, emailAddress, subject)
     if userRole == "Administrator": 
         return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
     if userRole == "Administrator": 
@@ -197,8 +198,9 @@ def deny_applicant(request, applicant_id):
     applicant.set_results("Denied")
     applicant.save()
     emailAddress = applicant.email
+    subject = f"Update on {name}'s TA Application"
     body = f"Sorry {name}, unfortunately you were not selected as a TA for {applicant.courseName}."
-    send_email(body, emailAddress)
+    send_email(body, emailAddress, subject)
     if userRole == "Administrator": 
         return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
     if userRole == "Administrator": 
@@ -274,10 +276,10 @@ def student_apply(request, course_id):
     else:
         return render(request, '404.html')
 
-def send_email(body, emailAddress):
+def send_email(body, emailAddress, subject):
     connection = mail.get_connection()
     connection.open()
-    email = mail.EmailMessage("TA Application Status Update", body, 'djangounchainedtest@outlook.com', [emailAddress], connection=connection)
+    email = mail.EmailMessage(subject, body, 'djangounchainedtest@outlook.com', [emailAddress], connection=connection)
     email.send()
     connection.close()
     return 
