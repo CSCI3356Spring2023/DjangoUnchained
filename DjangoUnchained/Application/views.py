@@ -32,7 +32,7 @@ def num_fulfilled_TA(queryset):
         if i.fulfilled == "Yes":
             count += 1
         else:
-            TAs += int(i.numTAs)
+            TAs += int(i.numTAs) - int(i.currTAs)
     return count, TAs
 # added to route admin.html in Application/templates
 def admin_page(request):
@@ -107,6 +107,7 @@ def temp_add_course(request):
                 data = request.POST
                 data._mutable = True
                 data['fulfilled'] = "No"
+                data['currTAs'] = 0
                 data._mutable = False
                 #CODE ABOVE FOR CHANGING DATA
                 if form.is_valid():
