@@ -17,6 +17,7 @@
         <form method=POST>
 
             {% csrf_token %}
+            {{form.instructor}}
             {{form.subject}}
             {{form.courseName}}
             {{form.courseCode}}

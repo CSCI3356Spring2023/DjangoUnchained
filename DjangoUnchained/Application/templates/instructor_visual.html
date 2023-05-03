@@ -5,11 +5,13 @@
     <link rel="stylesheet" href="{% static 'instructor_visual.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto&family=Poppins&display=swap" rel="stylesheet">
     <title>Instructor Visual</title>
 </head>
 <body>
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
+    <p class="logout"><a href="{% url 'logout' %}">Log Out</a></p>
     <div class="header">
+        <div class="crest"></div>
         <div class="logo">Eagle TAs</div>
         <div class="header-info">
             <div>{{ Users }}</div>
@@ -66,17 +68,42 @@
         padding: 0;
     }
 
+    .logout {
+        padding-left: 1%;
+    }
+
     .header {
         background-color: rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         padding: 1rem;
         color: white;
     }
 
+    .logo {
+        color:rgba(255, 255, 255, 1);
+        width:auto;
+        height:auto;
+        font-family:Poppins;
+        padding-left: 20px;
+        font-size:40px;
+        letter-spacing:0;
+    }
+
+    .crest { 
+        width:70px;
+        height:70px;
+        position:relative;
+        top:12%;
+        background-image:url("../static/bccrest_1.png");
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
+
     .header-info {
-        text-align: right;
+        margin-left: auto;
+        padding-right: 1%;
     }
 
     .dashboard-item {

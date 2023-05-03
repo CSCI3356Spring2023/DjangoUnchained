@@ -64,7 +64,8 @@ def instructor_page(request):
 
         userRole = request.user.get_role()
         if (userRole == "Instructor"):
-            courseInfo = CourseAdd.objects.all()
+            courseInfo = CourseAdd.objects.filter(instructor=userInfo.get_full_name())
+            print(courseInfo)
             applicantInfo = StudentApplication.objects.all()
             fulfilled_courses, TAneeded = num_fulfilled_TA(courseInfo)
             not_filled_courses = len(courseInfo) - fulfilled_courses
