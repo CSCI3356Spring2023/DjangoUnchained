@@ -8,11 +8,12 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">           
     <body>
-        <p><a href="{% url 'logout' %}">Log Out</a></p>
         <div class="header">
             <div class="crest"></div>
             <div class="logo">Eagle TAs</div>
             <div class="header-info">
+                <p><a href="{% url 'logout' %}"><button>Log Out</button></a></p>
+
                 <div>{{ Users }}</div>
                 <div>{{ FirstName }} {{ LastName }}</div>
             </div>
@@ -31,7 +32,7 @@
                     <p>Building: {{ course.building }}</p>
                     <p>Discussion: {{ course.discussion }}</p>
                     <p>Number of TA's: {{ course.numTAs }}</p>
-                    <a href="{% url 'student_apply' course.id %}">Apply</a>
+                    <a href="{% url 'student_apply' course.id %}"><button>Apply</button></a>
                     <br>
                 </div>
                 {% endfor %}
