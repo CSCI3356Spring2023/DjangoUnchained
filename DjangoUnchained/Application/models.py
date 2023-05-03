@@ -268,4 +268,7 @@ class CourseAdd(models.Model):
     def get_currTAs(self):
         return self.currTAs
 
+    def set_currTAs(self, number):
+        self.currTAs = number
+
     

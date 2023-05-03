@@ -37,6 +37,14 @@ def num_fulfilled_TA(queryset):
     return count, TAs
 # added to route admin.html in Application/templates
 
+def add_TA(applicantInfo):
+    courses = CourseAdd.objects.filter(instructor = applicantInfo.instructor)
+    courses = courses.filter(courseName = applicantInfo.courseName)
+    for i in courses:
+        course = i
+    num = course.get_currTAs() + 1
+    course.set_currTAs(num)
+
 def admin_page(request):
     if request.user.is_authenticated:
         userInfo = request.user
@@ -132,6 +140,7 @@ def student_page(request):
         userInfo = request.user
         firstName = userInfo.get_first_name()
         lastName = userInfo.get_last_name()
+        state = userInfo.get_state()
         applicantInfo = StudentApplication.objects.filter(email = userInfo.get_email())
         courseInfo = CourseAdd.objects.all()
         appliedCourses, getResults = get_applied_courses(applicantInfo, courseInfo)
@@ -140,7 +149,7 @@ def student_page(request):
             allInfo.append([appliedCourses[i], getResults[i]])
         numOfTAs = len(allInfo)
         if(userRole == "Student"):
-            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'Courses': courseInfo, 'Applications': allInfo, "NumberTA": numOfTAs}
+            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'State': state, 'Courses': courseInfo, 'Applications': allInfo, "NumberTA": numOfTAs}
             return render(request, 'studentTAapplication.html', context)
     return render(request, '404.html')
 
@@ -180,12 +189,13 @@ def accept_applicant(request, applicant_id):
     userRole = request.user.get_role()
     applicant = get_object_or_404(StudentApplication, id=applicant_id)
     name = applicant.name
-    applicant.set_results("Accepted")
-    applicant.save()
+    add_TA(applicant)
     emailAddress = applicant.email
     subject = f"Update on {name}'s TA Application"
-    body = f"Congrats {name}! You've accepted as a TA for {applicant.courseName}!'"
+    body = f"Congrats {name}! You've accepted as a TA for {applicant.courseName}!"
     send_email(body, emailAddress, subject)
+    applicant.set_results("Accepted")
+    applicant.save()
     if userRole == "Administrator": 
         return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
     if userRole == "Administrator": 
@@ -195,12 +205,12 @@ def deny_applicant(request, applicant_id):
     userRole = request.user.get_role()
     applicant = get_object_or_404(StudentApplication, id=applicant_id)
     name = applicant.name
-    applicant.set_results("Denied")
-    applicant.save()
     emailAddress = applicant.email
     subject = f"Update on {name}'s TA Application"
     body = f"Sorry {name}, unfortunately you were not selected as a TA for {applicant.courseName}."
     send_email(body, emailAddress, subject)
+    applicant.set_results("Denied")
+    applicant.save()
     if userRole == "Administrator": 
         return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
     if userRole == "Administrator": 

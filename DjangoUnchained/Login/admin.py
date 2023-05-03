@@ -4,9 +4,6 @@ from .models import CustomUser
 
 from django.shortcuts import render
 
-from django.core import mail
-from .models import SendEmail
-
 
 @admin.action(description='Send Email')
 def send_email(modeladmin, request, queryset):

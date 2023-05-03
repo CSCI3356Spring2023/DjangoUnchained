@@ -7,5 +7,4 @@ urlpatterns = [
     
     path('bclogin/', views.bclogin, name='bclogin'),
     path('signup/', views.signup_page, name='signup'),
-    path('send_email/', views.send_email, name='send_email')
 ]
