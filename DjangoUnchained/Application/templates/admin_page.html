@@ -58,6 +58,7 @@
                 <p>Email: {{ applicant.email }}</p>
                 <p>Graduation Year: {{ applicant.gradYear }}</p>
                 <p>GPA: {{ applicant.gpa }}</p>
+                <p>For: {{ applicant.courseName }}</p>
                 <a href="{% url 'delete_applicant' applicant.id %}">Delete</a>
             </div>
             {% endfor %}

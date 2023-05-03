@@ -28,10 +28,11 @@ class StudentApply(forms.ModelForm):
     gradYear = forms.CharField(widget=forms.Select(choices=YEARS))
     csRelation = forms.CharField(widget=forms.Select(choices=CS_RELATION))
     longAns = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'longAns'}))
+    courseName = forms.CharField(required=False)
     
     class Meta:
         model = StudentApplication
-        fields = ('name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns')
+        fields = ('name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns', 'courseName')
 
 class CourseAddForm(forms.ModelForm):
 

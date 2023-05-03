@@ -20,6 +20,7 @@ class StudentApplication(models.Model):
     gradYear = models.CharField(max_length=50, choices = YEARS, null=True)
     gpa = models.CharField(max_length=4)
     longAns = models.CharField(max_length=100000)
+    courseName = models.CharField(max_length=100000)
 
     #role = models.CharField(max_length=50, choices = ROLES, null=True)
     #USERNAME_FIELD = 'email'

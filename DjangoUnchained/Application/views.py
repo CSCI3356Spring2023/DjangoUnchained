@@ -165,10 +165,14 @@ def student_apply(request, course_id):
         if(userRole == 'Student' or userRole =="Administrator"):
             form = StudentApply()
             course = get_object_or_404(CourseAdd, id=course_id)
+            print(course.courseName)
 
             if request.method == 'POST':
                 form = StudentApply(request.POST)
                 if form.is_valid():
+                    my_instance = form.save(commit=False)
+                    my_instance.courseName = course.courseName
+                    my_instance.save()
                     form.save()
                     return redirect('/main')  # Redirect to the main page after successful form submission
 
