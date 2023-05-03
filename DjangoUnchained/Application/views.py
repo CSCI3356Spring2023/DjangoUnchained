@@ -65,7 +65,6 @@ def instructor_page(request):
         userRole = request.user.get_role()
         if (userRole == "Instructor"):
             courseInfo = CourseAdd.objects.filter(instructor=userInfo.get_full_name())
-            print(courseInfo)
             applicantInfo = StudentApplication.objects.all()
             fulfilled_courses, TAneeded = num_fulfilled_TA(courseInfo)
             not_filled_courses = len(courseInfo) - fulfilled_courses
@@ -130,10 +129,23 @@ def student_page(request):
         userInfo = request.user
         firstName = userInfo.get_first_name()
         lastName = userInfo.get_last_name()
+        applicantInfo = StudentApplication.objects.filter(email = userInfo.get_email())
+        courseInfo = CourseAdd.objects.all()
+        appliedCourses = get_applied_courses(applicantInfo, courseInfo)
+
         if(userRole == "Student"):
-            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName}
+            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'Courses': courseInfo, 'Applications': appliedCourses}
             return render(request, 'studentTAapplication.html', context)
     return render(request, '404.html')
+
+def get_applied_courses(applicantInfo, courseInfo):
+    appliedCourses = []
+
+    for i in range(len(applicantInfo)):
+        name = applicantInfo[i].courseName
+        appliedCourses.append(name)
+
+    return courseInfo.filter(courseName__in=appliedCourses)
 
 def course_list(request):
     if request.user.is_authenticated:
