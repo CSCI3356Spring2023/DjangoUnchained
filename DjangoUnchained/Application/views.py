@@ -224,6 +224,8 @@ def offer_role(request):
             applicant.set_results("Accepted Offer")
             applicant.save()
             add_TA(applicant)
+            userInfo.set_state = "Hired"
+            userInfo.save()
             return redirect('/main')
         elif 'deny' in request.POST:
             applicant.set_results("Denied Offer")
