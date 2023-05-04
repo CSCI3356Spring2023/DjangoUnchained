@@ -262,6 +262,9 @@ class CourseAdd(models.Model):
     
     def get_fulfilled(self):
         return self.fulfilled
+
+    def set_fulfilled(self, string):
+        self.fulfilled = string
     
     def get_extraInfo(self):
         return self.extra_info

@@ -31,6 +31,8 @@ def num_fulfilled_TA(queryset):
     count = 0
     TAs = 0
     for i in queryset:
+        if i.get_courseState() == "Closed":
+            i.set_fulfilled("Yes")
         if i.fulfilled == "Yes":
             count += 1
         else:
