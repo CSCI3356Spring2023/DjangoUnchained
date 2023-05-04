@@ -36,7 +36,7 @@
                     <p>Discussion: {{ course.discussion }}</p>
                     <p>Total TA's Needed: {{ course.numTAs }}</p>
                     <p>TA's Accepted: {{ course.currTAs }}</p>
-                    {% if course.courseState == 'Open For Application' %}
+                    {% if course.courseState == 'Open For Application' and State != 'Hired' and NumberTA &lt; 5 %}
                         <a href="{% url 'student_apply' course.id %}"><button>Apply</button></a>
                     {% endif %}
                     {% if course.courseState == 'Closed' %}
