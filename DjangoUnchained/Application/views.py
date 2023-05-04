@@ -221,6 +221,7 @@ def offer_role(request):
         for i in applications:
             applicant = i
         if 'accept' in request.POST:
+            applications = StudentApplication.objects.exclude(courseName=courseName).exclude(instructor=instructor).delete()
             appNum = request.user.get_appNum()
             request.user.set_appNum(0)
             request.user.save()

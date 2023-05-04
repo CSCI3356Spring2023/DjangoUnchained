@@ -36,7 +36,7 @@
                     <p>Discussion: {{ course.discussion }}</p>
                     <p>Total TA's Needed: {{ course.numTAs }}</p>
                     <p>TA's Accepted: {{ course.currTAs }}</p>
-                    {% if course.courseState == 'Open For Application' and State != 'Hired' and NumberTA != 5 %}
+                    {% if course.courseState == 'Open For Application' and State == 'Open To Work' and NumberTA != 5 %}
                         <a href="{% url 'student_apply' course.id %}"><button>Apply</button></a>
                     {% endif %}
                     {% if course.courseState == 'Closed' %}
@@ -47,7 +47,12 @@
                 {% endfor %}
             </div>
             <div class="list-container">
-                <div class="list-title">My Applications: {{NumberTA}} / 5 </div>
+                {% if State == 'Open To Work' %}
+                    <div class="list-title">My Applications: {{NumberTA}} / 5 </div>
+                {% endif %}
+                {% if State == 'Hired' %}
+                    <div class="list-title">Congrats! You've Been Hired!</div>
+                {% endif %}
                 <!-- Add applicant list items here -->
                 <div class="applicant-item">
                   {% for application in Applications %}
@@ -70,6 +75,9 @@
                     {% endif %}
                     {% if application.1 == 'Denied Offer' %}
                         <h4>Application Result: You rejected this position!</h4>
+                    {% endif %}
+                    {% if application.1 == 'Denied' %}
+                        <h4>Application Result: You're application was rejected</h4>
                     {% endif %}
                     {% endfor %}
                 </div>
