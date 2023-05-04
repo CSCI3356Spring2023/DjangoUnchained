@@ -82,7 +82,7 @@ def instructor_page(request):
         userRole = request.user.get_role()
         if (userRole == "Instructor"):
             courseInfo = CourseAdd.objects.filter(instructor=userInfo.get_full_name())
-            applicantInfo = StudentApplication.objects.all()
+            applicantInfo = StudentApplication.objects.filter(instructor=userInfo.get_full_name())
             #need to edit
             fulfilled_courses, TAneeded = num_fulfilled_TA(courseInfo)
             #need to edit
@@ -205,10 +205,7 @@ def accept_applicant(request, applicant_id):
     send_email(body, emailAddress, subject)
     applicant.set_results("Awaiting Student Decision")
     applicant.save()
-    if userRole == "Administrator": 
-        return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
-    if userRole == "Instructor": 
-        return redirect('instructor_page')  # Redirect to the instructor_page or the page where you display the list of courses
+    return redirect('/main') 
 
 def offer_role(request):
     if request.method == 'POST':
@@ -220,15 +217,20 @@ def offer_role(request):
         applications = StudentApplication.objects.filter(email = userInfo.get_email())
         applications = applications.filter(courseName = courseName)
         applications = applications.filter(instructor = instructor)
-        for i in applications:
-            applicant = i
+        #code below is for bug when applications doesn't return anything, will need to fix
+        if applications.count() != 0:
+            for i in applications:
+                applicant = i
+        else:
+            applicant = []
         if 'accept' in request.POST:
             applications = StudentApplication.objects.exclude(courseName=courseName).exclude(instructor=instructor).delete()
             appNum = request.user.get_appNum()
             request.user.set_appNum(0)
             request.user.save()
-            applicant.set_results("Accepted Offer")
-            applicant.save()
+            if applicant != []:
+                applicant.set_results("Accepted Offer")
+                applicant.save()
             add_TA(applicant)
             request.user.set_state("Hired")
             request.user.save()
@@ -237,8 +239,9 @@ def offer_role(request):
             appNum = request.user.get_appNum()
             request.user.set_appNum(appNum - 1)
             request.user.save()
-            applicant.set_results("Denied Offer")
-            applicant.save()
+            if applicant != []:
+                applicant.set_results("Denied Offer")
+                applicant.save()
             return redirect('/main')
         else:
             return
@@ -260,10 +263,7 @@ def deny_applicant(request, applicant_id):
     send_email(body, emailAddress, subject)
     applicant.set_results("Denied")
     applicant.save()
-    if userRole == "Administrator": 
-        return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
-    if userRole == "Administrator": 
-        return redirect('instructor_page')  # Redirect to the instructor_page or the page where you display the list of courses
+    return redirect('/main') 
 
 def application_list(request):
 

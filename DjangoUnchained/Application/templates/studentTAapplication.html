@@ -27,7 +27,12 @@
                 {% for course in Courses %}
                 <div class="course-item">
                     <h3>{{ course.courseName }}</h3>
-                    <p>State: {{ course.courseState }}</p>
+                    {% if course.courseState == 'Open For Application' %}
+                        <h5>State: {{ course.courseState }}</h5>
+                    {% endif %}
+                    {% if course.courseState == 'Closed' %}
+                        <h5>COURSE CLOSED</h5>
+                    {% endif %}
                     <p>Instructor: {{ course.instructor }}</p>
                     <p>Subject: {{ course.subject }}</p>
                     <p>Course Code: {{ course.courseCode }}</p>
@@ -39,46 +44,45 @@
                     {% if course.courseState == 'Open For Application' and State == 'Open To Work' and NumberTA != 5 %}
                         <a href="{% url 'student_apply' course.id %}"><button>Apply</button></a>
                     {% endif %}
-                    {% if course.courseState == 'Closed' %}
-                        <h4>COURSE CLOSED</h4>
-                    {% endif %}
                     <br>
                 </div>
                 {% endfor %}
             </div>
-            <div class="list-container">
-                {% if State == 'Open To Work' %}
-                    <div class="list-title">My Applications: {{NumberTA}} / 5 </div>
-                {% endif %}
-                {% if State == 'Hired' %}
-                    <div class="list-title">Congrats! You've Been Hired!</div>
-                {% endif %}
-                <!-- Add applicant list items here -->
-                <div class="applicant-item">
-                  {% for application in Applications %}
-                    <p>Course Name: {{ application.0.courseName }}</p>
-                    <p>Subject: {{ application.0.subject }}</p>
-                    <p>Course Code: {{ application.0.courseCode }}</p>
-                    <p>Instructor Name: {{ application.0.instructor }}</p>
-                    <p>Building: {{ application.0.building }}</p>
-                    <p>Discussion: {{ application.0.discussion }}</p>
-                    <p>Total TA's Needed: {{ application.0.numTAs }}</p>
-                    <p>TA's Accepted: {{ application.0.currTAs }}</p>
-                    {% if application.1 == 'Pending' %}
-                        <h4>Application Result: Pending</h4>
+            <div class="list-section">
+                <div class="list-container">
+                    {% if State == 'Open To Work' %}
+                        <div class="list-title">My Applications: {{NumberTA}} / 5 </div>
                     {% endif %}
-                    {% if application.1 == 'Awaiting Student Decision' %}
-                        <h4>Application Result: Awaiting Your Decision. Check Email!</h4>
+                    {% if State == 'Hired' %}
+                        <div class="list-title">Congrats! You've Been Hired!</div>
                     {% endif %}
-                    {% if application.1 == 'Accepted Offer' %}
-                        <h4>Application Result: You accepted this position!</h4>
-                    {% endif %}
-                    {% if application.1 == 'Denied Offer' %}
-                        <h4>Application Result: You rejected this position!</h4>
-                    {% endif %}
-                    {% if application.1 == 'Denied' %}
-                        <h4>Application Result: You're application was rejected</h4>
-                    {% endif %}
+                    <input type="text" placeholder="Search for courses">
+                    {% for application in Applications %}
+                    <div class="applicant-item">
+                        {% if application.1 == 'Pending' %}
+                            <h4>Application Pending</h4>
+                        {% endif %}
+                        {% if application.1 == 'Awaiting Student Decision' %}
+                            <h4>Awaiting Your Decision. Check Email!</h4>
+                        {% endif %}
+                        {% if application.1 == 'Accepted Offer' %}
+                            <h4>You accepted this position!</h4>
+                        {% endif %}
+                        {% if application.1 == 'Denied Offer' %}
+                            <h4>You rejected this position!</h4>
+                        {% endif %}
+                        {% if application.1 == 'Denied' %}
+                            <h4>You're application was rejected</h4>
+                        {% endif %}
+                        <p>Course Name: {{ application.0.courseName }}</p>
+                        <p>Subject: {{ application.0.subject }}</p>
+                        <p>Course Code: {{ application.0.courseCode }}</p>
+                        <p>Instructor Name: {{ application.0.instructor }}</p>
+                        <p>Building: {{ application.0.building }}</p>
+                        <p>Discussion: {{ application.0.discussion }}</p>
+                        <p>Total TA's Needed: {{ application.0.numTAs }}</p>
+                        <p>TA's Accepted: {{ application.0.currTAs }}</p>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
