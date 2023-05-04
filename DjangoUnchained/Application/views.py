@@ -216,11 +216,8 @@ def offer_role(request):
         courseName = temp[0].replace("-"," ")
         instructor = temp[1].replace("-"," ")
         applications = StudentApplication.objects.filter(email = userInfo.get_email())
-        print(applications)
         applications = applications.filter(courseName = courseName)
-        print(applications)
         applications = applications.filter(instructor = instructor)
-        print(applications)
         for i in applications:
             applicant = i
         if 'accept' in request.POST:
