@@ -44,7 +44,8 @@ def add_TA(applicantInfo):
         course = i
     num = course.get_currTAs() + 1
     course.set_currTAs(num)
-    if (num == course.get_numTAs()):
+    if (int(num) == int(course.get_numTAs())):
+        print("what the hell")
         course.set_courseState("Closed")
     course.save()
 
@@ -200,6 +201,7 @@ def accept_applicant(request, applicant_id):
     body = f"Congrats {name}! You've accepted as a TA for {applicant.courseName}! Click the link here to accept or reject the offer: http://127.0.0.1:8000/offer_role/?course_info={courseName}!{instructor}"
     send_email(body, emailAddress, subject)
     applicant.set_results("Awaiting Student Decision")
+    applicant.save()
     if userRole == "Administrator": 
         return redirect('admin_page') # Redirect to the admin_page or the page where you display the list of courses
     if userRole == "Instructor": 
@@ -224,8 +226,8 @@ def offer_role(request):
             applicant.set_results("Accepted Offer")
             applicant.save()
             add_TA(applicant)
-            userInfo.set_state = "Hired"
-            userInfo.save()
+            request.user.set_state("Hired")
+            request.user.save()
             return redirect('/main')
         elif 'deny' in request.POST:
             applicant.set_results("Denied Offer")

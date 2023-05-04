@@ -75,5 +75,5 @@ class CustomUser(AbstractUser):
     def get_state(self):
         return self.state
 
-    def set_state(self, str):
-        self.state = str
+    def set_state(self, string):
+        self.state = string

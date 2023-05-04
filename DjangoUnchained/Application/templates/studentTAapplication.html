@@ -51,6 +51,7 @@
                 <!-- Add applicant list items here -->
                 <div class="applicant-item">
                   {% for application in Applications %}
+                    <p>Course Name: {{ application.0.courseName }}</p>
                     <p>Subject: {{ application.0.subject }}</p>
                     <p>Course Code: {{ application.0.courseCode }}</p>
                     <p>Instructor Name: {{ application.0.instructor }}</p>
@@ -58,7 +59,18 @@
                     <p>Discussion: {{ application.0.discussion }}</p>
                     <p>Total TA's Needed: {{ application.0.numTAs }}</p>
                     <p>TA's Accepted: {{ application.0.currTAs }}</p>
-                    <p>Application Result: {{application.1}}</p>
+                    {% if application.1 == 'Pending' %}
+                        <h4>Application Result: Pending</h4>
+                    {% endif %}
+                    {% if application.1 == 'Awaiting Student Decision' %}
+                        <h4>Application Result: Awaiting Your Decision. Check Email!</h4>
+                    {% endif %}
+                    {% if application.1 == 'Accepted Offer' %}
+                        <h4>Application Result: You are now a TA for this course!</h4>
+                    {% endif %}
+                    {% if application.1 == 'Denied Offer' %}
+                        <h4>Application Result: You rejected this position!</h4>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
