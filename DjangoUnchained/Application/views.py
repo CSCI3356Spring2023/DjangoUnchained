@@ -8,6 +8,7 @@ from django.core import mail
 
 from .models import CourseAdd
 from .models import StudentApplication
+from Login.models import CustomUser
 
 # Create your views here.
 
@@ -152,7 +153,7 @@ def student_page(request):
         allInfo = []
         for i in range(len(appliedCourses)):
             allInfo.append([appliedCourses[i], getResults[i]])
-        numOfTAs = len(allInfo)
+        numOfTAs = request.user.get_appNum()
         if(userRole == "Student"):
             context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'State': state, 'Courses': courseInfo, 'Applications': allInfo, "NumberTA": numOfTAs}
             return render(request, 'studentTAapplication.html', context)
@@ -223,6 +224,9 @@ def offer_role(request):
         for i in applications:
             applicant = i
         if 'accept' in request.POST:
+            appNum = request.user.get_appNum()
+            request.user.set_appNum(0)
+            request.user.save()
             applicant.set_results("Accepted Offer")
             applicant.save()
             add_TA(applicant)
@@ -230,6 +234,9 @@ def offer_role(request):
             request.user.save()
             return redirect('/main')
         elif 'deny' in request.POST:
+            appNum = request.user.get_appNum()
+            request.user.set_appNum(appNum - 1)
+            request.user.save()
             applicant.set_results("Denied Offer")
             applicant.save()
             return redirect('/main')
@@ -242,6 +249,12 @@ def deny_applicant(request, applicant_id):
     applicant = get_object_or_404(StudentApplication, id=applicant_id)
     name = applicant.name
     emailAddress = applicant.email
+    users = CustomUser.objects.filter(email=applicant.email)
+    for i in users:
+        deniedUser = i
+    appNum = deniedUser.get_appNum()
+    deniedUser.set_appNum(appNum - 1)
+    deniedUser.save()
     subject = f"Update on {name}'s TA Application"
     body = f"Sorry {name}, unfortunately you were not selected as a TA for {applicant.courseName}."
     send_email(body, emailAddress, subject)
@@ -310,6 +323,9 @@ def student_apply(request, course_id):
                     my_instance.instructor = course.instructor
                     my_instance.courseName = course.courseName
                     my_instance.save()
+                    appNum = request.user.get_appNum()
+                    request.user.set_appNum(appNum + 1)
+                    request.user.save()
                     form.save()
                     return redirect('/main')  # Redirect to the main page after successful form submission
         

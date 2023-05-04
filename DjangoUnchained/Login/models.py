@@ -52,6 +52,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     role = models.CharField(max_length=50, choices = ROLES, null=True)
     state = models.CharField(max_length=100, null=True)
+    appNum = models.IntegerField(null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['role', 'first_name', 'last_name']
     
@@ -77,3 +78,9 @@ class CustomUser(AbstractUser):
 
     def set_state(self, string):
         self.state = string
+
+    def get_appNum(self):
+        return self.appNum
+
+    def set_appNum(self, number):
+        self.appNum = number

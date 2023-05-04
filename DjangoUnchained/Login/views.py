@@ -15,6 +15,7 @@ def signup_page(request):
         data = request.POST
         data._mutable = True
         data['state'] = "Open To Work"
+        data['appNum'] = 0
         data._mutable = False
         if form.is_valid():
             # auto-login user
