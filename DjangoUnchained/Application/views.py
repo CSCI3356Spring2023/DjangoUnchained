@@ -157,6 +157,8 @@ def student_page(request):
         mail = userInfo.get_email()
         provider = mail.split('@')
         provider = provider[1]
+        if provider == "bc.edu":
+            provider = "gmail.com"
         applicantInfo = StudentApplication.objects.filter(email = userInfo.get_email())
         courseInfo = CourseAdd.objects.all()
         appliedCourses, getResults = get_applied_courses(applicantInfo, courseInfo)
