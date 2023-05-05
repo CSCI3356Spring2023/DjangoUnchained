@@ -43,8 +43,9 @@ def num_fulfilled_TA(queryset):
 def add_TA(applicantInfo):
     courses = CourseAdd.objects.filter(instructor = applicantInfo.instructor)
     courses = courses.filter(courseName = applicantInfo.courseName)
-    for i in courses:
-        course = i
+    for obj in courses:
+        course = obj
+        break
     num = course.get_currTAs() + 1
     course.set_currTAs(num)
     if (int(num) == int(course.get_numTAs())):
@@ -217,20 +218,16 @@ def offer_role(request):
         applications = StudentApplication.objects.filter(email = userInfo.get_email())
         applications = applications.filter(courseName = courseName)
         applications = applications.filter(instructor = instructor)
-        #code below is for bug when applications doesn't return anything, will need to fix
-        if applications.count() != 0:
-            for i in applications:
-                applicant = i
-        else:
-            applicant = []
+        for obj in applications:
+            applicant = obj
+            break
         if 'accept' in request.POST:
             applications = StudentApplication.objects.exclude(courseName=courseName).exclude(instructor=instructor).delete()
             appNum = request.user.get_appNum()
             request.user.set_appNum(0)
             request.user.save()
-            if applicant != []:
-                applicant.set_results("Accepted Offer")
-                applicant.save()
+            applicant.set_results("Accepted Offer")
+            applicant.save()
             add_TA(applicant)
             request.user.set_state("Hired")
             request.user.save()
@@ -239,9 +236,8 @@ def offer_role(request):
             appNum = request.user.get_appNum()
             request.user.set_appNum(appNum - 1)
             request.user.save()
-            if applicant != []:
-                applicant.set_results("Denied Offer")
-                applicant.save()
+            applicant.set_results("Denied Offer")
+            applicant.save()
             return redirect('/main')
         else:
             return
@@ -252,9 +248,9 @@ def deny_applicant(request, applicant_id):
     applicant = get_object_or_404(StudentApplication, id=applicant_id)
     name = applicant.name
     emailAddress = applicant.email
-    users = CustomUser.objects.filter(email=applicant.email)
-    for i in users:
-        deniedUser = i
+    users = CustomUser.objects.filter(email = applicant.email)
+    for obj in users:
+        deniedUser = obj
     appNum = deniedUser.get_appNum()
     deniedUser.set_appNum(appNum - 1)
     deniedUser.save()
@@ -316,6 +312,8 @@ def student_apply(request, course_id):
                 data = request.POST
                 data._mutable = True
                 data['results'] = "Pending"
+                data['name'] = request.user.get_full_name()
+                data['email'] = request.user.get_email()
                 data._mutable = False
                 #CODE ABOVE FOR CHANGING DATA
                 if form.is_valid():

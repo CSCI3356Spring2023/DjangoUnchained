@@ -15,8 +15,8 @@ class StudentApplication(models.Model):
     )
 
     username = None
-    name = models.CharField(max_length=20)
-    email = models.CharField(max_length=200)
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
     gradYear = models.CharField(max_length=50, choices = YEARS, null=True)
     gpa = models.CharField(max_length=4)
     longAns = models.CharField(max_length=100000)
@@ -29,7 +29,7 @@ class StudentApplication(models.Model):
     #REQUIRED_FIELDS = ['role', 'first_name', 'last_name']
     
     def get_full_name(self):
-      return self.first_name + ' ' + self.last_name
+      return self.name
     
     def get_email(self):
         return self.email

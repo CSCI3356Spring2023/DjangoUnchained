@@ -22,8 +22,8 @@ class StudentApply(forms.ModelForm):
         ('Computer Science Minor', 'Computer Science Minor'),
 
     )
-    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'name'}))
-    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'email'}))
+    name = forms.CharField(widget=forms.HiddenInput(), required = False)
+    email = forms.CharField(widget=forms.HiddenInput(), required = False)
     gpa = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'gpa'}))
     gradYear = forms.CharField(widget=forms.Select(choices=YEARS))
     csRelation = forms.CharField(widget=forms.Select(choices=CS_RELATION))
