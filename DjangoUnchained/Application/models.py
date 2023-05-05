@@ -15,8 +15,8 @@ class StudentApplication(models.Model):
     )
 
     username = None
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, null=True)
+    email = models.CharField(max_length=100, null=True)
     gradYear = models.CharField(max_length=50, choices = YEARS, null=True)
     gpa = models.CharField(max_length=4)
     longAns = models.CharField(max_length=100000)
@@ -192,7 +192,7 @@ class CourseAdd(models.Model):
     )
 
     username = None
-    instructor = models.CharField(max_length=100)
+    instructor = models.CharField(max_length=100, null=True)
     subject = models.CharField(max_length=100)
     courseName = models.CharField(max_length=100)
     courseCode = models.CharField(max_length=100)

@@ -118,12 +118,16 @@ def temp_add_course(request):
     form = CourseAddForm()
     if request.user.is_authenticated:
         userRole = request.user.get_role()
+        isAdmin = userRole == "Administrator"
+        context = {'IsAdmin': isAdmin}
         if (userRole == 'Instructor' or userRole == "Administrator"):
             if request.method == 'POST':
                 form = CourseAddForm(request.POST)
                 # CODE FOR CHANGING DATA
                 data = request.POST
                 data._mutable = True
+                if (userRole == 'Instructor'):
+                    data ['instructor'] = request.user.get_full_name()
                 data['courseState'] = "Open For Application"
                 data['fulfilled'] = "No"
                 data['currTAs'] = 0
@@ -137,7 +141,7 @@ def temp_add_course(request):
                     return render(request, 'temp_add_course.html', {'form': form})
             else:
                 form = CourseAddForm()
-                return render(request, 'temp_add_course.html', {'form': form})
+                return render(request, 'temp_add_course.html', {'form': form, 'admin': isAdmin})
         else:
             return render(request, '404.html')
     else:

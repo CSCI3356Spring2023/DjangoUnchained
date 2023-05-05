@@ -168,7 +168,7 @@ class CourseAddForm(forms.ModelForm):
         ('10', '10')
     ]
 
-    instructor = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Instructor', 'class': 'short_text'}))
+    instructor = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Instructor', 'class': 'short_text'}), required=False)
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Subject', 'class': 'short_text'}))
     courseName = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Course Name', 'class': 'short_text'}))
     courseCode = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Course Code', 'class': 'short_text'}))
