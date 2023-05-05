@@ -154,6 +154,9 @@ def student_page(request):
         firstName = userInfo.get_first_name()
         lastName = userInfo.get_last_name()
         state = userInfo.get_state()
+        mail = userInfo.get_email()
+        provider = mail.split('@')
+        provider = provider[1]
         applicantInfo = StudentApplication.objects.filter(email = userInfo.get_email())
         courseInfo = CourseAdd.objects.all()
         appliedCourses, getResults = get_applied_courses(applicantInfo, courseInfo)
@@ -162,7 +165,7 @@ def student_page(request):
             allInfo.append([appliedCourses[i], getResults[i]])
         numOfTAs = request.user.get_appNum()
         if(userRole == "Student"):
-            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'State': state, 'Courses': courseInfo, 'Applications': allInfo, "NumberTA": numOfTAs}
+            context = {'Users': userInfo, 'FirstName': firstName, 'LastName': lastName, 'State': state, 'Courses': courseInfo, 'Applications': allInfo, "NumberTA": numOfTAs, "Provider": provider}
             return render(request, 'studentTAapplication.html', context)
     return render(request, '404.html')
 
@@ -213,38 +216,42 @@ def accept_applicant(request, applicant_id):
     return redirect('/main') 
 
 def offer_role(request):
-    if request.method == 'POST':
-        userInfo = request.user
-        course_info = request.GET.get('course_info')
-        temp = course_info.split('!')
-        courseName = temp[0].replace("-"," ")
-        instructor = temp[1].replace("-"," ")
-        applications = StudentApplication.objects.filter(email = userInfo.get_email())
-        applications = applications.filter(courseName = courseName)
-        applications = applications.filter(instructor = instructor)
-        for obj in applications:
-            applicant = obj
-            break
-        if 'accept' in request.POST:
-            applications = StudentApplication.objects.exclude(courseName=courseName).exclude(instructor=instructor).delete()
-            appNum = request.user.get_appNum()
-            request.user.set_appNum(0)
-            request.user.save()
-            applicant.set_results("Accepted Offer")
-            applicant.save()
-            add_TA(applicant)
-            request.user.set_state("Hired")
-            request.user.save()
-            return redirect('/main')
-        elif 'deny' in request.POST:
-            appNum = request.user.get_appNum()
-            request.user.set_appNum(appNum - 1)
-            request.user.save()
-            applicant.set_results("Denied Offer")
-            applicant.save()
-            return redirect('/main')
-        else:
-            return
+    if request.user.is_authenticated and request.user.get_role() not in ("Administrator", "Instructor"):
+        if request.method == 'POST':
+            userInfo = request.user
+            course_info = request.GET.get('course_info')
+            temp = course_info.split('!')
+            courseName = temp[0].replace("-"," ")
+            instructor = temp[1].replace("-"," ")
+            applications = StudentApplication.objects.filter(email = userInfo.get_email())
+            applications = applications.filter(courseName = courseName)
+            applications = applications.filter(instructor = instructor)
+            for obj in applications:
+                applicant = obj
+                break
+            if 'accept' in request.POST:
+                applications = StudentApplication.objects.exclude(courseName=courseName).exclude(instructor=instructor).delete()
+                appNum = request.user.get_appNum()
+                request.user.set_appNum(0)
+                request.user.save()
+                applicant.set_results("Accepted Offer")
+                applicant.save()
+                add_TA(applicant)
+                request.user.set_state("Hired")
+                request.user.save()
+                return redirect('/main')
+            elif 'deny' in request.POST:
+                appNum = request.user.get_appNum()
+                request.user.set_appNum(appNum - 1)
+                request.user.save()
+                applicant.set_results("Denied Offer")
+                applicant.save()
+                return redirect('/main')
+            else:
+                return
+    else:
+        #redirected here when not logged in or not a student - only student can accept
+        return redirect('/main')
     return render(request, 'offer_role.html')
 
 def deny_applicant(request, applicant_id):
