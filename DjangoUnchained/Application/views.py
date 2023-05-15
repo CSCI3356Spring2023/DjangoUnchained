@@ -49,8 +49,12 @@ def add_TA(applicantInfo):
         break
     num = course.get_currTAs() + 1
     course.set_currTAs(num)
+    temp = course.get_namesOfTAs()
+    name = applicantInfo.get_full_name()
+    temp += f"{num}. {name}  "
+    course.set_namesOfTAs(temp)
+    print(temp)
     if (int(num) == int(course.get_numTAs())):
-        print("what the hell")
         course.set_courseState("Closed")
     course.save()
 
@@ -243,6 +247,8 @@ def offer_role(request):
                 add_TA(applicant)
                 request.user.set_state("Hired")
                 request.user.save()
+                courses = CourseAdd.objects.filter(instructor = instructor)
+                courses = courses.filter(courseName = courseName)
                 return redirect('/main')
             elif 'deny' in request.POST:
                 appNum = request.user.get_appNum()

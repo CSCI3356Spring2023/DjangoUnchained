@@ -187,11 +187,12 @@ class CourseAddForm(forms.ModelForm):
     currTAs = forms.IntegerField(widget=forms.HiddenInput(), required = False)
     extra_info = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Extra Information Relevant to the Course', 'class': 'class_description'}))
     courseState = forms.CharField(widget=forms.HiddenInput(), required = False)
+    namesOfTAs = forms.CharField(widget=forms.HiddenInput(), required = False)
     
     class Meta:
         model = CourseAdd
         fields = ['instructor', 'subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType',
-                'requiredOH', 'discussion', 'currTAs', 'discussion_day', 'discussion_time', 'fulfilled', 'extra_info', 'courseState']
+                'requiredOH', 'discussion', 'currTAs', 'discussion_day', 'discussion_time', 'fulfilled', 'extra_info', 'courseState', 'namesOfTAs']
     
     
     
