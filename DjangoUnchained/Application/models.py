@@ -15,24 +15,33 @@ class StudentApplication(models.Model):
     )
 
     username = None
-    name = models.CharField(max_length=20)
-    email = models.CharField(max_length=200)
+    name = models.CharField(max_length=100, null=True)
+    email = models.CharField(max_length=100, null=True)
     gradYear = models.CharField(max_length=50, choices = YEARS, null=True)
     gpa = models.CharField(max_length=4)
     longAns = models.CharField(max_length=100000)
+    courseName = models.CharField(max_length=100000)
+    instructor = models.CharField(max_length=100000)
+    results = models.CharField(max_length=100, null=True)
 
     #role = models.CharField(max_length=50, choices = ROLES, null=True)
     #USERNAME_FIELD = 'email'
     #REQUIRED_FIELDS = ['role', 'first_name', 'last_name']
     
     def get_full_name(self):
-      return self.first_name + ' ' + self.last_name
+      return self.name
     
     def get_email(self):
         return self.email
     
-    def get_role(self):
-        return self.role
+    def get_results(self):
+        return self.results
+    
+    def get_courseName(self):
+        return self.courseName
+
+    def set_results(self, string):
+        self.results = string
     
 
 class CourseAdd(models.Model):
@@ -121,6 +130,13 @@ class CourseAdd(models.Model):
         ('No', 'No'),
 
     )
+    
+    NO_YES = (
+
+        ('No', 'No'),
+        ('Yes', 'Yes'),
+
+    )
 
     TIMES_NA = (
 
@@ -176,6 +192,7 @@ class CourseAdd(models.Model):
     )
 
     username = None
+    instructor = models.CharField(max_length=100, null=True)
     subject = models.CharField(max_length=100)
     courseName = models.CharField(max_length=100)
     courseCode = models.CharField(max_length=100)
@@ -190,10 +207,17 @@ class CourseAdd(models.Model):
     discussion = models.CharField(max_length=100, choices = YES_NO, null=True)
     discussion_day = models.CharField(max_length=100, choices = DAYS_NA, null=True)
     discussion_time = models.CharField(max_length=100, choices = TIMES_NA, null=True)
+    fulfilled = models.CharField(max_length=100, null=True)
+    currTAs = models.IntegerField(null=True)
     extra_info = models.CharField(max_length=100)
+    courseState = models.CharField(max_length=100, null=True)
+    namesOfTAs = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.courseCode
+    
+    def get_instructor(self):
+        return self.instructor
     
     def get_subject(self):
         return self.subject
@@ -237,7 +261,31 @@ class CourseAdd(models.Model):
     def get_discussion_time(self):
         return self.discussion_time
     
+    def get_fulfilled(self):
+        return self.fulfilled
+
+    def set_fulfilled(self, string):
+        self.fulfilled = string
+    
     def get_extraInfo(self):
         return self.extra_info
+    
+    def get_currTAs(self):
+        return self.currTAs
+
+    def set_currTAs(self, number):
+        self.currTAs = number
+
+    def get_courseState(self):
+        return self.courseState
+
+    def set_courseState(self, string):
+        self.courseState = string
+
+    def get_namesOfTAs(self):
+        return self.namesOfTAs
+
+    def set_namesOfTAs(self, string):
+        self.namesOfTAs = string
 
     

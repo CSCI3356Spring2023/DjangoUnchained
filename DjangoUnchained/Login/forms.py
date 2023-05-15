@@ -25,8 +25,10 @@ class SignupForm(UserCreationForm):
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
     role = forms.CharField(widget=forms.Select(choices=role_choices))
+    state = forms.CharField(widget=forms.HiddenInput(), required = False)
+    appNum = forms.IntegerField(widget=forms.HiddenInput(), required = False)
     
     class Meta(UserCreationForm.Meta):
         User = get_user_model()
         model = CustomUser
-        fields = ['email', 'first_name', 'last_name', 'role',]
+        fields = ['email', 'first_name', 'last_name', 'role', 'state', 'appNum']

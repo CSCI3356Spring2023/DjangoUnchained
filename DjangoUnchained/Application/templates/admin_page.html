@@ -8,22 +8,21 @@
     <title>Admin Page</title>
 </head>
 <body>
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
     <div class="header">
         <div class="logo">Eagle TAs</div>
         <div class="header-info">
+            <a href="{% url 'logout' %}"><button>Log Out</button></a>
             <div>{{ Users }}</div>
-            <div>{{ FirstName }} {{ LastName }}</div>
-            <div>Admin</div>
+            <div>{{ FirstName }} {{ LastName }} - Administrator</div>
         </div>
     </div>
     <div class="dashboard">
         <div class="dashboard-item">Total Courses: {{Course_Number}}</div>
         <div class="dashboard-item">Total Applications: {{Applicant_Number}}</div>
-        <div class="dashboard-item">Unfulfilled Courses:</div>
-        <div class="dashboard-item">Fulfilled Courses:</div>
-        <div class="dashboard-item">TA needed:</div>
-        <div class="dashboard-item">Notifications:</div>
+        <div class="dashboard-item">Unfulfilled Courses: {{Not_Fulfilled}}</div>
+        <div class="dashboard-item">Fulfilled Courses: {{Fulfilled}}</div>
+        <div class="dashboard-item">TA needed: {{TAs}}</div>
+        <div class="dashboard-item">Notifications</div>
     </div>
     <div class="list-section">
         <div class="list-container">
@@ -34,15 +33,23 @@
             {% for course in Courses %}
             <div class="course-item">
                 <h3>{{ course.courseName }}</h3>
-                <p>Subject: {{ course.subject }}</p>
-                <p>Course Code: {{ course.courseCode }}</p>
-                <p>Instructor Name: {{ course.instructorName }}</p>
-                <p>Building: {{ course.building }}</p>
-                <p>Discussion: {{ course.discussion }}</p>
-                <p>Number of TA's: {{ course.numTAs }}</p>
-                <a href="{% url 'delete_course' course.id %}">Delete</a>
-                <br>
-                <a href="{% url 'edit_course' course.id %}">Edit</a>
+                <div class="course-info">
+                    <h5>State: {{ course.courseState }}</h5>
+                    <p>Instructor: {{ course.instructor }}</p>
+                    <p>Subject: {{ course.subject }}</p>
+                    <p>Course Code: {{ course.courseCode }}</p>
+                    <p>Instructor Name: {{ course.instructorName }}</p>
+                    <p>Building: {{ course.building }}</p>
+                    <p>Discussion: {{ course.discussion }}</p>
+                    <p>Total TA's Needed: {{ course.numTAs }}</p>
+                    <p>TA's Accepted: {{ course.currTAs }}</p>
+                    <p>Selected TAs: {{ course.namesOfTAs }}</p>
+                    
+                </div>
+                <div class="actions">
+                    <a href="{% url 'delete_course' course.id %}"><button>Delete</button></a>
+                    <a href="{% url 'edit_course' course.id %}"><button>Edit</button></a>
+                </div>
             </div>
             {% endfor %}
 
@@ -51,16 +58,36 @@
         
         <div class="list-container">
             <div class="list-title">Applicant List</div>
-			<a href="{% url 'student_apply' %}"><button>Add applicant</button></a>
             <input type="text" placeholder="Search for applicants">
             <!-- Add applicant list items here -->
             {% for applicant in Applicants %}
             <div class="applicant-item">
                 <h3>{{ applicant.name }}</h3>
-                <p>Emaill: {{ applicant.email }}</p>
-                <p>Graduation Year: {{ applicant.gradYear }}</p>
-                <p>GPA: {{ applicant.gpa }}</p>
-                <a href="{% url 'delete_applicant' applicant.id %}">Delete</a>
+                {% if applicant.results == 'Awaiting Student Decision' %}
+                    <h4>Awaiting Student Decision</h4>
+                {% endif %}
+                {% if applicant.results == 'Accepted Offer' %}
+                    <h4>Applicant Accepted Offer</h4>
+                {% endif %}
+                {% if applicant.results == 'Denied Offer' %}
+                    <h4>Applicant Denied Offer</h4>
+                {% endif %}
+                {% if applicant.results == 'Denied' %}
+                    <h4>Application Rejected</h4>
+                {% endif %}
+                <div class="applicant-info">
+                    <p>Email: {{ applicant.email }}</p>
+                    <p>Graduation Year: {{ applicant.gradYear }}</p>
+                    <p>GPA: {{ applicant.gpa }}</p>
+                    <p>For: {{ applicant.courseName }}</p>  
+                </div>
+                <div class="actions">                
+                    {% if applicant.results == 'Pending' %}
+                        <a href="{% url 'delete_applicant' applicant.id %}"><button>Delete</button></a>
+                        <a href="{% url 'accept_applicant' applicant.id %}"><button>Accept Applicant</button></a>
+                        <a href="{% url 'deny_applicant' applicant.id %}"><button>Deny Applicant</button></a>
+                    {% endif %}
+                </div>
             </div>
             {% endfor %}
         </div>

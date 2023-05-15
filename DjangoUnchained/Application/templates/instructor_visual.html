@@ -1,77 +1,203 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static%}
 <html lang="en">
-    <head>
-		<link rel="stylesheet" href="{% static 'instructor_visual.css' %}">
-        <meta charset="utf-8">
-        <title>Instructor course</title>
-        <meta name="description" content="Figma htmlGenerator">
-        <meta name="author" content="htmlGenerator">
-        <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Prosto+One&display=swap" rel="stylesheet">
-    </head>
-          
-    <body>
-		<p><a href="{% url 'logout' %}">Log Out</a></p>
+<head>
+    <link rel="stylesheet" href="{% static 'instructor_visual.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto&family=Poppins&display=swap" rel="stylesheet">
+    <title>Instructor Visual</title>
+</head>
+<body>
+    <div class="header">
+        <div class="crest"></div>
+        <div class="logo">Eagle TAs</div>
+        <div class="header-info">
+            <p class="logout"><a href="{% url 'logout' %}"><button>Log Out</button></a></p>
+            <div>{{ Users }}</div>
+            <div>{{ FirstName }} {{ LastName }} - Instructor</div>
+        </div>
+    </div>
+    <div class="list-section">
+        <div class="list-container">
+            <div class="list-title">Course List</div>
+            <a href="{% url 'temp_add_course' %}"><button>Add course</button></a>
+            <input type="text" placeholder="Search for courses">
+            <!-- Add course list items here -->
+            {% for course in Courses %}
+            <div class="course-item">
+                <h3>{{ course.courseName }}</h3>
+                <div class="course-info">
+                    <h5>State: {{ course.courseState }}</h5>
+                    <p>Instructor: {{ course.instructor }}</p>
+                    <p>Subject: {{ course.subject }}</p>
+                    <p>Course Code: {{ course.courseCode }}</p>
+                    <p>Instructor Name: {{ course.instructorName }}</p>
+                    <p>Building: {{ course.building }}</p>
+                    <p>Discussion: {{ course.discussion }}</p>
+                    <p>Total TA's Needed: {{ course.numTAs }}</p>
+                    <p>TA's Accepted: {{ course.currTAs }}</p>
+                    <p>Selected TAs: {{ course.namesOfTAs }}</p>
+                    
+                </div>
+                <div class="actions">
+                    <a href="{% url 'delete_course' course.id %}"><button>Delete</button></a>
+                    <a href="{% url 'edit_course' course.id %}"><button>Edit</button></a>
+                </div>
+            </div>
+            {% endfor %}
 
-        <div class=background>
-            <div  class="e54_3"></div>
-            <span  class="e54_4">EagleTAs</span>
-            <div  class="e54_5"></div>
-            <span  class="e54_6">Below is a summary of the courses you’re instructing and their TA application submissions. </span>
-            <span  class="e54_7">Your Courses</span>
-            <span  class="e54_8">Lastname, Firstname</span>
-            <span  class="e54_9">Instructor</span>
-            <span  class="e54_10">CSCI1101 Computer Science I</span>
-            <div  class="e54_11"></div>
-            <span  class="e54_12">CSCI1101 Computer Science I</span>
-            <div  class="e54_13"></div>
-            <div  class="e54_14"></div>
-            <span  class="e54_15">This course is an introduction to the art and science of computer programming and to some of the fundamental concepts of computer science. Students will write programs in the Python programming language. Good program design methodology will be stressed throughout. There will also be a study of some of the basic notions of computer science, including computer systems organization, files and some algorithms of fundamental importance.</span>
-            <div  class="e54_16"></div>
-            <div  class="e54_17"></div>
-            <span  class="e54_18">CSCI1101 Computer Science II</span>
-            <span  class="e54_19">In this course, the student will write programs that employ more sophisticated and efficient means of representing and manipulating information. Part of the course is devoted to a continued study of programming. The principal emphasis, however, is on the study of the fundamental data structures of computer science (lists, stacks, queues, trees, etc.). Both their abstract properties and their implementations in computer programs and the study of the fundamental algorithms for manipulating these structures. Students will use</span>
-            <div  class="e54_20"></div>
-            <span  class="e54_21">2</span>
-            <span  class="e54_22">3</span>
-            <span  class="e54_23">245 Beacon Street</span>
-            <span  class="e54_24">245 Beacon Street</span>
-            <span  class="e54_25">M/W</span>
-            <span  class="e54_26">T</span>
-            <span  class="e54_27">102</span>
-            <span  class="e54_28">103</span>
-            <span  class="e54_29">2/2</span>
-            <span  class="e54_30">1/1</span>
-            <span  class="e54_31">3:00PM - 4:15PM</span>
-            <span  class="e54_32">6:00PM - 6:50PM</span>
-            <span  class="e54_33">Time Slot</span>
-            <span  class="e54_34">Building</span>
-            <span  class="e54_35">Room</span>
-            <span  class="e54_36">Submissions</span>
-            <span  class="e54_37">TA’s Needed</span>
-            <span  class="e54_38">Days</span>
-            <span  class="e54_39">Section</span>
-            <div  class="e54_40"></div>
-            <div  class="e54_41"></div>
-            <div  class="e54_42"></div>
-            <span  class="e54_43">01 Lecture</span>
-            <span  class="e54_44">03 Discussion</span>
-            <span  class="e54_45">></span>
-            <span  class="e54_46">></span>
-            <div  class="e54_47"></div>
-            <div  class="e54_48"></div>
-            <span  class="e54_49">Select</span>
-            <span  class="e54_50">Student</span>
-            <span  class="e54_51">Dylan Leddy</span>
-            <span  class="e54_52">782645</span>
-            <span  class="e54_53">Junior</span>
-            <span  class="e54_54">Eagle ID</span>
-            <span  class="e54_55">Academic Year</span>
-            <div  class="e54_56"></div>
-            <div  class="e54_57"></div>
-            <div  class="e54_58"></div>
-            <div  class="e54_59"></div></div>
-    </body>
+        </div>
+
+        
+        <div class="list-container">
+            <div class="list-title">Applicant List</div>
+            <input type="text" placeholder="Search for applicants">
+            <!-- Add applicant list items here -->
+            {% for applicant in Applicants %}
+            <div class="applicant-item">
+                <h3>{{ applicant.name }}</h3>
+                {% if applicant.results == 'Awaiting Student Decision' %}
+                    <h4>Awaiting Student Decision</h4>
+                {% endif %}
+                {% if applicant.results == 'Accepted Offer' %}
+                    <h4>Applicant Accepted Offer</h4>
+                {% endif %}
+                {% if applicant.results == 'Denied Offer' %}
+                    <h4>Applicant Denied Offer</h4>
+                {% endif %}
+                {% if applicant.results == 'Denied' %}
+                    <h4>Application Rejected</h4>
+                {% endif %}
+                <div class="applicant-info">
+                    <p>Email: {{ applicant.email }}</p>
+                    <p>Graduation Year: {{ applicant.gradYear }}</p>
+                    <p>GPA: {{ applicant.gpa }}</p>
+                    <p>For: {{ applicant.courseName }}</p>  
+                </div>
+                <div class="actions">                
+                    {% if applicant.results == 'Pending' %}
+                        <a href="{% url 'delete_applicant' applicant.id %}"><button>Delete</button></a>
+                        <a href="{% url 'accept_applicant' applicant.id %}"><button>Accept Applicant</button></a>
+                        <a href="{% url 'deny_applicant' applicant.id %}"><button>Deny Applicant</button></a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
 </html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .logout {
+        padding-left: 1%;
+    }
+
+    .header {
+        background-color: rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1rem;
+        color: white;
+    }
+
+    .logo {
+        color:rgba(255, 255, 255, 1);
+        width:auto;
+        height:auto;
+        font-family:Poppins;
+        padding-left: 20px;
+        font-size:40px;
+        letter-spacing:0;
+    }
+
+    .crest { 
+        width:70px;
+        height:70px;
+        position:relative;
+        top:12%;
+        background-image:url("../static/bccrest_1.png");
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
+
+    .header-info {
+        margin-left: auto;
+        padding-right: 1%;
+    }
+
+    .dashboard-item {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    .list-section {
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .list-container {
+        background-color: white;
+        padding: 1rem;
+        height: 300px;
+        overflow-y: scroll;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    .list-title {
+        font-size: x-large;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    input[type="text"] {
+        padding: 0.5rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-bottom: 1rem;
+        text-align: left;
+        float: right;
+    }
+
+    button {
+        background-color: rgba(168.93750607967377, 30.97187966108322, 30.97187966108322, 1);
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: darkred;
+    }
+
+    .course-item {
+        background-color: #f8f8f8;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .course-item h3 {
+        margin: 0 0 10px;
+    }
+
+    .course-item p {
+        margin: 0 0 5px;
+    }
+</style>

@@ -51,6 +51,8 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=20)
     email = models.EmailField(_('email address'), unique=True)
     role = models.CharField(max_length=50, choices = ROLES, null=True)
+    state = models.CharField(max_length=100, null=True)
+    appNum = models.IntegerField(null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['role', 'first_name', 'last_name']
     
@@ -71,22 +73,14 @@ class CustomUser(AbstractUser):
     def get_last_name(self):
         return self.last_name
 
+    def get_state(self):
+        return self.state
 
-class SendEmail(models.Model):
+    def set_state(self, string):
+        self.state = string
 
-    subject = models.CharField(max_length=200, null=False, blank=False)
-    body = models.TextField()
-    from_email = models.CharField(max_length=200, null=False, blank=False)
-    to_email = models.CharField(max_length=200, null=False, blank=False)
-    
-    def get_subject(self):
-        return self.subject
-    
-    def get_body(self):
-        return self.body
-    
-    def get_from_email(self):
-        return self.from_email
-    
-    def get_to_email(self):
-        return self.to_email
+    def get_appNum(self):
+        return self.appNum
+
+    def set_appNum(self, number):
+        self.appNum = number

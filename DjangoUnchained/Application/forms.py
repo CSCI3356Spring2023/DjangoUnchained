@@ -22,16 +22,19 @@ class StudentApply(forms.ModelForm):
         ('Computer Science Minor', 'Computer Science Minor'),
 
     )
-    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'name'}))
-    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'email'}))
+    name = forms.CharField(widget=forms.HiddenInput(), required = False)
+    email = forms.CharField(widget=forms.HiddenInput(), required = False)
     gpa = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'gpa'}))
     gradYear = forms.CharField(widget=forms.Select(choices=YEARS))
     csRelation = forms.CharField(widget=forms.Select(choices=CS_RELATION))
     longAns = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'longAns'}))
+    courseName = forms.CharField(required=False)
+    instructor = forms.CharField(required=False)
+    results = forms.CharField(widget=forms.HiddenInput(), required = False)
     
     class Meta:
         model = StudentApplication
-        fields = ('name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns')
+        fields = ['name', 'email', 'gpa', 'gradYear', 'csRelation', 'longAns', 'courseName', 'instructor', 'results']
 
 class CourseAddForm(forms.ModelForm):
 
@@ -145,6 +148,11 @@ class CourseAddForm(forms.ModelForm):
         ('6:30', '6:30'),
         ('7:00', '7:00'),
     ]
+    fulfilleds = [
+        ('No', 'No'),
+        ('Yes', 'Yes'),
+        ('placeholder', 'Course Fulfilled?'),
+    ]
 
     number_choices = [
         ('placeholder', 'Hours Required?'),
@@ -160,6 +168,7 @@ class CourseAddForm(forms.ModelForm):
         ('10', '10')
     ]
 
+    instructor = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Instructor', 'class': 'short_text'}), required=False)
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Subject', 'class': 'short_text'}))
     courseName = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Course Name', 'class': 'short_text'}))
     courseCode = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Course Code', 'class': 'short_text'}))
@@ -174,11 +183,16 @@ class CourseAddForm(forms.ModelForm):
     discussion = forms.CharField(widget=forms.Select(choices=discussion_choices))
     discussion_day = forms.CharField(widget=forms.Select(choices=discussion_days))
     discussion_time = forms.CharField(widget=forms.Select(choices=discussion_times))
+    fulfilled = forms.CharField(widget=forms.HiddenInput(), required = False)
+    currTAs = forms.IntegerField(widget=forms.HiddenInput(), required = False)
     extra_info = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Extra Information Relevant to the Course', 'class': 'class_description'}))
-
+    courseState = forms.CharField(widget=forms.HiddenInput(), required = False)
+    namesOfTAs = forms.CharField(widget=forms.HiddenInput(), required = False)
+    
     class Meta:
         model = CourseAdd
-        fields = ['subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType', 'requiredOH', 'discussion', 'discussion_day', 'discussion_time', 'extra_info']
+        fields = ['instructor', 'subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType',
+                'requiredOH', 'discussion', 'currTAs', 'discussion_day', 'discussion_time', 'fulfilled', 'extra_info', 'courseState', 'namesOfTAs']
     
     
     

@@ -19,22 +19,12 @@
             </div>
           </div>
           <div class="top_text">
-            Application for (Insert Course Name)
+            Application for {{course.courseName}}
           </div>
           <br>
           <div class="container">
             <form method="post">
               {% csrf_token %}
-              <div class="label">
-                Name
-              </div>
-              {{form.name}}
-              <br>
-              <div class="label">
-                Email
-              </div>
-              {{form.email}}
-              <br>
               <div class="label">
                 GPA
               </div>

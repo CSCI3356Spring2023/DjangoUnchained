@@ -20,6 +20,9 @@
           <form method="post">
       {% csrf_token %}
       <br><br>
+      <label for="instructor">Instructor:</label>
+      <input type="text" id="instructor" name="instructor" required>
+      <br><br>
       <label for="subject">Subject:</label>
       <input type="text" id="subject" name="subject" required>
       <br><br>
@@ -110,7 +113,12 @@
       <option value="3:00 PM">3:00 PM</option>
       <option value="4:00 PM">4:00 PM</option>
       <option value="5:00 PM">5:00 PM</option>
-  <select>
+  </select>
+  <br><br>
+  <select hidden id="fulfilled" name="fulfilled" required>
+      <option value="No">No</option>
+      <option value="Yes">Yes</option>
+  </select>
   <br><br>
   <br><br>
   <br><br>

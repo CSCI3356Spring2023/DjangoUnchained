@@ -17,6 +17,7 @@
         <form method=POST>
 
             {% csrf_token %}
+            {{form.instructor}}
             {{form.subject}}
             {{form.courseName}}
             {{form.courseCode}}
@@ -31,6 +32,8 @@
             {{form.discussion}}
             {{form.discussion_day}}
             {{form.discussion_time}}
+            {{form.fulfilled}}
+            {{form.currTAs}}
             {{form.extra_info}}
             
 

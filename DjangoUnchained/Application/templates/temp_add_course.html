@@ -17,6 +17,9 @@
                 <span  class="form_title">Add New Course</span>
                 <form method="post">
                     {% csrf_token %}
+                    {% if admin == True %}
+                        {{form.instructor}}
+                    {% endif %}
                     {{form.subject}}
                     {{form.courseName}}
                     {{form.courseCode}}
@@ -31,6 +34,7 @@
                     {{form.discussion}}
                     {{form.discussion_day}}
                     {{form.discussion_time}}
+                    {{form.fulfilled.as_hidden}}
                     {{form.extra_info}}
                     <button type="submit", id="submit_button", onclick="location.href = '/main'">Publish</button>
                 </form>

@@ -15,6 +15,9 @@
         <hr>
 
         <div class="big_div">
+            <div>Instructor</div>
+            <div>{{ course.instructor }}</div> <br>
+
             <div>Subject</div>
             <div>{{ course.subject }}</div> <br>
 
@@ -45,16 +48,18 @@
             <div>Discussion Time</div>
             <div>{{ course.discussion_time }}</div> <br>
 
-    
+            <div>Discussion Time</div>
+            <div>{{ course.fulfilled }}</div> <br>
+
+            <div>{{form.currTAs}}</div>
+            
         </div>
 
         <script>
             sessionStorage.setItem('courseCode', course.courseCode);
         </script>
 
-        <button type="button" class="apply_button">
-            <a href="{% url 'student_apply' %}">Apply</a>
-        </button>
+        <a href="{% url 'student_apply' course.id %}" class="apply-button">Apply</a>
 
         <hr>
 
@@ -67,6 +72,11 @@
 <style>
 
     @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+    .apply_button {
+        color: white;
+        left:50%;
+    }
 
     .heading {
         text-align: center;
