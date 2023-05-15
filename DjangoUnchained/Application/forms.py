@@ -174,7 +174,6 @@ class CourseAddForm(forms.ModelForm):
     courseCode = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Course Code', 'class': 'short_text'}))
     courseDescription = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Course Description', 'class': 'class_description'}))
     building = forms.CharField(widget=forms.Select(choices=buildings))
-    roomNumber = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Room Number', 'class': 'short_text'}))
     days = forms.CharField(widget=forms.Select(choices=days_choices))
     time = forms.CharField(widget=forms.Select(choices=class_times))
     duration = forms.CharField(widget=forms.Select(choices=durations))
@@ -192,7 +191,7 @@ class CourseAddForm(forms.ModelForm):
     
     class Meta:
         model = CourseAdd
-        fields = ['instructor', 'subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'roomNumber', 'days', 'time', 'duration', 'numTAs', 'gradingType',
+        fields = ['instructor', 'subject', 'courseName', 'courseCode', 'courseDescription', 'building', 'days', 'time', 'duration', 'numTAs', 'gradingType',
                 'requiredOH', 'discussion', 'currTAs', 'discussion_day', 'discussion_time', 'fulfilled', 'extra_info', 'courseState', 'namesOfTAs']
     
     
