@@ -198,6 +198,7 @@ class CourseAdd(models.Model):
     courseCode = models.CharField(max_length=100)
     courseDescription = models.CharField(max_length=1000)
     building = models.CharField(max_length=100, choices = BUILDINGS, null=True)
+    roomNumber = models.CharField(max_length=3)
     days = models.CharField(max_length=100, choices = CLASS_DAYS, null=True)
     time = models.CharField(max_length=100, choices = TIMES, null=True)
     duration = models.CharField(max_length=100, choices = DURATIONS, null=True)
@@ -233,6 +234,9 @@ class CourseAdd(models.Model):
     
     def get_building(self):
         return self.building
+    
+    def get_roomNumber(self):
+        return self.roomNumber
     
     def get_days(self):
         return self.days
