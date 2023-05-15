@@ -74,6 +74,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DjangoUnchained.wsgi.application'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://djangounchained-production.up.railway.app/'
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
