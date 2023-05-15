@@ -5,6 +5,7 @@ from .forms import StudentApply
 from .forms import CourseAddForm
 from django.shortcuts import get_object_or_404, redirect
 from django.core import mail
+import random
 
 from .models import CourseAdd
 from .models import StudentApplication
@@ -210,7 +211,8 @@ def accept_applicant(request, applicant_id):
     emailAddress = applicant.email
     courseName = applicant.courseName.replace(" ", "-")
     instructor = applicant.instructor.replace(" ", "-")
-    subject = f"Update on {name}'s TA Application"
+    num1 = random.randint(0, 1000)
+    subject = f"Update on {name}'s TA Application - ID: {num1}"
     body = f"Congrats {name}! You've accepted as a TA for {applicant.courseName}! Click the link here to accept or reject the offer: http://127.0.0.1:8000/offer_role/?course_info={courseName}!{instructor}"
     send_email(body, emailAddress, subject)
     applicant.set_results("Awaiting Student Decision")
