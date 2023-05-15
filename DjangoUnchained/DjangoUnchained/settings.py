@@ -77,6 +77,7 @@ WSGI_APPLICATION = 'DjangoUnchained.wsgi.application'
 CSRF_TRUSTED_ORIGINS = [
     'https://djangounchained-production.up.railway.app/',
     'djangounchained-production-4549.up.railway.app',
+    'https://djangounchained-production-4549.up.railway.app/',
 ]
 
 
