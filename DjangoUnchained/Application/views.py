@@ -310,7 +310,7 @@ def edit_course(request, course_id):
             if form.is_valid(): 
                 form.save()
                 if (userRole == 'Instructor'):
-                    return redirect('instructor_visual.html')
+                    return redirect('homepage')
                 return redirect('admin_page')
 
             return render(request, 'edit_course.html', {'course': course, 'form': form})
