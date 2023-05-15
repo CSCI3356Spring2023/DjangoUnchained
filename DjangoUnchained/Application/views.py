@@ -51,9 +51,9 @@ def add_TA(applicantInfo):
     course.set_currTAs(num)
     temp = course.get_namesOfTAs()
     name = applicantInfo.get_full_name()
-    temp += f"{num}. {name}  "
+    if (temp != None):
+        temp += f"{num}. {name}  "
     course.set_namesOfTAs(temp)
-    print(temp)
     if (int(num) == int(course.get_numTAs())):
         course.set_courseState("Closed")
     course.save()
